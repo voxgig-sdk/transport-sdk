@@ -1,0 +1,18 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      servers: [
+        {
+          url: "http://transport.opendata.ch/v1"
+        }
+      ]
+      title: "Transport API"
+      version: "1.0"
+    }
+  }
+}
+
+}

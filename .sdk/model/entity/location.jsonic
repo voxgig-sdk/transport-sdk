@@ -1,0 +1,92 @@
+# Entity: location
+
+main: kit: entity: location: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "coordinate"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "distance"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "score"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "location"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "query"
+                orig: "query"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "x"
+                orig: "x"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "y"
+                orig: "y"
+                reqd: false
+                type: "`$ANY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/locations"
+          parts: [
+            "locations"
+          ]
+          select: {
+            exist: [
+              "query"
+              "type"
+              "x"
+              "y"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

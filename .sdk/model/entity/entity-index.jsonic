@@ -1,0 +1,5 @@
+# Entity Models
+
+@"connection.jsonic"
+@"location.jsonic"
+@"stationboard.jsonic"

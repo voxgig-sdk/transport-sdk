@@ -1,0 +1,132 @@
+# Entity: connection
+
+main: kit: entity: connection: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "connection"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "from"
+      req: false
+      type: "`$ANY`"
+    }
+    {
+      name: "station"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "to"
+      req: false
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "connection"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "from"
+                orig: "from"
+                reqd: true
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "is_arrival_time"
+                orig: "is_arrival_time"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "time"
+                orig: "time"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "to"
+                orig: "to"
+                reqd: true
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "transportation"
+                orig: "transportation"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "via"
+                orig: "via"
+                reqd: false
+                type: "`$ANY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/connections"
+          parts: [
+            "connections"
+          ]
+          select: {
+            exist: [
+              "date"
+              "from"
+              "is_arrival_time"
+              "limit"
+              "page"
+              "time"
+              "to"
+              "transportation"
+              "via"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

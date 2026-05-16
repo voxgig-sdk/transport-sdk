@@ -1,0 +1,22 @@
+# BasicStationboardFlow
+
+main: kit: flow: BasicStationboardFlow:
+{
+  entity: "stationboard",
+  kind: "basic",
+  name: "BasicStationboardFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "stationboard_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStationboardFlow"
+}

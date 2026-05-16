@@ -1,0 +1,22 @@
+# BasicLocationFlow
+
+main: kit: flow: BasicLocationFlow:
+{
+  entity: "location",
+  kind: "basic",
+  name: "BasicLocationFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "location_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLocationFlow"
+}

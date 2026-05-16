@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "location": {
+      "LOCATION00": {
+        "coordinate": "s28",
+        "distance": 41,
+        "name": "s2a",
+        "score": "s2b"
+      },
+      "LOCATION01": {
+        "coordinate": "s50",
+        "distance": 81,
+        "name": "s52",
+        "score": "s53"
+      },
+      "LOCATION02": {
+        "coordinate": "s78",
+        "distance": 121,
+        "name": "s7a",
+        "score": "s7b"
+      }
+    }
+  },
+  "new": {
+    "location": {
+      "location_ref01": {
+        "coordinate": "sa0",
+        "distance": 161,
+        "name": "sa2",
+        "score": "sa3"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: connection: {
+    path: "/connections": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: location: {
+    path: "/locations": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: stationboard: {
+    path: "/stationboard": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.stationboard`")|top
+    }
+  }
+
+}

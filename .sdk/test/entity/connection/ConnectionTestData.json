@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "connection": {
+      "CONNECTION00": {
+        "connection": [],
+        "from": "s29",
+        "station": [],
+        "to": "s2b"
+      },
+      "CONNECTION01": {
+        "connection": [],
+        "from": "s51",
+        "station": [],
+        "to": "s53"
+      },
+      "CONNECTION02": {
+        "connection": [],
+        "from": "s79",
+        "station": [],
+        "to": "s7b"
+      }
+    }
+  },
+  "new": {
+    "connection": {
+      "connection_ref01": {
+        "connection": [],
+        "from": "sa1",
+        "station": [],
+        "to": "sa3"
+      }
+    }
+  }
+}

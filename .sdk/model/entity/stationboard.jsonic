@@ -1,0 +1,138 @@
+# Entity: stationboard
+
+main: kit: entity: stationboard: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "capacity1st"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "capacity2nd"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "category_code"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "number"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "operator"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "pass_list"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "subcategory"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "to"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "stationboard"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "datetime"
+                orig: "datetime"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "id"
+                orig: "id"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "station"
+                orig: "station"
+                reqd: true
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "transportation"
+                orig: "transportation"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$ANY`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/stationboard"
+          parts: [
+            "stationboard"
+          ]
+          select: {
+            exist: [
+              "datetime"
+              "id"
+              "limit"
+              "station"
+              "transportation"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
