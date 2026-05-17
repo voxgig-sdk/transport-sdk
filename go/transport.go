@@ -1,10 +1,10 @@
 package voxgigtransportsdk
 
 import (
-	"github.com/voxgig-sdk/transport-sdk/core"
-	"github.com/voxgig-sdk/transport-sdk/entity"
-	"github.com/voxgig-sdk/transport-sdk/feature"
-	_ "github.com/voxgig-sdk/transport-sdk/utility"
+	"github.com/voxgig-sdk/transport-sdk/go/core"
+	"github.com/voxgig-sdk/transport-sdk/go/entity"
+	"github.com/voxgig-sdk/transport-sdk/go/feature"
+	_ "github.com/voxgig-sdk/transport-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

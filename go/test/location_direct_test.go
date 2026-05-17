@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/transport-sdk"
-	"github.com/voxgig-sdk/transport-sdk/core"
+	sdk "github.com/voxgig-sdk/transport-sdk/go"
+	"github.com/voxgig-sdk/transport-sdk/go/core"
 )
 
 func TestLocationDirect(t *testing.T) {

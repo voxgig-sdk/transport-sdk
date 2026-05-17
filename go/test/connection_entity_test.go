@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/transport-sdk"
-	"github.com/voxgig-sdk/transport-sdk/core"
+	sdk "github.com/voxgig-sdk/transport-sdk/go"
+	"github.com/voxgig-sdk/transport-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/transport-sdk/go/utility/struct"
 )
 
 func TestConnectionEntity(t *testing.T) {
