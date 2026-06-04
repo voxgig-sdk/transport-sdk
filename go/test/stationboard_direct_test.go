@@ -93,14 +93,12 @@ func stationboardDirectSetup(mockres any) *stationboardDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TRANSPORT_TEST_STATIONBOARD_ENTID": map[string]any{},
 		"TRANSPORT_TEST_LIVE":    "FALSE",
-		"TRANSPORT_APIKEY":       "NONE",
 	})
 
 	live := env["TRANSPORT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["TRANSPORT_APIKEY"],
 		}
 		client := sdk.NewTransportSDK(mergedOpts)
 

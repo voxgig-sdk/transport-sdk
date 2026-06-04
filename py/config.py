@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "http://transport.opendata.ch/v1",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },

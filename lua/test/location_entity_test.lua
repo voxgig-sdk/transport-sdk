@@ -92,7 +92,6 @@ function location_basic_setup(extra)
     ["TRANSPORT_TEST_LOCATION_ENTID"] = idmap,
     ["TRANSPORT_TEST_LIVE"] = "FALSE",
     ["TRANSPORT_TEST_EXPLAIN"] = "FALSE",
-    ["TRANSPORT_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function location_basic_setup(extra)
   if env["TRANSPORT_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["TRANSPORT_APIKEY"],
       },
       extra or {},
     })
