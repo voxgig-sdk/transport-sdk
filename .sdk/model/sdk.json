@@ -1,36 +1,13 @@
 {
-  "name": "transport",
-  "origin": "voxgig-sdk",
   "def": "transport_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "servers": [
-          {
-            "url": "http://transport.opendata.ch/v1"
-          }
-        ],
-        "title": "Transport API",
-        "version": "1.0",
-        "tagline": "Query Swiss public transport stations, journeys, and live station boards from opendata.ch",
-        "homepage": "https://transport.opendata.ch/",
-        "docs_url": "https://transport.opendata.ch/docs.html",
-        "license_short": "Open public-transport data via opendata.ch; attribution recommended.",
-        "license_md": "- Service is provided by [opendata.ch](https://opendata.ch/) with infrastructure donated by [nine.ch](https://nine.ch/).\n- Timetable data is sourced from [timetable.search.ch](https://timetable.search.ch/).\n- No authentication keys are issued, but request rates are bounded by the upstream timetable.search.ch limits.\n- Attribution to opendata.ch (and the underlying data sources) is recommended when redistributing results.",
-        "about_md": "The Transport API is a free, unauthenticated JSON API for Swiss public transport, run by [opendata.ch](https://opendata.ch/). It wraps the timetable from [timetable.search.ch](https://timetable.search.ch/) behind three simple HTTP resources for finding stops, planning journeys, and watching a station board.\n\nWhat you get from the API:\n\n- Location search by name or WGS84 coordinates, returning scored matches.\n- Connection lookups between two locations with optional via-points, transport-type filters, and pagination.\n- Station-board departures and arrivals for a given stop, including real-time information when available.\n- Response fields include station IDs and names, coordinates, ISO 8601 departure/arrival times, platforms, transport categories, operators, journey duration, and first/second-class capacity estimates.\n\nThe service has no API key requirement and CORS is enabled, so it can be called directly from browser clients. Throughput is bounded by the upstream timetable.search.ch rate limit rather than a documented per-caller quota.",
-        "entity_desc": {
-          "connection": "Journeys between two locations, optionally with via-points and transport-type filters, served from `/connections`.",
-          "location": "Swiss transport stops and places looked up by name or WGS84 coordinates, served from `/locations`.",
-          "stationboard": "Upcoming departures (and arrivals) at a given station, with real-time information when available, served from `/stationboard`."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -39,118 +16,124 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "connection": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "connection",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "from",
               "req": false,
-              "type": "`$ANY`",
-              "active": true
+              "type": "`$ANY`"
             },
             {
+              "active": true,
               "name": "station",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "to",
               "req": false,
-              "type": "`$ANY`",
-              "active": true
+              "type": "`$ANY`"
             }
           ],
           "name": "connection",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "date",
                         "orig": "date",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "from",
                         "orig": "from",
                         "reqd": true,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "is_arrival_time",
                         "orig": "is_arrival_time",
                         "reqd": false,
-                        "type": "`$BOOLEAN`",
-                        "active": true
+                        "type": "`$BOOLEAN`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "limit",
                         "orig": "limit",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "page",
                         "orig": "page",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "time",
                         "orig": "time",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "to",
                         "orig": "to",
                         "reqd": true,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "transportation",
                         "orig": "transportation",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "via",
                         "orig": "via",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       }
                     ]
                   },
@@ -175,87 +158,87 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "location": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "coordinate",
               "req": false,
-              "type": "`$ANY`",
-              "active": true
+              "type": "`$ANY`"
             },
             {
+              "active": true,
               "name": "distance",
               "req": false,
-              "type": "`$NUMBER`",
-              "active": true
+              "type": "`$NUMBER`"
             },
             {
+              "active": true,
               "name": "name",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "score",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             }
           ],
           "name": "location",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "query",
                         "orig": "query",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "type",
                         "orig": "type",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "x",
                         "orig": "x",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "y",
                         "orig": "y",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       }
                     ]
                   },
@@ -275,139 +258,139 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "stationboard": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "capacity1st",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "capacity2nd",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "category",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "category_code",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "name",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "number",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "operator",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "pass_list",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "subcategory",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "to",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "stationboard",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "datetime",
                         "orig": "datetime",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "id",
                         "orig": "id",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "limit",
                         "orig": "limit",
                         "reqd": false,
-                        "type": "`$INTEGER`",
-                        "active": true
+                        "type": "`$INTEGER`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "station",
                         "orig": "station",
                         "reqd": true,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "transportation",
                         "orig": "transportation",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       },
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "type",
                         "orig": "type",
                         "reqd": false,
-                        "type": "`$ANY`",
-                        "active": true
+                        "type": "`$ANY`"
                       }
                     ]
                   },
@@ -428,15 +411,12 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
+                    "res": "`body.stationboard`"
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -444,9 +424,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -454,6 +431,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -462,25 +447,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -496,20 +467,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -524,23 +507,30 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicConnectionFlow": {
+          "active": true,
           "entity": "connection",
+          "key$": "BasicConnectionFlow",
           "kind": "basic",
           "name": "BasicConnectionFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -548,25 +538,25 @@
                     "ref": "connection_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicConnectionFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicLocationFlow": {
+          "active": true,
           "entity": "location",
+          "key$": "BasicLocationFlow",
           "kind": "basic",
           "name": "BasicLocationFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -574,25 +564,25 @@
                     "ref": "location_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicLocationFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicStationboardFlow": {
+          "active": true,
           "entity": "stationboard",
+          "key$": "BasicStationboardFlow",
           "kind": "basic",
           "name": "BasicStationboardFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -600,29 +590,47 @@
                     "ref": "stationboard_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicStationboardFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "servers": [
+          {
+            "url": "http://transport.opendata.ch/v1"
+          }
+        ],
+        "title": "Transport API",
+        "version": "1.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "transport"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "transport"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -637,19 +645,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "transport"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -664,138 +672,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "transport"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "transport"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "transport"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "transport"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "transport"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "transport"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "transport"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "transport"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "transport"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "transport",
+  "origin": "voxgig-sdk"
 }

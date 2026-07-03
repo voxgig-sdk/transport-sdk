@@ -68,12 +68,14 @@ function connection_direct_setup($mockres)
     $env = Runner::env_override([
         "TRANSPORT_TEST_CONNECTION_ENTID" => [],
         "TRANSPORT_TEST_LIVE" => "FALSE",
+        "TRANSPORT_APIKEY" => "NONE",
     ]);
 
     $live = $env["TRANSPORT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["TRANSPORT_APIKEY"],
         ];
         $client = new TransportSDK($merged_opts);
         return [

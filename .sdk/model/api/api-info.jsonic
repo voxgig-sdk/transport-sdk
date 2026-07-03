@@ -11,30 +11,7 @@ main: {
       ]
       title: "Transport API"
       version: "1.0"
-      tagline: "Query Swiss public transport stations, journeys, and live station boards from opendata.ch"
-      homepage: "https://transport.opendata.ch/"
-      docs_url: "https://transport.opendata.ch/docs.html"
-      license_short: "Open public-transport data via opendata.ch; attribution recommended."
-      license_md: `- Service is provided by [opendata.ch](https://opendata.ch/) with infrastructure donated by [nine.ch](https://nine.ch/).
-- Timetable data is sourced from [timetable.search.ch](https://timetable.search.ch/).
-- No authentication keys are issued, but request rates are bounded by the upstream timetable.search.ch limits.
-- Attribution to opendata.ch (and the underlying data sources) is recommended when redistributing results.`
-      about_md: `The Transport API is a free, unauthenticated JSON API for Swiss public transport, run by [opendata.ch](https://opendata.ch/). It wraps the timetable from [timetable.search.ch](https://timetable.search.ch/) behind three simple HTTP resources for finding stops, planning journeys, and watching a station board.
-
-What you get from the API:
-
-- Location search by name or WGS84 coordinates, returning scored matches.
-- Connection lookups between two locations with optional via-points, transport-type filters, and pagination.
-- Station-board departures and arrivals for a given stop, including real-time information when available.
-- Response fields include station IDs and names, coordinates, ISO 8601 departure/arrival times, platforms, transport categories, operators, journey duration, and first/second-class capacity estimates.
-
-The service has no API key requirement and CORS is enabled, so it can be called directly from browser clients. Throughput is bounded by the upstream timetable.search.ch rate limit rather than a documented per-caller quota.`
-      entity_desc: {
-        connection: "Journeys between two locations, optionally with via-points and transport-type filters, served from `/connections`."
-        location: "Swiss transport stops and places looked up by name or WGS84 coordinates, served from `/locations`."
-        stationboard: "Upcoming departures (and arrivals) at a given station, with real-time information when available, served from `/stationboard`."
-      }
-      auth: false
     }
   }
 }
+

@@ -1,21 +1,8 @@
 # Transport SDK
 
-Query Swiss public transport stations, journeys, and live station boards from opendata.ch
+Transport API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Transport API
-
-The Transport API is a free, unauthenticated JSON API for Swiss public transport, run by [opendata.ch](https://opendata.ch/). It wraps the timetable from [timetable.search.ch](https://timetable.search.ch/) behind three simple HTTP resources for finding stops, planning journeys, and watching a station board.
-
-What you get from the API:
-
-- Location search by name or WGS84 coordinates, returning scored matches.
-- Connection lookups between two locations with optional via-points, transport-type filters, and pagination.
-- Station-board departures and arrivals for a given stop, including real-time information when available.
-- Response fields include station IDs and names, coordinates, ISO 8601 departure/arrival times, platforms, transport categories, operators, journey duration, and first/second-class capacity estimates.
-
-The service has no API key requirement and CORS is enabled, so it can be called directly from browser clients. Throughput is bounded by the upstream timetable.search.ch rate limit rather than a documented per-caller quota.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install transport-sdk
 luarocks install transport-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TransportSDK } from 'transport'
 
-const client = new TransportSDK({})
+const client = new TransportSDK({
+  apikey: process.env.TRANSPORT_APIKEY,
+})
 
 // List all connections
 const connections = await client.Connection().list()
+console.log(connections.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Connection** | Journeys between two locations, optionally with via-points and transport-type filters, served from `/connections`. | `/connections` |
-| **Location** | Swiss transport stops and places looked up by name or WGS84 coordinates, served from `/locations`. | `/locations` |
-| **Stationboard** | Upcoming departures (and arrivals) at a given station, with real-time information when available, served from `/stationboard`. | `/stationboard` |
+| **Connection** |  | `/connections` |
+| **Location** |  | `/locations` |
+| **Stationboard** |  | `/stationboard` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -113,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from transport_sdk import TransportSDK
 
-client = TransportSDK({})
+client = TransportSDK({
+    "apikey": os.environ.get("TRANSPORT_APIKEY"),
+})
 
 # List all connections
-connections, err = client.Connection(None).list(None, None)
+connections, err = client.Connection().list()
+print(connections)
 ```
 
 ### PHP
@@ -127,10 +120,13 @@ connections, err = client.Connection(None).list(None, None)
 <?php
 require_once 'transport_sdk.php';
 
-$client = new TransportSDK([]);
+$client = new TransportSDK([
+    "apikey" => getenv("TRANSPORT_APIKEY"),
+]);
 
 // List all connections
-[$connections, $err] = $client->Connection(null)->list(null, null);
+[$connections, $err] = $client->Connection()->list();
+print_r($connections);
 ```
 
 ### Golang
@@ -138,10 +134,13 @@ $client = new TransportSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/transport-sdk/go"
 
-client := sdk.NewTransportSDK(map[string]any{})
+client := sdk.NewTransportSDK(map[string]any{
+    "apikey": os.Getenv("TRANSPORT_APIKEY"),
+})
 
 // List all connections
 connections, err := client.Connection(nil).List(nil, nil)
+fmt.Println(connections)
 ```
 
 ### Ruby
@@ -149,10 +148,13 @@ connections, err := client.Connection(nil).List(nil, nil)
 ```ruby
 require_relative "Transport_sdk"
 
-client = TransportSDK.new({})
+client = TransportSDK.new({
+  "apikey" => ENV["TRANSPORT_APIKEY"],
+})
 
 # List all connections
-connections, err = client.Connection(nil).list(nil, nil)
+connections, err = client.Connection().list
+puts connections
 ```
 
 ### Lua
@@ -160,10 +162,13 @@ connections, err = client.Connection(nil).list(nil, nil)
 ```lua
 local sdk = require("transport_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TRANSPORT_APIKEY"),
+})
 
 -- List all connections
-local connections, err = client:Connection(nil):list(nil, nil)
+local connections, err = client:Connection():list()
+print(connections)
 ```
 
 ## Unit testing in offline mode
@@ -182,25 +187,21 @@ const result = await client.Connection().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TransportSDK.test(None, None)
-result, err = client.Connection(None).load(
-    {"id": "test01"}, None
-)
+client = TransportSDK.test()
+result, err = client.Connection().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TransportSDK::test(null, null);
-[$result, $err] = $client->Connection(null)->load(
-    ["id" => "test01"], null
-);
+$client = TransportSDK::test();
+[$result, $err] = $client->Connection()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Connection(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -209,19 +210,15 @@ result, err := client.Connection(nil).Load(
 ### Ruby
 
 ```ruby
-client = TransportSDK.test(nil, nil)
-result, err = client.Connection(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TransportSDK.test
+result, err = client.Connection().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Connection(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Connection():load({ id = "test01" })
 ```
 
 ## How it works
@@ -325,16 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Transport API
-
-- Upstream: [https://transport.opendata.ch/](https://transport.opendata.ch/)
-- API docs: [https://transport.opendata.ch/docs.html](https://transport.opendata.ch/docs.html)
-
-- Service is provided by [opendata.ch](https://opendata.ch/) with infrastructure donated by [nine.ch](https://nine.ch/).
-- Timetable data is sourced from [timetable.search.ch](https://timetable.search.ch/).
-- No authentication keys are issued, but request rates are bounded by the upstream timetable.search.ch limits.
-- Attribution to opendata.ch (and the underlying data sources) is recommended when redistributing results.
 
 ---
 

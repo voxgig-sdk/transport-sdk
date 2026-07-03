@@ -62,12 +62,14 @@ def stationboard_direct_setup(mockres)
   env = Runner.env_override({
     "TRANSPORT_TEST_STATIONBOARD_ENTID" => {},
     "TRANSPORT_TEST_LIVE" => "FALSE",
+    "TRANSPORT_APIKEY" => "NONE",
   })
 
   live = env["TRANSPORT_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["TRANSPORT_APIKEY"],
     }
     client = TransportSDK.new(merged_opts)
     return {

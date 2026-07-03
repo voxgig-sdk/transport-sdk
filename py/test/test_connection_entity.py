@@ -92,6 +92,7 @@ def _connection_basic_setup(extra):
         "TRANSPORT_TEST_CONNECTION_ENTID": idmap,
         "TRANSPORT_TEST_LIVE": "FALSE",
         "TRANSPORT_TEST_EXPLAIN": "FALSE",
+        "TRANSPORT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _connection_basic_setup(extra):
     if env.get("TRANSPORT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("TRANSPORT_APIKEY"),
             },
             extra or {},
         ])

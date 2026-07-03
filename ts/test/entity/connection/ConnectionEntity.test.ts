@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'TRANSPORT_TEST_CONNECTION_ENTID': idmap,
     'TRANSPORT_TEST_LIVE': 'FALSE',
     'TRANSPORT_TEST_EXPLAIN': 'FALSE',
+    'TRANSPORT_APIKEY': 'NONE',
   })
 
   idmap = env['TRANSPORT_TEST_CONNECTION_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TransportSDK(merge([
       {
+        apikey: env.TRANSPORT_APIKEY,
       },
       extra
     ]))
