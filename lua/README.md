@@ -10,7 +10,7 @@ The Lua SDK for the Transport API — an entity-oriented client using Lua conven
 
 ## Install
 ```bash
-luarocks install transport-sdk
+luarocks install voxgig-sdk-transport
 ```
 
 If the module is not yet published, add the source directory to

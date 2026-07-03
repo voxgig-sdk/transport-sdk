@@ -10,13 +10,13 @@ The Ruby SDK for the Transport API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install transport-sdk
+gem install voxgig-sdk-transport
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "transport-sdk"
+gem "voxgig-sdk-transport"
 ```
 
 Then run:

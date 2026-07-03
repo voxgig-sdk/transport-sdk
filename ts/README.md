@@ -10,7 +10,7 @@ The TypeScript SDK for the Transport API — a type-safe, entity-oriented client
 
 ## Install
 ```bash
-npm install transport
+npm install @voxgig-sdk/transport
 ```
 ## Tutorial: your first API call
 

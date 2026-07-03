@@ -10,7 +10,7 @@ The Python SDK for the Transport API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install transport-sdk
+pip install voxgig-sdk-transport
 ```
 
 Or install from source:

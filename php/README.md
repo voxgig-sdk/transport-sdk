@@ -10,7 +10,7 @@ The PHP SDK for the Transport API — an entity-oriented client using PHP conven
 
 ## Install
 ```bash
-composer require voxgig/transport-sdk
+composer require voxgig-sdk/transport
 ```
 
 
