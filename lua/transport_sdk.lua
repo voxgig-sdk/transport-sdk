@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:connection():list() / client:connection():load({ id = ... })
-function TransportSDK:connection(data)
+-- Idiomatic facade: client:Connection():list() / client:Connection():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TransportSDK:Connection(data)
   local EntityMod = require("entity.connection_entity")
   if data == nil then
     if self._connection == nil then
@@ -256,15 +257,10 @@ function TransportSDK:connection(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:connection() instead.
-function TransportSDK:Connection(data)
-  local EntityMod = require("entity.connection_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:location():list() / client:location():load({ id = ... })
-function TransportSDK:location(data)
+-- Idiomatic facade: client:Location():list() / client:Location():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TransportSDK:Location(data)
   local EntityMod = require("entity.location_entity")
   if data == nil then
     if self._location == nil then
@@ -275,15 +271,10 @@ function TransportSDK:location(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:location() instead.
-function TransportSDK:Location(data)
-  local EntityMod = require("entity.location_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:stationboard():list() / client:stationboard():load({ id = ... })
-function TransportSDK:stationboard(data)
+-- Idiomatic facade: client:Stationboard():list() / client:Stationboard():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TransportSDK:Stationboard(data)
   local EntityMod = require("entity.stationboard_entity")
   if data == nil then
     if self._stationboard == nil then
@@ -291,12 +282,6 @@ function TransportSDK:stationboard(data)
     end
     return self._stationboard
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:stationboard() instead.
-function TransportSDK:Stationboard(data)
-  local EntityMod = require("entity.stationboard_entity")
   return EntityMod.new(self, data)
 end
 

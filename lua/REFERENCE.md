@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## ConnectionEntity
 
 ```lua
-local connection = client:connection(nil)
+local connection = client:Connection(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local connection = client:connection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:connection():list()
+local results, err = client:Connection():list()
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## LocationEntity
 
 ```lua
-local location = client:location(nil)
+local location = client:Location(nil)
 ```
 
 ### Fields
@@ -165,7 +165,7 @@ local location = client:location(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:location():list()
+local results, err = client:Location():list()
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return the entity name.
 ## StationboardEntity
 
 ```lua
-local stationboard = client:stationboard(nil)
+local stationboard = client:Stationboard(nil)
 ```
 
 ### Fields
@@ -226,7 +226,7 @@ local stationboard = client:stationboard(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:stationboard():list()
+local results, err = client:Stationboard():list()
 ```
 
 ### Common Methods

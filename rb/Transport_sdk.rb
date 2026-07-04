@@ -208,39 +208,21 @@ class TransportSDK
   end
 
 
-  # Idiomatic facade: client.connection.list / client.connection.load({ "id" => ... })
-  def connection
-    require_relative 'entity/connection_entity'
-    @connection ||= ConnectionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.connection instead.
+  # Canonical facade: client.Connection.list / client.Connection.load({ "id" => ... })
   def Connection(data = nil)
     require_relative 'entity/connection_entity'
     ConnectionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.location.list / client.location.load({ "id" => ... })
-  def location
-    require_relative 'entity/location_entity'
-    @location ||= LocationEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.location instead.
+  # Canonical facade: client.Location.list / client.Location.load({ "id" => ... })
   def Location(data = nil)
     require_relative 'entity/location_entity'
     LocationEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.stationboard.list / client.stationboard.load({ "id" => ... })
-  def stationboard
-    require_relative 'entity/stationboard_entity'
-    @stationboard ||= StationboardEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.stationboard instead.
+  # Canonical facade: client.Stationboard.list / client.Stationboard.load({ "id" => ... })
   def Stationboard(data = nil)
     require_relative 'entity/stationboard_entity'
     StationboardEntity.new(self, data)

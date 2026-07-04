@@ -31,14 +31,16 @@ from transport_sdk import TransportSDK
 client = TransportSDK()
 ```
 
-### 2. List connections
+### 2. List connection records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.connection.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    connections = client.Connection().list({})
+    for connection in connections:
+        print(connection)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TransportSDK.test()
 
-result = client.connection.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+connection = client.Connection().load({"id": "test01"})
+# connection contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -257,7 +260,7 @@ API path: `/stationboard`
 
 ### Connection
 
-Create an instance: `const connection = client.connection`
+Create an instance: `connection = client.Connection()`
 
 #### Operations
 
@@ -276,14 +279,14 @@ Create an instance: `const connection = client.connection`
 
 #### Example: List
 
-```ts
-const connections = await client.connection.list()
+```python
+connections = client.Connection().list({})
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `location = client.Location()`
 
 #### Operations
 
@@ -302,14 +305,14 @@ Create an instance: `const location = client.location`
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```python
+locations = client.Location().list({})
 ```
 
 
 ### Stationboard
 
-Create an instance: `const stationboard = client.stationboard`
+Create an instance: `stationboard = client.Stationboard()`
 
 #### Operations
 
@@ -334,8 +337,8 @@ Create an instance: `const stationboard = client.stationboard`
 
 #### Example: List
 
-```ts
-const stationboards = await client.stationboard.list()
+```python
+stationboards = client.Stationboard().list({})
 ```
 
 
@@ -409,7 +412,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-connection = client.connection
+connection = client.Connection()
 connection.load({"id": "example_id"})
 
 # connection.data_get() now returns the loaded connection data

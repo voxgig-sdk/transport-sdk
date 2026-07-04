@@ -220,57 +220,27 @@ class TransportSDK:
         }
 
 
-    @property
-    def connection(self):
-        """Idiomatic facade: client.connection.list() / client.connection.load({"id": ...})."""
-        from entity.connection_entity import ConnectionEntity
-        cached = getattr(self, "_connection", None)
-        if cached is None:
-            cached = ConnectionEntity(self, None)
-            self._connection = cached
-        return cached
-
-    def Connection(self, data=None):
-        # Deprecated: use client.connection instead.
+    def Connection(self, data=None) -> "ConnectionEntity":
+        """Entity factory: client.Connection().list({}) / client.Connection().load({"id": ...})."""
         from entity.connection_entity import ConnectionEntity
         return ConnectionEntity(self, data)
 
 
-    @property
-    def location(self):
-        """Idiomatic facade: client.location.list() / client.location.load({"id": ...})."""
-        from entity.location_entity import LocationEntity
-        cached = getattr(self, "_location", None)
-        if cached is None:
-            cached = LocationEntity(self, None)
-            self._location = cached
-        return cached
-
-    def Location(self, data=None):
-        # Deprecated: use client.location instead.
+    def Location(self, data=None) -> "LocationEntity":
+        """Entity factory: client.Location().list({}) / client.Location().load({"id": ...})."""
         from entity.location_entity import LocationEntity
         return LocationEntity(self, data)
 
 
-    @property
-    def stationboard(self):
-        """Idiomatic facade: client.stationboard.list() / client.stationboard.load({"id": ...})."""
-        from entity.stationboard_entity import StationboardEntity
-        cached = getattr(self, "_stationboard", None)
-        if cached is None:
-            cached = StationboardEntity(self, None)
-            self._stationboard = cached
-        return cached
-
-    def Stationboard(self, data=None):
-        # Deprecated: use client.stationboard instead.
+    def Stationboard(self, data=None) -> "StationboardEntity":
+        """Entity factory: client.Stationboard().list({}) / client.Stationboard().load({"id": ...})."""
         from entity.stationboard_entity import StationboardEntity
         return StationboardEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TransportSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class TransportSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.connection_entity import ConnectionEntity
+    from entity.location_entity import LocationEntity
+    from entity.stationboard_entity import StationboardEntity

@@ -28,16 +28,14 @@ require_relative "Transport_sdk"
 client = TransportSDK.new
 ```
 
-### 2. List connections
+### 2. List connection records
 
 ```ruby
 begin
-  result = client.connection.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Connection records — iterate directly.
+  connections = client.Connection.list
+  connections.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = TransportSDK.test
+client = TransportSDK.test({
+  "entity" => { "connection" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.connection.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+connection = client.Connection.load({ "id" => "test01" })
+puts connection
 ```
 
 ### Use a custom fetch function
@@ -260,7 +262,7 @@ API path: `/stationboard`
 
 ### Connection
 
-Create an instance: `const connection = client.connection`
+Create an instance: `connection = client.Connection`
 
 #### Operations
 
@@ -279,14 +281,15 @@ Create an instance: `const connection = client.connection`
 
 #### Example: List
 
-```ts
-const connections = await client.connection.list()
+```ruby
+# list returns an Array of Connection records (raises on error).
+connections = client.Connection.list
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `location = client.Location`
 
 #### Operations
 
@@ -305,14 +308,15 @@ Create an instance: `const location = client.location`
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```ruby
+# list returns an Array of Location records (raises on error).
+locations = client.Location.list
 ```
 
 
 ### Stationboard
 
-Create an instance: `const stationboard = client.stationboard`
+Create an instance: `stationboard = client.Stationboard`
 
 #### Operations
 
@@ -337,8 +341,9 @@ Create an instance: `const stationboard = client.stationboard`
 
 #### Example: List
 
-```ts
-const stationboards = await client.stationboard.list()
+```ruby
+# list returns an Array of Stationboard records (raises on error).
+stationboards = client.Stationboard.list
 ```
 
 
@@ -413,7 +418,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-connection = client.connection
+connection = client.Connection
 connection.load({ "id" => "example_id" })
 
 # connection.data_get now returns the loaded connection data

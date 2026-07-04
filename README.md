@@ -26,9 +26,11 @@ import { TransportSDK } from '@voxgig-sdk/transport'
 
 const client = new TransportSDK()
 
-// List all connections
-const connections = await client.connection.list()
-console.log(connections.data)
+// List all connections (returns Connection[])
+const connections = await client.Connection().list()
+for (const connection of connections) {
+  console.log(connection)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from transport_sdk import TransportSDK
 
 client = TransportSDK()
 
-# List all connections
-connections = client.connection.list()
-print(connections)
+# List all connections (returns a list, raises on error)
+connections = client.Connection().list({})
+for connection in connections:
+    print(connection)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'transport_sdk.php';
 
 $client = new TransportSDK();
 
-// List all connections (throws on error)
-$connections = $client->connection()->list();
+// List all connections (returns an array; throws on error)
+$connections = $client->Connection()->list();
 print_r($connections);
 ```
 
@@ -122,8 +125,8 @@ require_relative "Transport_sdk"
 
 client = TransportSDK.new
 
-# List all connections
-connections = client.connection.list
+# List all connections (returns an Array; raises on error)
+connections = client.Connection.list
 puts connections
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("transport_sdk")
 local client = sdk.new()
 
 -- List all connections
-local connections, err = client:connection():list()
+local connections, err = client:Connection():list()
 print(connections)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TransportSDK.test()
-const result = await client.connection.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const connection = await client.Connection().load({ id: 'test01' })
+// connection is a bare Connection populated with mock data
+console.log(connection)
 ```
 
 ### Python
 
 ```python
 client = TransportSDK.test()
-result = client.connection.load({"id": "test01"})
+connection = client.Connection().load({"id": "test01"})
+print(connection)
 ```
 
 ### PHP
 
 ```php
-$client = TransportSDK::test();
-$result = $client->connection()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TransportSDK::test([
+    "entity" => ["connection" => ["test01" => ["id" => "test01"]]],
+]);
+$connection = $client->Connection()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.Connection(nil).Load(
 ### Ruby
 
 ```ruby
-client = TransportSDK.test
-result = client.connection.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TransportSDK.test({
+  "entity" => { "connection" => { "test01" => { "id" => "test01" } } },
+})
+connection = client.Connection.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:connection():load({ id = "test01" })
+local result, err = client:Connection():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

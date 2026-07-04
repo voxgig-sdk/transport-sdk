@@ -133,7 +133,7 @@ Alias for `TransportSDK.test()`.
 ## ConnectionEntity
 
 ```ts
-const connection = client.connection
+const connection = client.Connection()
 ```
 
 ### Fields
@@ -152,7 +152,7 @@ const connection = client.connection
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.connection.list()
+const results = await client.Connection().list()
 ```
 
 ### Common Methods
@@ -186,7 +186,7 @@ Return a copy of the entity options.
 ## LocationEntity
 
 ```ts
-const location = client.location
+const location = client.Location()
 ```
 
 ### Fields
@@ -205,7 +205,7 @@ const location = client.location
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.location.list()
+const results = await client.Location().list()
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Return a copy of the entity options.
 ## StationboardEntity
 
 ```ts
-const stationboard = client.stationboard
+const stationboard = client.Stationboard()
 ```
 
 ### Fields
@@ -264,7 +264,7 @@ const stationboard = client.stationboard
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.stationboard.list()
+const results = await client.Stationboard().list()
 ```
 
 ### Common Methods

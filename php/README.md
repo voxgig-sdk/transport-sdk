@@ -29,18 +29,16 @@ require_once 'transport_sdk.php';
 $client = new TransportSDK();
 ```
 
-### 2. List connections
+### 2. List connection records
 
 ```php
 try {
-    $result = $client->connection()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Connection records — iterate directly.
+    $connections = $client->Connection()->list();
+    foreach ($connections as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TransportSDK::test();
+$client = TransportSDK::test([
+    "entity" => ["connection" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->connection()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$connection = $client->Connection()->load(["id" => "test01"]);
+print_r($connection);
 ```
 
 ### Use a custom fetch function
@@ -265,7 +267,7 @@ API path: `/stationboard`
 
 ### Connection
 
-Create an instance: `const connection = client.connection`
+Create an instance: `$connection = $client->Connection();`
 
 #### Operations
 
@@ -284,14 +286,15 @@ Create an instance: `const connection = client.connection`
 
 #### Example: List
 
-```ts
-const connections = await client.connection.list()
+```php
+// list() returns an array of Connection records (throws on error).
+$connections = $client->Connection()->list();
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.location`
+Create an instance: `$location = $client->Location();`
 
 #### Operations
 
@@ -310,14 +313,15 @@ Create an instance: `const location = client.location`
 
 #### Example: List
 
-```ts
-const locations = await client.location.list()
+```php
+// list() returns an array of Location records (throws on error).
+$locations = $client->Location()->list();
 ```
 
 
 ### Stationboard
 
-Create an instance: `const stationboard = client.stationboard`
+Create an instance: `$stationboard = $client->Stationboard();`
 
 #### Operations
 
@@ -342,8 +346,9 @@ Create an instance: `const stationboard = client.stationboard`
 
 #### Example: List
 
-```ts
-const stationboards = await client.stationboard.list()
+```php
+// list() returns an array of Stationboard records (throws on error).
+$stationboards = $client->Stationboard()->list();
 ```
 
 
@@ -418,7 +423,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$connection = $client->connection();
+$connection = $client->Connection();
 $connection->load(["id" => "example_id"]);
 
 // $connection->dataGet() now returns the loaded connection data

@@ -206,42 +206,21 @@ class TransportSDK {
 
 
 
-  _connection?: ConnectionEntity
-
-  // Idiomatic facade: `client.connection.list()` / `client.connection.load({ id })`.
-  get connection(): ConnectionEntity {
-    return (this._connection ??= new ConnectionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.connection` instead. */
+  // Entity access: `client.Connection().list()` / `client.Connection().load({ id })`.
   Connection(data?: any) {
     const self = this
     return new ConnectionEntity(self,data)
   }
 
 
-  _location?: LocationEntity
-
-  // Idiomatic facade: `client.location.list()` / `client.location.load({ id })`.
-  get location(): LocationEntity {
-    return (this._location ??= new LocationEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.location` instead. */
+  // Entity access: `client.Location().list()` / `client.Location().load({ id })`.
   Location(data?: any) {
     const self = this
     return new LocationEntity(self,data)
   }
 
 
-  _stationboard?: StationboardEntity
-
-  // Idiomatic facade: `client.stationboard.list()` / `client.stationboard.load({ id })`.
-  get stationboard(): StationboardEntity {
-    return (this._stationboard ??= new StationboardEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.stationboard` instead. */
+  // Entity access: `client.Stationboard().list()` / `client.Stationboard().load({ id })`.
   Stationboard(data?: any) {
     const self = this
     return new StationboardEntity(self,data)

@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ConnectionEntity
 
 ```php
-$connection = $client->connection();
+$connection = $client->Connection();
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ $connection = $client->connection();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->connection()->list([]);
+$results = $client->Connection()->list([]);
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## LocationEntity
 
 ```php
-$location = $client->location();
+$location = $client->Location();
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ $location = $client->location();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->location()->list([]);
+$results = $client->Location()->list([]);
 ```
 
 ### Common Methods
@@ -203,7 +203,7 @@ Return the entity name.
 ## StationboardEntity
 
 ```php
-$stationboard = $client->stationboard();
+$stationboard = $client->Stationboard();
 ```
 
 ### Fields
@@ -228,7 +228,7 @@ $stationboard = $client->stationboard();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->stationboard()->list([]);
+$results = $client->Stationboard()->list([]);
 ```
 
 ### Common Methods

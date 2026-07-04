@@ -4,67 +4,65 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Connection:
-    connection: Optional[list] = None
-    station: Optional[list] = None
-    to: Optional[Any] = None
+class Connection(TypedDict, total=False):
+    connection: list
+    station: list
+    to: Any
 
 
-@dataclass
-class ConnectionListMatch:
-    connection: Optional[list] = None
-    station: Optional[list] = None
-    to: Optional[Any] = None
+class ConnectionListMatch(TypedDict, total=False):
+    connection: list
+    station: list
+    to: Any
 
 
-@dataclass
-class Location:
-    coordinate: Optional[Any] = None
-    distance: Optional[float] = None
-    name: Optional[str] = None
-    score: Optional[int] = None
+class Location(TypedDict, total=False):
+    coordinate: Any
+    distance: float
+    name: str
+    score: int
 
 
-@dataclass
-class LocationListMatch:
-    coordinate: Optional[Any] = None
-    distance: Optional[float] = None
-    name: Optional[str] = None
-    score: Optional[int] = None
+class LocationListMatch(TypedDict, total=False):
+    coordinate: Any
+    distance: float
+    name: str
+    score: int
 
 
-@dataclass
-class Stationboard:
-    capacity1st: Optional[int] = None
-    capacity2nd: Optional[int] = None
-    category: Optional[str] = None
-    category_code: Optional[int] = None
-    name: Optional[str] = None
-    number: Optional[str] = None
-    operator: Optional[str] = None
-    pass_list: Optional[list] = None
-    subcategory: Optional[str] = None
-    to: Optional[str] = None
+class Stationboard(TypedDict, total=False):
+    capacity1st: int
+    capacity2nd: int
+    category: str
+    category_code: int
+    name: str
+    number: str
+    operator: str
+    pass_list: list
+    subcategory: str
+    to: str
 
 
-@dataclass
-class StationboardListMatch:
-    capacity1st: Optional[int] = None
-    capacity2nd: Optional[int] = None
-    category: Optional[str] = None
-    category_code: Optional[int] = None
-    name: Optional[str] = None
-    number: Optional[str] = None
-    operator: Optional[str] = None
-    pass_list: Optional[list] = None
-    subcategory: Optional[str] = None
-    to: Optional[str] = None
-
+class StationboardListMatch(TypedDict, total=False):
+    capacity1st: int
+    capacity2nd: int
+    category: str
+    category_code: int
+    name: str
+    number: str
+    operator: str
+    pass_list: list
+    subcategory: str
+    to: str

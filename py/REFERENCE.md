@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ConnectionEntity
 
 ```python
-connection = client.connection
+connection = client.Connection()
 ```
 
 ### Fields
@@ -107,7 +107,9 @@ connection = client.connection
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.connection.list({})
+results = client.Connection().list({})
+for connection in results:
+    print(connection)
 ```
 
 ### Common Methods
@@ -142,7 +144,7 @@ Return the entity name.
 ## LocationEntity
 
 ```python
-location = client.location
+location = client.Location()
 ```
 
 ### Fields
@@ -161,7 +163,9 @@ location = client.location
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.location.list({})
+results = client.Location().list({})
+for location in results:
+    print(location)
 ```
 
 ### Common Methods
@@ -196,7 +200,7 @@ Return the entity name.
 ## StationboardEntity
 
 ```python
-stationboard = client.stationboard
+stationboard = client.Stationboard()
 ```
 
 ### Fields
@@ -221,7 +225,9 @@ stationboard = client.stationboard
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.stationboard.list({})
+results = client.Stationboard().list({})
+for stationboard in results:
+    print(stationboard)
 ```
 
 ### Common Methods
