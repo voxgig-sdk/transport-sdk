@@ -43,8 +43,7 @@ class LocationEntityTest < Minitest::Test
     location_ref01_ent = client.Location(nil)
     location_ref01_match = {}
 
-    location_ref01_list_result, err = location_ref01_ent.list(location_ref01_match, nil)
-    assert_nil err
+    location_ref01_list_result = location_ref01_ent.list(location_ref01_match, nil)
     assert location_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def location_basic_setup(extra)
     "TRANSPORT_TEST_LOCATION_ENTID" => idmap,
     "TRANSPORT_TEST_LIVE" => "FALSE",
     "TRANSPORT_TEST_EXPLAIN" => "FALSE",
-    "TRANSPORT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def location_basic_setup(extra)
   if env["TRANSPORT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TRANSPORT_APIKEY"],
       },
       extra || {},
     ])

@@ -245,16 +245,25 @@ func (sdk *TransportSDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// Connection returns a Connection entity bound to this client.
+// Idiomatic usage: client.Connection(nil).List(nil, nil) or
+// client.Connection(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TransportSDK) Connection(data map[string]any) TransportEntity {
 	return NewConnectionEntityFunc(sdk, data)
 }
 
 
+// Location returns a Location entity bound to this client.
+// Idiomatic usage: client.Location(nil).List(nil, nil) or
+// client.Location(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TransportSDK) Location(data map[string]any) TransportEntity {
 	return NewLocationEntityFunc(sdk, data)
 }
 
 
+// Stationboard returns a Stationboard entity bound to this client.
+// Idiomatic usage: client.Stationboard(nil).List(nil, nil) or
+// client.Stationboard(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TransportSDK) Stationboard(data map[string]any) TransportEntity {
 	return NewStationboardEntityFunc(sdk, data)
 }

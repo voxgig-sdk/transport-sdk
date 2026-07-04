@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## ConnectionEntity
 
 ```lua
-local connection = client:Connection(nil)
+local connection = client:connection(nil)
 ```
 
 ### Fields
@@ -111,7 +110,7 @@ local connection = client:Connection(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Connection():list()
+local results, err = client:connection():list()
 ```
 
 ### Common Methods
@@ -147,7 +146,7 @@ Return the entity name.
 ## LocationEntity
 
 ```lua
-local location = client:Location(nil)
+local location = client:location(nil)
 ```
 
 ### Fields
@@ -166,7 +165,7 @@ local location = client:Location(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Location():list()
+local results, err = client:location():list()
 ```
 
 ### Common Methods
@@ -202,7 +201,7 @@ Return the entity name.
 ## StationboardEntity
 
 ```lua
-local stationboard = client:Stationboard(nil)
+local stationboard = client:stationboard(nil)
 ```
 
 ### Fields
@@ -227,7 +226,7 @@ local stationboard = client:Stationboard(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Stationboard():list()
+local results, err = client:stationboard():list()
 ```
 
 ### Common Methods

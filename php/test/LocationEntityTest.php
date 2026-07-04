@@ -50,8 +50,7 @@ class LocationEntityTest extends TestCase
         $location_ref01_ent = $client->Location(null);
         $location_ref01_match = [];
 
-        [$location_ref01_list_result, $err] = $location_ref01_ent->list($location_ref01_match, null);
-        $this->assertNull($err);
+        $location_ref01_list_result = $location_ref01_ent->list($location_ref01_match, null);
         $this->assertIsArray($location_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function location_basic_setup($extra)
         "TRANSPORT_TEST_LOCATION_ENTID" => $idmap,
         "TRANSPORT_TEST_LIVE" => "FALSE",
         "TRANSPORT_TEST_EXPLAIN" => "FALSE",
-        "TRANSPORT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function location_basic_setup($extra)
     if ($env["TRANSPORT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TRANSPORT_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -50,8 +50,7 @@ class TestLocationEntity:
         location_ref01_ent = client.Location(None)
         location_ref01_match = {}
 
-        location_ref01_list_result, err = location_ref01_ent.list(location_ref01_match, None)
-        assert err is None
+        location_ref01_list_result = location_ref01_ent.list(location_ref01_match, None)
         assert isinstance(location_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _location_basic_setup(extra):
         "TRANSPORT_TEST_LOCATION_ENTID": idmap,
         "TRANSPORT_TEST_LIVE": "FALSE",
         "TRANSPORT_TEST_EXPLAIN": "FALSE",
-        "TRANSPORT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _location_basic_setup(extra):
     if env.get("TRANSPORT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TRANSPORT_APIKEY"),
             },
             extra or {},
         ])

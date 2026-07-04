@@ -9,9 +9,12 @@ The TypeScript SDK for the Transport API — a type-safe, entity-oriented client
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/transport
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/transport-sdk/releases](https://github.com/voxgig-sdk/transport-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TransportSDK } from 'transport'
+import { TransportSDK } from '@voxgig-sdk/transport'
 
-const client = new TransportSDK({
-  apikey: process.env.TRANSPORT_APIKEY,
-})
+const client = new TransportSDK()
 ```
 
 ### 2. List connections
 
 ```ts
-const result = await client.Connection().list()
+const result = await client.connection.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TransportSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.connection.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new TransportSDK({ apikey: '...' })
+const client = new TransportSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.connection
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new TransportSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 TRANSPORT_TEST_LIVE=TRUE
-TRANSPORT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new TransportSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new TransportSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -305,7 +302,7 @@ API path: `/stationboard`
 
 ### Connection
 
-Create an instance: `const connection = client.Connection()`
+Create an instance: `const connection = client.connection`
 
 #### Operations
 
@@ -325,13 +322,13 @@ Create an instance: `const connection = client.Connection()`
 #### Example: List
 
 ```ts
-const connections = await client.Connection().list()
+const connections = await client.connection.list()
 ```
 
 
 ### Location
 
-Create an instance: `const location = client.Location()`
+Create an instance: `const location = client.location`
 
 #### Operations
 
@@ -351,13 +348,13 @@ Create an instance: `const location = client.Location()`
 #### Example: List
 
 ```ts
-const locations = await client.Location().list()
+const locations = await client.location.list()
 ```
 
 
 ### Stationboard
 
-Create an instance: `const stationboard = client.Stationboard()`
+Create an instance: `const stationboard = client.stationboard`
 
 #### Operations
 
@@ -383,7 +380,7 @@ Create an instance: `const stationboard = client.Stationboard()`
 #### Example: List
 
 ```ts
-const stationboards = await client.Stationboard().list()
+const stationboards = await client.stationboard.list()
 ```
 
 
@@ -444,7 +441,7 @@ transport/
 Import the SDK from the package root:
 
 ```ts
-import { TransportSDK } from 'transport'
+import { TransportSDK } from '@voxgig-sdk/transport'
 ```
 
 ### Entity state
@@ -454,11 +451,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const connection = client.connection
+await connection.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// connection.data() now returns the loaded connection data
+// connection.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

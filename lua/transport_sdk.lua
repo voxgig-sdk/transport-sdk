@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:connection():list() / client:connection():load({ id = ... })
+function TransportSDK:connection(data)
+  local EntityMod = require("entity.connection_entity")
+  if data == nil then
+    if self._connection == nil then
+      self._connection = EntityMod.new(self, nil)
+    end
+    return self._connection
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:connection() instead.
 function TransportSDK:Connection(data)
   local EntityMod = require("entity.connection_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:location():list() / client:location():load({ id = ... })
+function TransportSDK:location(data)
+  local EntityMod = require("entity.location_entity")
+  if data == nil then
+    if self._location == nil then
+      self._location = EntityMod.new(self, nil)
+    end
+    return self._location
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:location() instead.
 function TransportSDK:Location(data)
   local EntityMod = require("entity.location_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:stationboard():list() / client:stationboard():load({ id = ... })
+function TransportSDK:stationboard(data)
+  local EntityMod = require("entity.stationboard_entity")
+  if data == nil then
+    if self._stationboard == nil then
+      self._stationboard = EntityMod.new(self, nil)
+    end
+    return self._stationboard
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:stationboard() instead.
 function TransportSDK:Stationboard(data)
   local EntityMod = require("entity.stationboard_entity")
   return EntityMod.new(self, data)

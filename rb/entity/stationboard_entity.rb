@@ -45,6 +45,7 @@ class StationboardEntity
     end
   end
 
+  # @return [Stationboard, Hash] the current Stationboard data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class StationboardEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Stationboard fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class StationboardEntity
   
 
   
+  # List Stationboard items matching the given filter.
+  #
+  # @param reqmatch [StationboardListMatch, Hash, nil] match filter (any subset of Stationboard fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Stationboard>, Array] the matching Stationboard items; raises TransportError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

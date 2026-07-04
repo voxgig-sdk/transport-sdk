@@ -119,7 +119,6 @@ func stationboardBasicSetup(extra map[string]any) *entityTestSetup {
 		"TRANSPORT_TEST_STATIONBOARD_ENTID": idmap,
 		"TRANSPORT_TEST_LIVE":      "FALSE",
 		"TRANSPORT_TEST_EXPLAIN":   "FALSE",
-		"TRANSPORT_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["TRANSPORT_TEST_STATIONBOARD_ENTID"])
@@ -130,7 +129,6 @@ func stationboardBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["TRANSPORT_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["TRANSPORT_APIKEY"],
 			},
 			extra,
 		})

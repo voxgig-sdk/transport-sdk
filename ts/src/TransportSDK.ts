@@ -4,6 +4,8 @@ import { ConnectionEntity } from './entity/ConnectionEntity'
 import { LocationEntity } from './entity/LocationEntity'
 import { StationboardEntity } from './entity/StationboardEntity'
 
+export type * from './TransportTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class TransportSDK {
 
 
 
+  _connection?: ConnectionEntity
+
+  // Idiomatic facade: `client.connection.list()` / `client.connection.load({ id })`.
+  get connection(): ConnectionEntity {
+    return (this._connection ??= new ConnectionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.connection` instead. */
   Connection(data?: any) {
     const self = this
     return new ConnectionEntity(self,data)
   }
 
 
+  _location?: LocationEntity
+
+  // Idiomatic facade: `client.location.list()` / `client.location.load({ id })`.
+  get location(): LocationEntity {
+    return (this._location ??= new LocationEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.location` instead. */
   Location(data?: any) {
     const self = this
     return new LocationEntity(self,data)
   }
 
 
+  _stationboard?: StationboardEntity
+
+  // Idiomatic facade: `client.stationboard.list()` / `client.stationboard.load({ id })`.
+  get stationboard(): StationboardEntity {
+    return (this._stationboard ??= new StationboardEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.stationboard` instead. */
   Stationboard(data?: any) {
     const self = this
     return new StationboardEntity(self,data)

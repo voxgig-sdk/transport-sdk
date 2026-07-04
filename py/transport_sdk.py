@@ -144,16 +144,23 @@ class TransportSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class TransportSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class TransportSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def connection(self):
+        """Idiomatic facade: client.connection.list() / client.connection.load({"id": ...})."""
+        from entity.connection_entity import ConnectionEntity
+        cached = getattr(self, "_connection", None)
+        if cached is None:
+            cached = ConnectionEntity(self, None)
+            self._connection = cached
+        return cached
 
     def Connection(self, data=None):
+        # Deprecated: use client.connection instead.
         from entity.connection_entity import ConnectionEntity
         return ConnectionEntity(self, data)
 
 
+    @property
+    def location(self):
+        """Idiomatic facade: client.location.list() / client.location.load({"id": ...})."""
+        from entity.location_entity import LocationEntity
+        cached = getattr(self, "_location", None)
+        if cached is None:
+            cached = LocationEntity(self, None)
+            self._location = cached
+        return cached
+
     def Location(self, data=None):
+        # Deprecated: use client.location instead.
         from entity.location_entity import LocationEntity
         return LocationEntity(self, data)
 
 
+    @property
+    def stationboard(self):
+        """Idiomatic facade: client.stationboard.list() / client.stationboard.load({"id": ...})."""
+        from entity.stationboard_entity import StationboardEntity
+        cached = getattr(self, "_stationboard", None)
+        if cached is None:
+            cached = StationboardEntity(self, None)
+            self._stationboard = cached
+        return cached
+
     def Stationboard(self, data=None):
+        # Deprecated: use client.stationboard instead.
         from entity.stationboard_entity import StationboardEntity
         return StationboardEntity(self, data)
 

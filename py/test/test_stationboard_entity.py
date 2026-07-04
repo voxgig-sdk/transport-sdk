@@ -50,8 +50,7 @@ class TestStationboardEntity:
         stationboard_ref01_ent = client.Stationboard(None)
         stationboard_ref01_match = {}
 
-        stationboard_ref01_list_result, err = stationboard_ref01_ent.list(stationboard_ref01_match, None)
-        assert err is None
+        stationboard_ref01_list_result = stationboard_ref01_ent.list(stationboard_ref01_match, None)
         assert isinstance(stationboard_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _stationboard_basic_setup(extra):
         "TRANSPORT_TEST_STATIONBOARD_ENTID": idmap,
         "TRANSPORT_TEST_LIVE": "FALSE",
         "TRANSPORT_TEST_EXPLAIN": "FALSE",
-        "TRANSPORT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _stationboard_basic_setup(extra):
     if env.get("TRANSPORT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TRANSPORT_APIKEY"),
             },
             extra or {},
         ])

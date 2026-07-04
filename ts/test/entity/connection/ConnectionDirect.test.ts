@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'TRANSPORT_TEST_CONNECTION_ENTID': {},
     'TRANSPORT_TEST_LIVE': 'FALSE',
-    'TRANSPORT_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.TRANSPORT_TEST_LIVE
 
   if (live) {
     const client = new TransportSDK({
-      apikey: env.TRANSPORT_APIKEY,
     })
 
     let idmap: any = env['TRANSPORT_TEST_CONNECTION_ENTID']

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Stationboard,
+  StationboardListMatch,
+} from '../TransportTypes'
 
 // TODO: needs Entity superclass
-class StationboardEntity extends TransportEntityBase {
+class StationboardEntity extends TransportEntityBase<Stationboard> {
 
   constructor(client: TransportSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class StationboardEntity extends TransportEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: StationboardListMatch, ctrl?: Control): Promise<Stationboard[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class StationboardEntity extends TransportEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Stationboard[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

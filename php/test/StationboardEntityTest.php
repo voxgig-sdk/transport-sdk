@@ -50,8 +50,7 @@ class StationboardEntityTest extends TestCase
         $stationboard_ref01_ent = $client->Stationboard(null);
         $stationboard_ref01_match = [];
 
-        [$stationboard_ref01_list_result, $err] = $stationboard_ref01_ent->list($stationboard_ref01_match, null);
-        $this->assertNull($err);
+        $stationboard_ref01_list_result = $stationboard_ref01_ent->list($stationboard_ref01_match, null);
         $this->assertIsArray($stationboard_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function stationboard_basic_setup($extra)
         "TRANSPORT_TEST_STATIONBOARD_ENTID" => $idmap,
         "TRANSPORT_TEST_LIVE" => "FALSE",
         "TRANSPORT_TEST_EXPLAIN" => "FALSE",
-        "TRANSPORT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function stationboard_basic_setup($extra)
     if ($env["TRANSPORT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["TRANSPORT_APIKEY"],
             ],
             $extra ?? [],
         ]);

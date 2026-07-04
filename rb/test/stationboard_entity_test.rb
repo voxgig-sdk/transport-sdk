@@ -43,8 +43,7 @@ class StationboardEntityTest < Minitest::Test
     stationboard_ref01_ent = client.Stationboard(nil)
     stationboard_ref01_match = {}
 
-    stationboard_ref01_list_result, err = stationboard_ref01_ent.list(stationboard_ref01_match, nil)
-    assert_nil err
+    stationboard_ref01_list_result = stationboard_ref01_ent.list(stationboard_ref01_match, nil)
     assert stationboard_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def stationboard_basic_setup(extra)
     "TRANSPORT_TEST_STATIONBOARD_ENTID" => idmap,
     "TRANSPORT_TEST_LIVE" => "FALSE",
     "TRANSPORT_TEST_EXPLAIN" => "FALSE",
-    "TRANSPORT_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def stationboard_basic_setup(extra)
   if env["TRANSPORT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["TRANSPORT_APIKEY"],
       },
       extra || {},
     ])

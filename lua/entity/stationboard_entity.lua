@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch StationboardListMatch
+---@param ctrl? table
+---@return Stationboard[]
+---@return string? err
 function StationboardEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
