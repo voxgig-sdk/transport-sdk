@@ -95,19 +95,19 @@ connection = client.Connection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | ``$ARRAY`` | No |  |
-| `from` | ``$ANY`` | No |  |
-| `station` | ``$ARRAY`` | No |  |
-| `to` | ``$ANY`` | No |  |
+| `connection` | `list` | No |  |
+| `from` | `Any` | No |  |
+| `station` | `list` | No |  |
+| `to` | `Any` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Connection().list({})
+results = client.Connection().list()
 for connection in results:
     print(connection)
 ```
@@ -151,19 +151,19 @@ location = client.Location()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | ``$ANY`` | No |  |
-| `distance` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
+| `coordinate` | `Any` | No |  |
+| `distance` | `float` | No |  |
+| `name` | `str` | No |  |
+| `score` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Location().list({})
+results = client.Location().list()
 for location in results:
     print(location)
 ```
@@ -207,25 +207,25 @@ stationboard = client.Stationboard()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | ``$INTEGER`` | No |  |
-| `capacity2nd` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `category_code` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `operator` | ``$STRING`` | No |  |
-| `pass_list` | ``$ARRAY`` | No |  |
-| `subcategory` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `capacity1st` | `int` | No |  |
+| `capacity2nd` | `int` | No |  |
+| `category` | `str` | No |  |
+| `category_code` | `int` | No |  |
+| `name` | `str` | No |  |
+| `number` | `str` | No |  |
+| `operator` | `str` | No |  |
+| `pass_list` | `list` | No |  |
+| `subcategory` | `str` | No |  |
+| `to` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Stationboard().list({})
+results = client.Stationboard().list()
 for stationboard in results:
     print(stationboard)
 ```

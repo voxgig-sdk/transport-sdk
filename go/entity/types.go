@@ -16,8 +16,7 @@ type Connection struct {
 	To *any `json:"to,omitempty"`
 }
 
-// ConnectionListMatch mirrors the connection fields as an all-optional match
-// filter (Go analog of Partial<Connection>).
+// ConnectionListMatch is the typed request payload for Connection.ListTyped.
 type ConnectionListMatch struct {
 	Connection *[]any `json:"connection,omitempty"`
 	From *any `json:"from,omitempty"`
@@ -33,8 +32,7 @@ type Location struct {
 	Score *int `json:"score,omitempty"`
 }
 
-// LocationListMatch mirrors the location fields as an all-optional match
-// filter (Go analog of Partial<Location>).
+// LocationListMatch is the typed request payload for Location.ListTyped.
 type LocationListMatch struct {
 	Coordinate *any `json:"coordinate,omitempty"`
 	Distance *float64 `json:"distance,omitempty"`
@@ -56,8 +54,7 @@ type Stationboard struct {
 	To *string `json:"to,omitempty"`
 }
 
-// StationboardListMatch mirrors the stationboard fields as an all-optional match
-// filter (Go analog of Partial<Stationboard>).
+// StationboardListMatch is the typed request payload for Stationboard.ListTyped.
 type StationboardListMatch struct {
 	Capacity1st *int `json:"capacity1st,omitempty"`
 	Capacity2nd *int `json:"capacity2nd,omitempty"`

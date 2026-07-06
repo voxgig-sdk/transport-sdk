@@ -98,10 +98,10 @@ local connection = client:Connection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | ``$ARRAY`` | No |  |
-| `from` | ``$ANY`` | No |  |
-| `station` | ``$ARRAY`` | No |  |
-| `to` | ``$ANY`` | No |  |
+| `connection` | `table` | No |  |
+| `from` | `any` | No |  |
+| `station` | `table` | No |  |
+| `to` | `any` | No |  |
 
 ### Operations
 
@@ -153,10 +153,10 @@ local location = client:Location(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | ``$ANY`` | No |  |
-| `distance` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
+| `coordinate` | `any` | No |  |
+| `distance` | `number` | No |  |
+| `name` | `string` | No |  |
+| `score` | `number` | No |  |
 
 ### Operations
 
@@ -208,16 +208,16 @@ local stationboard = client:Stationboard(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | ``$INTEGER`` | No |  |
-| `capacity2nd` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `category_code` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `operator` | ``$STRING`` | No |  |
-| `pass_list` | ``$ARRAY`` | No |  |
-| `subcategory` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `capacity1st` | `number` | No |  |
+| `capacity2nd` | `number` | No |  |
+| `category` | `string` | No |  |
+| `category_code` | `number` | No |  |
+| `name` | `string` | No |  |
+| `number` | `string` | No |  |
+| `operator` | `string` | No |  |
+| `pass_list` | `table` | No |  |
+| `subcategory` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 

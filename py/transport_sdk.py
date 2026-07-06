@@ -221,19 +221,19 @@ class TransportSDK:
 
 
     def Connection(self, data=None) -> "ConnectionEntity":
-        """Entity factory: client.Connection().list({}) / client.Connection().load({"id": ...})."""
+        """Entity factory: client.Connection().list() / client.Connection().load({"id": ...})."""
         from entity.connection_entity import ConnectionEntity
         return ConnectionEntity(self, data)
 
 
     def Location(self, data=None) -> "LocationEntity":
-        """Entity factory: client.Location().list({}) / client.Location().load({"id": ...})."""
+        """Entity factory: client.Location().list() / client.Location().load({"id": ...})."""
         from entity.location_entity import LocationEntity
         return LocationEntity(self, data)
 
 
     def Stationboard(self, data=None) -> "StationboardEntity":
-        """Entity factory: client.Stationboard().list({}) / client.Stationboard().load({"id": ...})."""
+        """Entity factory: client.Stationboard().list() / client.Stationboard().load({"id": ...})."""
         from entity.stationboard_entity import StationboardEntity
         return StationboardEntity(self, data)
 

@@ -12,7 +12,12 @@ export interface Connection {
   to?: any
 }
 
-export type ConnectionListMatch = Partial<Connection>
+export interface ConnectionListMatch {
+  connection?: any[]
+  from?: any
+  station?: any[]
+  to?: any
+}
 
 export interface Location {
   coordinate?: any
@@ -21,7 +26,12 @@ export interface Location {
   score?: number
 }
 
-export type LocationListMatch = Partial<Location>
+export interface LocationListMatch {
+  coordinate?: any
+  distance?: number
+  name?: string
+  score?: number
+}
 
 export interface Stationboard {
   capacity1st?: number
@@ -36,5 +46,16 @@ export interface Stationboard {
   to?: string
 }
 
-export type StationboardListMatch = Partial<Stationboard>
+export interface StationboardListMatch {
+  capacity1st?: number
+  capacity2nd?: number
+  category?: string
+  category_code?: number
+  name?: string
+  number?: string
+  operator?: string
+  pass_list?: any[]
+  subcategory?: string
+  to?: string
+}
 

@@ -8,7 +8,7 @@ Complete API reference for the Transport Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'transport_sdk'
+require_relative 'Transport_sdk'
 
 client = TransportSDK.new(options)
 ```
@@ -101,19 +101,19 @@ connection = client.Connection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | ``$ARRAY`` | No |  |
-| `from` | ``$ANY`` | No |  |
-| `station` | ``$ARRAY`` | No |  |
-| `to` | ``$ANY`` | No |  |
+| `connection` | `Array` | No |  |
+| `from` | `Object` | No |  |
+| `station` | `Array` | No |  |
+| `to` | `Object` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Connection.list(nil)
+results = client.Connection.list
 ```
 
 ### Common Methods
@@ -156,19 +156,19 @@ location = client.Location
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | ``$ANY`` | No |  |
-| `distance` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
+| `coordinate` | `Object` | No |  |
+| `distance` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `score` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Location.list(nil)
+results = client.Location.list
 ```
 
 ### Common Methods
@@ -211,25 +211,25 @@ stationboard = client.Stationboard
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | ``$INTEGER`` | No |  |
-| `capacity2nd` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `category_code` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `operator` | ``$STRING`` | No |  |
-| `pass_list` | ``$ARRAY`` | No |  |
-| `subcategory` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `capacity1st` | `Integer` | No |  |
+| `capacity2nd` | `Integer` | No |  |
+| `category` | `String` | No |  |
+| `category_code` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `number` | `String` | No |  |
+| `operator` | `String` | No |  |
+| `pass_list` | `Array` | No |  |
+| `subcategory` | `String` | No |  |
+| `to` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Stationboard.list(nil)
+results = client.Stationboard.list
 ```
 
 ### Common Methods

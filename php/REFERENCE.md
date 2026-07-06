@@ -53,11 +53,11 @@ Create a new `LocationEntity` instance. Pass `null` for no initial data.
 
 Create a new `StationboardEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): TransportUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,36 +100,36 @@ $connection = $client->Connection();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | ``$ARRAY`` | No |  |
-| `from` | ``$ANY`` | No |  |
-| `station` | ``$ARRAY`` | No |  |
-| `to` | ``$ANY`` | No |  |
+| `connection` | `array` | No |  |
+| `from` | `mixed` | No |  |
+| `station` | `array` | No |  |
+| `to` | `mixed` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Connection()->list([]);
+$results = $client->Connection()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `ConnectionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -155,36 +155,36 @@ $location = $client->Location();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | ``$ANY`` | No |  |
-| `distance` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `score` | ``$INTEGER`` | No |  |
+| `coordinate` | `mixed` | No |  |
+| `distance` | `float` | No |  |
+| `name` | `string` | No |  |
+| `score` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Location()->list([]);
+$results = $client->Location()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -193,7 +193,7 @@ Set the entity match criteria.
 Create a new `LocationEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -210,42 +210,42 @@ $stationboard = $client->Stationboard();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | ``$INTEGER`` | No |  |
-| `capacity2nd` | ``$INTEGER`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `category_code` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number` | ``$STRING`` | No |  |
-| `operator` | ``$STRING`` | No |  |
-| `pass_list` | ``$ARRAY`` | No |  |
-| `subcategory` | ``$STRING`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `capacity1st` | `int` | No |  |
+| `capacity2nd` | `int` | No |  |
+| `category` | `string` | No |  |
+| `category_code` | `int` | No |  |
+| `name` | `string` | No |  |
+| `number` | `string` | No |  |
+| `operator` | `string` | No |  |
+| `pass_list` | `array` | No |  |
+| `subcategory` | `string` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Stationboard()->list([]);
+$results = $client->Stationboard()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -254,7 +254,7 @@ Set the entity match criteria.
 Create a new `StationboardEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

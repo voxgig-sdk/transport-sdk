@@ -29,7 +29,7 @@ Connection = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Connection#list (any subset of Connection fields).
+# Request payload for Connection#list.
 #
 # @!attribute [rw] connection
 #   @return [Array, nil]
@@ -71,7 +71,7 @@ Location = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Location#list (any subset of Location fields).
+# Request payload for Location#list.
 #
 # @!attribute [rw] coordinate
 #   @return [Object, nil]
@@ -137,7 +137,7 @@ Stationboard = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Stationboard#list (any subset of Stationboard fields).
+# Request payload for Stationboard#list.
 #
 # @!attribute [rw] capacity1st
 #   @return [Integer, nil]

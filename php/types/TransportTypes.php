@@ -21,7 +21,7 @@ class Connection
     public mixed $to = null;
 }
 
-/** Match filter for Connection#list (any subset of Connection fields). */
+/** Request payload for Connection#list. */
 class ConnectionListMatch
 {
     public ?array $connection = null;
@@ -39,7 +39,7 @@ class Location
     public ?int $score = null;
 }
 
-/** Match filter for Location#list (any subset of Location fields). */
+/** Request payload for Location#list. */
 class LocationListMatch
 {
     public mixed $coordinate = null;
@@ -63,7 +63,7 @@ class Stationboard
     public ?string $to = null;
 }
 
-/** Match filter for Stationboard#list (any subset of Stationboard fields). */
+/** Request payload for Stationboard#list. */
 class StationboardListMatch
 {
     public ?int $capacity1st = null;
