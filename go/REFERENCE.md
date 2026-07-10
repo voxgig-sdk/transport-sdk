@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 connection := client.Connection(nil)
+fmt.Println(connection.GetName()) // "connection"
 ```
 
 ### Fields
@@ -118,6 +119,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Connection(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -148,6 +153,7 @@ Return the entity name.
 
 ```go
 location := client.Location(nil)
+fmt.Println(location.GetName()) // "location"
 ```
 
 ### Fields
@@ -167,6 +173,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Location(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -197,6 +207,7 @@ Return the entity name.
 
 ```go
 stationboard := client.Stationboard(nil)
+fmt.Println(stationboard.GetName()) // "stationboard"
 ```
 
 ### Fields
@@ -222,6 +233,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Stationboard(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

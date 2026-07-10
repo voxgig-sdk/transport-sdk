@@ -12,7 +12,6 @@ main: {
       ]
       title: "Transport API"
       version: "1.0"
+      website: "http://transport.opendata.ch"
     }
   }
-}
-

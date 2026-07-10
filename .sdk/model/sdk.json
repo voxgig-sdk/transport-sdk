@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -597,13 +594,15 @@
       },
       "info": {
         "auth": false,
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "url": "http://transport.opendata.ch/v1"
           }
         ],
         "title": "Transport API",
-        "version": "1.0"
+        "version": "1.0",
+        "website": "http://transport.opendata.ch"
       },
       "option": {},
       "target": {
@@ -656,6 +655,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -706,6 +708,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
