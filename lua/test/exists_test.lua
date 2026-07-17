@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Transport SDK exists test
 
 local sdk = require("transport_sdk")
 
