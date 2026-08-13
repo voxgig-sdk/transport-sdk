@@ -29,7 +29,7 @@ module TransportConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "connection",
+              "name" => "connections",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -43,7 +43,7 @@ module TransportConfig
             },
             {
               "active" => true,
-              "name" => "station",
+              "name" => "stations",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -140,6 +140,7 @@ module TransportConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/connections",
                   "parts" => [
@@ -247,6 +248,7 @@ module TransportConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/locations",
                   "parts" => [
@@ -262,7 +264,7 @@ module TransportConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.stations`",
                   },
                   "index$" => 0,
                 },
@@ -299,7 +301,7 @@ module TransportConfig
             },
             {
               "active" => true,
-              "name" => "category_code",
+              "name" => "categoryCode",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 3,
@@ -327,7 +329,7 @@ module TransportConfig
             },
             {
               "active" => true,
-              "name" => "pass_list",
+              "name" => "passList",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 7,
@@ -407,6 +409,7 @@ module TransportConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/stationboard",
                   "parts" => [

@@ -101,9 +101,9 @@ connection = client.Connection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `Array` | No |  |
+| `connections` | `Array` | No |  |
 | `from` | `Object` | No |  |
-| `station` | `Array` | No |  |
+| `stations` | `Array` | No |  |
 | `to` | `Object` | No |  |
 
 ### Operations
@@ -214,11 +214,11 @@ stationboard = client.Stationboard
 | `capacity1st` | `Integer` | No |  |
 | `capacity2nd` | `Integer` | No |  |
 | `category` | `String` | No |  |
-| `category_code` | `Integer` | No |  |
+| `categoryCode` | `Integer` | No |  |
 | `name` | `String` | No |  |
 | `number` | `String` | No |  |
 | `operator` | `String` | No |  |
-| `pass_list` | `Array` | No |  |
+| `passList` | `Array` | No |  |
 | `subcategory` | `String` | No |  |
 | `to` | `String` | No |  |
 

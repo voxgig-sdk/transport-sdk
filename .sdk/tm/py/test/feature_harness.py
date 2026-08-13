@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TransportControl
-from core.error import TransportError
-from core.result import TransportResult
-from core.spec import TransportSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import TransportControl
+from projectname_sdk.core.error import TransportError
+from projectname_sdk.core.result import TransportResult
+from projectname_sdk.core.spec import TransportSpec
 
 
 # True when this SDK was generated with the named feature.

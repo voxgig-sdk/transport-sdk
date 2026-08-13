@@ -43,7 +43,7 @@ local connections, err = client:Connection():list()
 if err then error(err) end
 
 for _, item in ipairs(connections) do
-  print(item["connection"])
+  print(item["connections"])
 end
 ```
 
@@ -220,9 +220,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local connection, err = client:Connection():load()
+    local connection, err = client:Connection():list()
     if err then error(err) end
-    -- connection is the loaded record
+    -- connection is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -233,9 +233,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `connection` |  |
+| `connections` |  |
 | `from` |  |
-| `station` |  |
+| `stations` |  |
 | `to` |  |
 
 Operations: List.
@@ -262,11 +262,11 @@ API path: `/locations`
 | `capacity1st` |  |
 | `capacity2nd` |  |
 | `category` |  |
-| `category_code` |  |
+| `categoryCode` |  |
 | `name` |  |
 | `number` |  |
 | `operator` |  |
-| `pass_list` |  |
+| `passList` |  |
 | `subcategory` |  |
 | `to` |  |
 
@@ -293,9 +293,9 @@ Create an instance: `local connection = client:Connection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `table` |  |
+| `connections` | `table` |  |
 | `from` | `any` |  |
-| `station` | `table` |  |
+| `stations` | `table` |  |
 | `to` | `any` |  |
 
 #### Example: List
@@ -348,11 +348,11 @@ Create an instance: `local stationboard = client:Stationboard(nil)`
 | `capacity1st` | `number` |  |
 | `capacity2nd` | `number` |  |
 | `category` | `string` |  |
-| `category_code` | `number` |  |
+| `categoryCode` | `number` |  |
 | `name` | `string` |  |
 | `number` | `string` |  |
 | `operator` | `string` |  |
-| `pass_list` | `table` |  |
+| `passList` | `table` |  |
 | `subcategory` | `string` |  |
 | `to` | `string` |  |
 

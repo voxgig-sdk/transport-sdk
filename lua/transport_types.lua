@@ -7,15 +7,15 @@
 -- edit by hand.
 
 ---@class Connection
----@field connection? table
+---@field connections? table
 ---@field from? any
----@field station? table
+---@field stations? table
 ---@field to? any
 
 ---@class ConnectionListMatch
----@field connection? table
+---@field connections? table
 ---@field from? any
----@field station? table
+---@field stations? table
 ---@field to? any
 
 ---@class Location
@@ -34,11 +34,11 @@
 ---@field capacity1st? number
 ---@field capacity2nd? number
 ---@field category? string
----@field category_code? number
+---@field categoryCode? number
 ---@field name? string
 ---@field number? string
 ---@field operator? string
----@field pass_list? table
+---@field passList? table
 ---@field subcategory? string
 ---@field to? string
 
@@ -46,11 +46,11 @@
 ---@field capacity1st? number
 ---@field capacity2nd? number
 ---@field category? string
----@field category_code? number
+---@field categoryCode? number
 ---@field name? string
 ---@field number? string
 ---@field operator? string
----@field pass_list? table
+---@field passList? table
 ---@field subcategory? string
 ---@field to? string
 

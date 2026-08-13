@@ -38,7 +38,7 @@ try {
     // list() returns an array of Connection records — iterate directly.
     $connections = $client->Connection()->list();
     foreach ($connections as $item) {
-        echo $item["connection"] . "\n";
+        echo $item["connections"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TransportSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $connection = $client->Connection()->list();
 print_r($connection);
 ```
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -248,9 +249,9 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `connection` |  |
+| `connections` |  |
 | `from` |  |
-| `station` |  |
+| `stations` |  |
 | `to` |  |
 
 Operations: List.
@@ -277,11 +278,11 @@ API path: `/locations`
 | `capacity1st` |  |
 | `capacity2nd` |  |
 | `category` |  |
-| `category_code` |  |
+| `categoryCode` |  |
 | `name` |  |
 | `number` |  |
 | `operator` |  |
-| `pass_list` |  |
+| `passList` |  |
 | `subcategory` |  |
 | `to` |  |
 
@@ -308,9 +309,9 @@ Create an instance: `$connection = $client->Connection();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `array` |  |
+| `connections` | `array` |  |
 | `from` | `mixed` |  |
-| `station` | `array` |  |
+| `stations` | `array` |  |
 | `to` | `mixed` |  |
 
 #### Example: List
@@ -365,11 +366,11 @@ Create an instance: `$stationboard = $client->Stationboard();`
 | `capacity1st` | `int` |  |
 | `capacity2nd` | `int` |  |
 | `category` | `string` |  |
-| `category_code` | `int` |  |
+| `categoryCode` | `int` |  |
 | `name` | `string` |  |
 | `number` | `string` |  |
 | `operator` | `string` |  |
-| `pass_list` | `array` |  |
+| `passList` | `array` |  |
 | `subcategory` | `string` |  |
 | `to` | `string` |  |
 

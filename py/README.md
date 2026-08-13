@@ -124,7 +124,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TransportSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 connection = client.Connection().list()
 # connection contains the mock response record
 ```
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -244,9 +245,9 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `connection` |  |
+| `connections` |  |
 | `from` |  |
-| `station` |  |
+| `stations` |  |
 | `to` |  |
 
 Operations: List.
@@ -273,11 +274,11 @@ API path: `/locations`
 | `capacity1st` |  |
 | `capacity2nd` |  |
 | `category` |  |
-| `category_code` |  |
+| `categoryCode` |  |
 | `name` |  |
 | `number` |  |
 | `operator` |  |
-| `pass_list` |  |
+| `passList` |  |
 | `subcategory` |  |
 | `to` |  |
 
@@ -304,9 +305,9 @@ Create an instance: `connection = client.Connection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `list` |  |
+| `connections` | `list` |  |
 | `from` | `Any` |  |
-| `station` | `list` |  |
+| `stations` | `list` |  |
 | `to` | `Any` |  |
 
 #### Example: List
@@ -359,11 +360,11 @@ Create an instance: `stationboard = client.Stationboard()`
 | `capacity1st` | `int` |  |
 | `capacity2nd` | `int` |  |
 | `category` | `str` |  |
-| `category_code` | `int` |  |
+| `categoryCode` | `int` |  |
 | `name` | `str` |  |
 | `number` | `str` |  |
 | `operator` | `str` |  |
-| `pass_list` | `list` |  |
+| `passList` | `list` |  |
 | `subcategory` | `str` |  |
 | `to` | `str` |  |
 

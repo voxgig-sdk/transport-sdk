@@ -80,7 +80,7 @@ main: kit: entity: location: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.stations`"
           }
         }
       ]

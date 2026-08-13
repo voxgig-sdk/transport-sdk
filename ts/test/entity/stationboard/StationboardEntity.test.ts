@@ -63,7 +63,7 @@ describe('StationboardEntity', async () => {
     const stationboard_ref01_ent = client.Stationboard()
     const stationboard_ref01_match: any = {}
 
-    const stationboard_ref01_list = await stationboard_ref01_ent.list(stationboard_ref01_match)
+    const stationboard_ref01_list = (await stationboard_ref01_ent.list(stationboard_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -100,9 +100,9 @@ $connection = $client->Connection();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `array` | No |  |
+| `connections` | `array` | No |  |
 | `from` | `mixed` | No |  |
-| `station` | `array` | No |  |
+| `stations` | `array` | No |  |
 | `to` | `mixed` | No |  |
 
 ### Operations
@@ -213,11 +213,11 @@ $stationboard = $client->Stationboard();
 | `capacity1st` | `int` | No |  |
 | `capacity2nd` | `int` | No |  |
 | `category` | `string` | No |  |
-| `category_code` | `int` | No |  |
+| `categoryCode` | `int` | No |  |
 | `name` | `string` | No |  |
 | `number` | `string` | No |  |
 | `operator` | `string` | No |  |
-| `pass_list` | `array` | No |  |
+| `passList` | `array` | No |  |
 | `subcategory` | `string` | No |  |
 | `to` | `string` | No |  |
 

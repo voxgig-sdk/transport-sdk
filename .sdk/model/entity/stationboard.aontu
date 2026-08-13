@@ -21,7 +21,7 @@ main: kit: entity: stationboard: {
       type: "`$STRING`"
     }
     {
-      name: "category_code"
+      name: "categoryCode"
       req: false
       type: "`$INTEGER`"
     }
@@ -41,7 +41,7 @@ main: kit: entity: stationboard: {
       type: "`$STRING`"
     }
     {
-      name: "pass_list"
+      name: "passList"
       req: false
       type: "`$ARRAY`"
     }

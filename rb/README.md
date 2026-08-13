@@ -37,7 +37,7 @@ begin
   # list returns an Array of Connection records — iterate directly.
   connections = client.Connection.list
   connections.each do |item|
-    puts "#{item["connection"]}"
+    puts "#{item["connections"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TransportSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 connection = client.Connection.list()
 puts connection
 ```
@@ -238,9 +239,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `connection` |  |
+| `connections` |  |
 | `from` |  |
-| `station` |  |
+| `stations` |  |
 | `to` |  |
 
 Operations: List.
@@ -267,11 +268,11 @@ API path: `/locations`
 | `capacity1st` |  |
 | `capacity2nd` |  |
 | `category` |  |
-| `category_code` |  |
+| `categoryCode` |  |
 | `name` |  |
 | `number` |  |
 | `operator` |  |
-| `pass_list` |  |
+| `passList` |  |
 | `subcategory` |  |
 | `to` |  |
 
@@ -298,9 +299,9 @@ Create an instance: `connection = client.Connection`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `Array` |  |
+| `connections` | `Array` |  |
 | `from` | `Object` |  |
-| `station` | `Array` |  |
+| `stations` | `Array` |  |
 | `to` | `Object` |  |
 
 #### Example: List
@@ -355,11 +356,11 @@ Create an instance: `stationboard = client.Stationboard`
 | `capacity1st` | `Integer` |  |
 | `capacity2nd` | `Integer` |  |
 | `category` | `String` |  |
-| `category_code` | `Integer` |  |
+| `categoryCode` | `Integer` |  |
 | `name` | `String` |  |
 | `number` | `String` |  |
 | `operator` | `String` |  |
-| `pass_list` | `Array` |  |
+| `passList` | `Array` |  |
 | `subcategory` | `String` |  |
 | `to` | `String` |  |
 

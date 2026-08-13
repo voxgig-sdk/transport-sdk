@@ -106,9 +106,9 @@ fmt.Println(connection.GetName()) // "connection"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `[]any` | No |  |
+| `connections` | `[]any` | No |  |
 | `from` | `any` | No |  |
-| `station` | `[]any` | No |  |
+| `stations` | `[]any` | No |  |
 | `to` | `any` | No |  |
 
 ### Operations
@@ -217,11 +217,11 @@ fmt.Println(stationboard.GetName()) // "stationboard"
 | `capacity1st` | `int` | No |  |
 | `capacity2nd` | `int` | No |  |
 | `category` | `string` | No |  |
-| `category_code` | `int` | No |  |
+| `categoryCode` | `int` | No |  |
 | `name` | `string` | No |  |
 | `number` | `string` | No |  |
 | `operator` | `string` | No |  |
-| `pass_list` | `[]any` | No |  |
+| `passList` | `[]any` | No |  |
 | `subcategory` | `string` | No |  |
 | `to` | `string` | No |  |
 

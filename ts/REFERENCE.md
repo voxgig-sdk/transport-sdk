@@ -140,9 +140,9 @@ const connection = client.Connection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `any[]` | No |  |
+| `connections` | `any[]` | No |  |
 | `from` | `any` | No |  |
-| `station` | `any[]` | No |  |
+| `stations` | `any[]` | No |  |
 | `to` | `any` | No |  |
 
 ### Operations
@@ -249,11 +249,11 @@ const stationboard = client.Stationboard()
 | `capacity1st` | `number` | No |  |
 | `capacity2nd` | `number` | No |  |
 | `category` | `string` | No |  |
-| `category_code` | `number` | No |  |
+| `categoryCode` | `number` | No |  |
 | `name` | `string` | No |  |
 | `number` | `string` | No |  |
 | `operator` | `string` | No |  |
-| `pass_list` | `any[]` | No |  |
+| `passList` | `any[]` | No |  |
 | `subcategory` | `string` | No |  |
 | `to` | `string` | No |  |
 

@@ -28,7 +28,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "connection",
+            ["name"] = "connections",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -42,7 +42,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "station",
+            ["name"] = "stations",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -139,6 +139,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/connections",
                 ["parts"] = {
@@ -246,6 +247,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/locations",
                 ["parts"] = {
@@ -261,7 +263,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.stations`",
                 },
                 ["index$"] = 0,
               },
@@ -298,7 +300,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "category_code",
+            ["name"] = "categoryCode",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 3,
@@ -326,7 +328,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "pass_list",
+            ["name"] = "passList",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
@@ -406,6 +408,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/stationboard",
                 ["parts"] = {

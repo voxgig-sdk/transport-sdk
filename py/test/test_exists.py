@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Transport SDK exists test
 
 import pytest
 from transport_sdk import TransportSDK

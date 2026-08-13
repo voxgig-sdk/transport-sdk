@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from transport_sdk.utility.voxgig_struct import voxgig_struct as vs
 from transport_sdk import TransportSDK
-from core import helpers
+from transport_sdk.core import helpers
 from test import runner
 
 

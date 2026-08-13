@@ -37,7 +37,7 @@ class StationboardEntity extends TransportEntityBase<Stationboard> {
 
 
 
-  async list(this: any, reqmatch?: StationboardListMatch, ctrl?: Control): Promise<Stationboard[]> {
+  async list(this: any, reqmatch?: StationboardListMatch, ctrl?: Control): Promise<StationboardEntity[]> {
 
     const utility = this._utility
 

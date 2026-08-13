@@ -37,7 +37,7 @@ class ConnectionEntity extends TransportEntityBase<Connection> {
 
 
 
-  async list(this: any, reqmatch?: ConnectionListMatch, ctrl?: Control): Promise<Connection[]> {
+  async list(this: any, reqmatch?: ConnectionListMatch, ctrl?: Control): Promise<ConnectionEntity[]> {
 
     const utility = this._utility
 

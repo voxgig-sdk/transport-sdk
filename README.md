@@ -36,9 +36,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TransportSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TransportSDK.test({
+  entity: {
+    connection: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const connections = await client.Connection().list()
-// connections is an array of bare Connection records populated with mock data
+// connections is an array of Connection entities, populated with mock data
+// — call connections[0].data() for the record itself
 console.log(connections)
 ```
 
@@ -108,7 +117,7 @@ import { TransportSDK } from '@voxgig-sdk/transport'
 
 const client = new TransportSDK()
 
-// List all connections (returns Connection[])
+// List all connections (returns ConnectionEntity[] — .data() for the record)
 const connections = await client.Connection().list()
 for (const connection of connections) {
   console.log(connection)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [http://transport.opendata.ch/v1](http://transport.opendata.ch/v1)
 

@@ -28,7 +28,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "connection",
+						"name": "connections",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 0,
@@ -42,7 +42,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "station",
+						"name": "stations",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 2,
@@ -139,6 +139,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/connections",
 								"parts": []any{
@@ -164,7 +165,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -246,6 +246,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/locations",
 								"parts": []any{
@@ -261,12 +262,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.stations`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -298,7 +298,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "category_code",
+						"name": "categoryCode",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 3,
@@ -326,7 +326,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "pass_list",
+						"name": "passList",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 7,
@@ -406,6 +406,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/stationboard",
 								"parts": []any{
@@ -428,7 +429,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

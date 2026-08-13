@@ -5,6 +5,7 @@ main: {
   kit: {
     info: {
       auth: false
+      description: "The Transport API."
       servers: [
         {
           url: "http://transport.opendata.ch/v1"
@@ -15,3 +16,5 @@ main: {
       website: "http://transport.opendata.ch"
     }
   }
+}
+

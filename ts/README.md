@@ -35,7 +35,9 @@ const client = new TransportSDK()
 
 ### 2. List connection records
 
-`list()` resolves to an array of Connection objects — iterate it directly:
+`list()` resolves to an array of Connection ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const connections = await client.Connection().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = TransportSDK.test()
 
 const connection = await client.Connection().list()
-// connection is a bare entity populated with mock response data
+// connection is the entity, populated with mock response data
+// — call connection.data() for the record itself
 console.log(connection)
 ```
 
@@ -286,9 +289,9 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `connection` |  |
+| `connections` |  |
 | `from` |  |
-| `station` |  |
+| `stations` |  |
 | `to` |  |
 
 Operations: list.
@@ -315,11 +318,11 @@ API path: `/locations`
 | `capacity1st` |  |
 | `capacity2nd` |  |
 | `category` |  |
-| `category_code` |  |
+| `categoryCode` |  |
 | `name` |  |
 | `number` |  |
 | `operator` |  |
-| `pass_list` |  |
+| `passList` |  |
 | `subcategory` |  |
 | `to` |  |
 
@@ -346,9 +349,9 @@ Create an instance: `const connection = client.Connection()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `any[]` |  |
+| `connections` | `any[]` |  |
 | `from` | `any` |  |
-| `station` | `any[]` |  |
+| `stations` | `any[]` |  |
 | `to` | `any` |  |
 
 #### Example: List
@@ -401,11 +404,11 @@ Create an instance: `const stationboard = client.Stationboard()`
 | `capacity1st` | `number` |  |
 | `capacity2nd` | `number` |  |
 | `category` | `string` |  |
-| `category_code` | `number` |  |
+| `categoryCode` | `number` |  |
 | `name` | `string` |  |
 | `number` | `string` |  |
 | `operator` | `string` |  |
-| `pass_list` | `any[]` |  |
+| `passList` | `any[]` |  |
 | `subcategory` | `string` |  |
 | `to` | `string` |  |
 

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TransportSDK
-from core.error import TransportError
-from core.result import TransportResult
-from core.response import TransportResponse
-from core.spec import TransportSpec
-from feature.base_feature import TransportBaseFeature
+from projectname_sdk.core.error import TransportError
+from projectname_sdk.core.result import TransportResult
+from projectname_sdk.core.response import TransportResponse
+from projectname_sdk.core.spec import TransportSpec
+from projectname_sdk.feature.base_feature import TransportBaseFeature
 
 
 def _client():

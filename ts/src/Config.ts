@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Transport',
   }
 
 
@@ -62,7 +62,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "connection",
+          "name": "connections",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
@@ -76,7 +76,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "station",
+          "name": "stations",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -173,6 +173,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/connections",
               "parts": [
@@ -280,6 +281,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/locations",
               "parts": [
@@ -295,7 +297,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.stations`"
               },
               "index$": 0
             }
@@ -332,7 +334,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "category_code",
+          "name": "categoryCode",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 3
@@ -360,7 +362,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "pass_list",
+          "name": "passList",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
@@ -440,6 +442,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/stationboard",
               "parts": [

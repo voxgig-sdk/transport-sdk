@@ -95,9 +95,9 @@ connection = client.Connection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `list` | No |  |
+| `connections` | `list` | No |  |
 | `from` | `Any` | No |  |
-| `station` | `list` | No |  |
+| `stations` | `list` | No |  |
 | `to` | `Any` | No |  |
 
 ### Operations
@@ -210,11 +210,11 @@ stationboard = client.Stationboard()
 | `capacity1st` | `int` | No |  |
 | `capacity2nd` | `int` | No |  |
 | `category` | `str` | No |  |
-| `category_code` | `int` | No |  |
+| `categoryCode` | `int` | No |  |
 | `name` | `str` | No |  |
 | `number` | `str` | No |  |
 | `operator` | `str` | No |  |
-| `pass_list` | `list` | No |  |
+| `passList` | `list` | No |  |
 | `subcategory` | `str` | No |  |
 | `to` | `str` | No |  |
 

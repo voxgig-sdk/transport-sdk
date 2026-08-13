@@ -262,9 +262,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"connection"` |  |
+| `"connections"` |  |
 | `"from"` |  |
-| `"station"` |  |
+| `"stations"` |  |
 | `"to"` |  |
 
 Operations: List.
@@ -291,11 +291,11 @@ API path: `/locations`
 | `"capacity1st"` |  |
 | `"capacity2nd"` |  |
 | `"category"` |  |
-| `"category_code"` |  |
+| `"categoryCode"` |  |
 | `"name"` |  |
 | `"number"` |  |
 | `"operator"` |  |
-| `"pass_list"` |  |
+| `"passList"` |  |
 | `"subcategory"` |  |
 | `"to"` |  |
 
@@ -322,9 +322,9 @@ Create an instance: `connection := client.Connection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connection` | `[]any` |  |
+| `connections` | `[]any` |  |
 | `from` | `any` |  |
-| `station` | `[]any` |  |
+| `stations` | `[]any` |  |
 | `to` | `any` |  |
 
 #### Example: List
@@ -385,11 +385,11 @@ Create an instance: `stationboard := client.Stationboard(nil)`
 | `capacity1st` | `int` |  |
 | `capacity2nd` | `int` |  |
 | `category` | `string` |  |
-| `category_code` | `int` |  |
+| `categoryCode` | `int` |  |
 | `name` | `string` |  |
 | `number` | `string` |  |
 | `operator` | `string` |  |
-| `pass_list` | `[]any` |  |
+| `passList` | `[]any` |  |
 | `subcategory` | `string` |  |
 | `to` | `string` |  |
 

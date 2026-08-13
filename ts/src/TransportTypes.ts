@@ -6,16 +6,16 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Connection {
-  connection?: any[]
+  connections?: any[]
   from?: any
-  station?: any[]
+  stations?: any[]
   to?: any
 }
 
 export interface ConnectionListMatch {
-  connection?: any[]
+  connections?: any[]
   from?: any
-  station?: any[]
+  stations?: any[]
   to?: any
 }
 
@@ -37,11 +37,11 @@ export interface Stationboard {
   capacity1st?: number
   capacity2nd?: number
   category?: string
-  category_code?: number
+  categoryCode?: number
   name?: string
   number?: string
   operator?: string
-  pass_list?: any[]
+  passList?: any[]
   subcategory?: string
   to?: string
 }
@@ -50,11 +50,11 @@ export interface StationboardListMatch {
   capacity1st?: number
   capacity2nd?: number
   category?: string
-  category_code?: number
+  categoryCode?: number
   name?: string
   number?: string
   operator?: string
-  pass_list?: any[]
+  passList?: any[]
   subcategory?: string
   to?: string
 }

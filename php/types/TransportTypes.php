@@ -15,18 +15,18 @@ declare(strict_types=1);
 /** Connection entity data model. */
 class Connection
 {
-    public ?array $connection = null;
+    public ?array $connections = null;
     public mixed $from = null;
-    public ?array $station = null;
+    public ?array $stations = null;
     public mixed $to = null;
 }
 
 /** Request payload for Connection#list. */
 class ConnectionListMatch
 {
-    public ?array $connection = null;
+    public ?array $connections = null;
     public mixed $from = null;
-    public ?array $station = null;
+    public ?array $stations = null;
     public mixed $to = null;
 }
 
@@ -54,11 +54,11 @@ class Stationboard
     public ?int $capacity1st = null;
     public ?int $capacity2nd = null;
     public ?string $category = null;
-    public ?int $category_code = null;
+    public ?int $categoryCode = null;
     public ?string $name = null;
     public ?string $number = null;
     public ?string $operator = null;
-    public ?array $pass_list = null;
+    public ?array $passList = null;
     public ?string $subcategory = null;
     public ?string $to = null;
 }
@@ -69,11 +69,11 @@ class StationboardListMatch
     public ?int $capacity1st = null;
     public ?int $capacity2nd = null;
     public ?string $category = null;
-    public ?int $category_code = null;
+    public ?int $categoryCode = null;
     public ?string $name = null;
     public ?string $number = null;
     public ?string $operator = null;
-    public ?array $pass_list = null;
+    public ?array $passList = null;
     public ?string $subcategory = null;
     public ?string $to = null;
 }

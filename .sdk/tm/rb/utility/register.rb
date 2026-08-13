@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TransportUtility.registrar = ->(u) {
   u.prepare_params = TransportUtilities::PrepareParams
   u.prepare_path = TransportUtilities::PreparePath
   u.prepare_query = TransportUtilities::PrepareQuery
+  u.graphql_body = TransportUtilities::GraphqlBody
+  u.graphql_errors = TransportUtilities::GraphqlErrors
   u.result_basic = TransportUtilities::ResultBasic
   u.result_body = TransportUtilities::ResultBody
   u.result_headers = TransportUtilities::ResultHeaders

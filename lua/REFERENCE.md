@@ -98,9 +98,9 @@ local connection = client:Connection(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connection` | `table` | No |  |
+| `connections` | `table` | No |  |
 | `from` | `any` | No |  |
-| `station` | `table` | No |  |
+| `stations` | `table` | No |  |
 | `to` | `any` | No |  |
 
 ### Operations
@@ -211,11 +211,11 @@ local stationboard = client:Stationboard(nil)
 | `capacity1st` | `number` | No |  |
 | `capacity2nd` | `number` | No |  |
 | `category` | `string` | No |  |
-| `category_code` | `number` | No |  |
+| `categoryCode` | `number` | No |  |
 | `name` | `string` | No |  |
 | `number` | `string` | No |  |
 | `operator` | `string` | No |  |
-| `pass_list` | `table` | No |  |
+| `passList` | `table` | No |  |
 | `subcategory` | `string` | No |  |
 | `to` | `string` | No |  |
 

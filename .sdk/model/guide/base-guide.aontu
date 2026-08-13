@@ -14,6 +14,7 @@ guide: {
   entity: location: {
     path: "/locations": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.stations`")|top
     }
   }
 

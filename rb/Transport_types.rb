@@ -10,42 +10,42 @@
 
 # Connection entity data model.
 #
-# @!attribute [rw] connection
+# @!attribute [rw] connections
 #   @return [Array, nil]
 #
 # @!attribute [rw] from
 #   @return [Object, nil]
 #
-# @!attribute [rw] station
+# @!attribute [rw] stations
 #   @return [Array, nil]
 #
 # @!attribute [rw] to
 #   @return [Object, nil]
 Connection = Struct.new(
-  :connection,
+  :connections,
   :from,
-  :station,
+  :stations,
   :to,
   keyword_init: true
 )
 
 # Request payload for Connection#list.
 #
-# @!attribute [rw] connection
+# @!attribute [rw] connections
 #   @return [Array, nil]
 #
 # @!attribute [rw] from
 #   @return [Object, nil]
 #
-# @!attribute [rw] station
+# @!attribute [rw] stations
 #   @return [Array, nil]
 #
 # @!attribute [rw] to
 #   @return [Object, nil]
 ConnectionListMatch = Struct.new(
-  :connection,
+  :connections,
   :from,
-  :station,
+  :stations,
   :to,
   keyword_init: true
 )
@@ -103,7 +103,7 @@ LocationListMatch = Struct.new(
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] category_code
+# @!attribute [rw] categoryCode
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
@@ -115,7 +115,7 @@ LocationListMatch = Struct.new(
 # @!attribute [rw] operator
 #   @return [String, nil]
 #
-# @!attribute [rw] pass_list
+# @!attribute [rw] passList
 #   @return [Array, nil]
 #
 # @!attribute [rw] subcategory
@@ -127,11 +127,11 @@ Stationboard = Struct.new(
   :capacity1st,
   :capacity2nd,
   :category,
-  :category_code,
+  :categoryCode,
   :name,
   :number,
   :operator,
-  :pass_list,
+  :passList,
   :subcategory,
   :to,
   keyword_init: true
@@ -148,7 +148,7 @@ Stationboard = Struct.new(
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] category_code
+# @!attribute [rw] categoryCode
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
@@ -160,7 +160,7 @@ Stationboard = Struct.new(
 # @!attribute [rw] operator
 #   @return [String, nil]
 #
-# @!attribute [rw] pass_list
+# @!attribute [rw] passList
 #   @return [Array, nil]
 #
 # @!attribute [rw] subcategory
@@ -172,11 +172,11 @@ StationboardListMatch = Struct.new(
   :capacity1st,
   :capacity2nd,
   :category,
-  :category_code,
+  :categoryCode,
   :name,
   :number,
   :operator,
-  :pass_list,
+  :passList,
   :subcategory,
   :to,
   keyword_init: true

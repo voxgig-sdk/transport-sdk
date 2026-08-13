@@ -6,7 +6,7 @@ main: kit: entity: connection: {
 
   fields: [
     {
-      name: "connection"
+      name: "connections"
       req: false
       type: "`$ARRAY`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: connection: {
       type: "`$ANY`"
     }
     {
-      name: "station"
+      name: "stations"
       req: false
       type: "`$ARRAY`"
     }
