@@ -40,7 +40,7 @@ class TransportSDK
         $utility = new TransportUtility();
         $this->_utility = $utility;
 
-        $config = TransportConfig::make_config();
+        $config = TransportConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

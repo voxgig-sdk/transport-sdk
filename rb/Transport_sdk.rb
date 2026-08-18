@@ -28,7 +28,7 @@ class TransportSDK
     utility = TransportUtility.new
     @_utility = utility
 
-    config = TransportConfig.make_config
+    config = TransportConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

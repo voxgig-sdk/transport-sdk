@@ -1,7 +1,30 @@
 # Transport SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "Transport",
@@ -28,32 +51,20 @@ def make_config():
       "connection": {
         "fields": [
           {
-            "active": True,
             "name": "connections",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "from",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "stations",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "to",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 3,
           },
         ],
         "name": "connection",
@@ -63,19 +74,15 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "date",
                       "orig": "date",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "from",
                       "orig": "from",
@@ -83,39 +90,30 @@ def make_config():
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "is_arrival_time",
                       "orig": "is_arrival_time",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "limit",
                       "orig": "limit",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "page",
                       "orig": "page",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "time",
                       "orig": "time",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "to",
                       "orig": "to",
@@ -123,19 +121,15 @@ def make_config():
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "transportation",
                       "orig": "transportation",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "via",
                       "orig": "via",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                   ],
@@ -163,10 +157,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -176,32 +168,20 @@ def make_config():
       "location": {
         "fields": [
           {
-            "active": True,
             "name": "coordinate",
-            "req": False,
             "type": "`$ANY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "distance",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "name",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "score",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 3,
           },
         ],
         "name": "location",
@@ -211,39 +191,30 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "query",
                       "orig": "query",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "type",
                       "orig": "type",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "x",
                       "orig": "x",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "y",
                       "orig": "y",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                   ],
@@ -266,10 +237,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.stations`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -279,74 +248,44 @@ def make_config():
       "stationboard": {
         "fields": [
           {
-            "active": True,
             "name": "capacity1st",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "capacity2nd",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "category",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "categoryCode",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "name",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "number",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "operator",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "passList",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 7,
           },
           {
-            "active": True,
             "name": "subcategory",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 8,
           },
           {
-            "active": True,
             "name": "to",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 9,
           },
         ],
         "name": "stationboard",
@@ -356,35 +295,27 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "datetime",
                       "orig": "datetime",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "id",
                       "orig": "id",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "limit",
                       "orig": "limit",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "station",
                       "orig": "station",
@@ -392,19 +323,15 @@ def make_config():
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "transportation",
                       "orig": "transportation",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "type",
                       "orig": "type",
-                      "reqd": False,
                       "type": "`$ANY`",
                     },
                   ],
@@ -429,10 +356,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.stationboard`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {

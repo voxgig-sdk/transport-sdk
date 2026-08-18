@@ -1,6 +1,20 @@
 # Transport SDK configuration
 
 module TransportConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -28,32 +42,20 @@ module TransportConfig
         "connection" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "connections",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "from",
-              "req" => false,
               "type" => "`$ANY`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "stations",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "to",
-              "req" => false,
               "type" => "`$ANY`",
-              "index$" => 3,
             },
           ],
           "name" => "connection",
@@ -63,19 +65,15 @@ module TransportConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "date",
                         "orig" => "date",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "from",
                         "orig" => "from",
@@ -83,39 +81,30 @@ module TransportConfig
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "is_arrival_time",
                         "orig" => "is_arrival_time",
-                        "reqd" => false,
                         "type" => "`$BOOLEAN`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "time",
                         "orig" => "time",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "to",
                         "orig" => "to",
@@ -123,19 +112,15 @@ module TransportConfig
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "transportation",
                         "orig" => "transportation",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "via",
                         "orig" => "via",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                     ],
@@ -163,10 +148,8 @@ module TransportConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -176,32 +159,20 @@ module TransportConfig
         "location" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "coordinate",
-              "req" => false,
               "type" => "`$ANY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "distance",
-              "req" => false,
               "type" => "`$NUMBER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "name",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "score",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
           ],
           "name" => "location",
@@ -211,39 +182,30 @@ module TransportConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "query",
                         "orig" => "query",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type",
                         "orig" => "type",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "x",
                         "orig" => "x",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "y",
                         "orig" => "y",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                     ],
@@ -266,10 +228,8 @@ module TransportConfig
                     "req" => "`reqdata`",
                     "res" => "`body.stations`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -279,74 +239,44 @@ module TransportConfig
         "stationboard" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "capacity1st",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "capacity2nd",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "category",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "categoryCode",
-              "req" => false,
               "type" => "`$INTEGER`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "name",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "number",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "operator",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "passList",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "subcategory",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "to",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
           ],
           "name" => "stationboard",
@@ -356,35 +286,27 @@ module TransportConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "datetime",
                         "orig" => "datetime",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "id",
                         "orig" => "id",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "limit",
                         "orig" => "limit",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "station",
                         "orig" => "station",
@@ -392,19 +314,15 @@ module TransportConfig
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "transportation",
                         "orig" => "transportation",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type",
                         "orig" => "type",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                     ],
@@ -429,10 +347,8 @@ module TransportConfig
                     "req" => "`reqdata`",
                     "res" => "`body.stationboard`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
