@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Transport",
+			"slug": "transport",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -35,18 +38,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "connections",
+						"short": "Found connections",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "from",
+						"short": "Departure station of search",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "stations",
+						"short": "All stations from query",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "to",
+						"short": "Arrival station of search",
 						"type": "`$ANY`",
 					},
 				},
@@ -152,18 +159,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "coordinate",
+						"short": "The location coordinates.",
 						"type": "`$ANY`",
 					},
 					map[string]any{
 						"name": "distance",
+						"short": "If search has been with coordinates, distance to original point in meters.",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of this location.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "score",
+						"short": "The score with regard to the search request, the higher the better.",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -232,34 +243,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "capacity1st",
+						"short": "The maximum estimated occupation load of 1st class coaches (e.g.",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "capacity2nd",
+						"short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "category",
+						"short": "The type of connection this is (e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "categoryCode",
+						"short": "An internal category code, indicates the type of the public transport vehicle.",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the connection (e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "number",
+						"short": "The number of the connection's line (e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "operator",
+						"short": "The operator of the connection's line (e.g.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "passList",
+						"short": "Checkpoints the train passed on the journey.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
@@ -268,6 +287,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "to",
+						"short": "The final destination of this line (e.g.",
 						"type": "`$STRING`",
 					},
 				},

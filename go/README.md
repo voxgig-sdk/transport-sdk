@@ -6,7 +6,7 @@ The Golang SDK for the Transport API — an entity-oriented client using standar
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Connection(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -262,10 +262,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"connections"` |  |
-| `"from"` |  |
-| `"stations"` |  |
-| `"to"` |  |
+| `"connections"` | Found connections |
+| `"from"` | Departure station of search |
+| `"stations"` | All stations from query |
+| `"to"` | Arrival station of search |
 
 Operations: List.
 
@@ -275,10 +275,10 @@ API path: `/connections`
 
 | Field | Description |
 | --- | --- |
-| `"coordinate"` |  |
-| `"distance"` |  |
-| `"name"` |  |
-| `"score"` |  |
+| `"coordinate"` | The location coordinates. |
+| `"distance"` | If search has been with coordinates, distance to original point in meters. |
+| `"name"` | The name of this location. |
+| `"score"` | The score with regard to the search request, the higher the better. |
 
 Operations: List.
 
@@ -288,16 +288,16 @@ API path: `/locations`
 
 | Field | Description |
 | --- | --- |
-| `"capacity1st"` |  |
-| `"capacity2nd"` |  |
-| `"category"` |  |
-| `"categoryCode"` |  |
-| `"name"` |  |
-| `"number"` |  |
-| `"operator"` |  |
-| `"passList"` |  |
+| `"capacity1st"` | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `"capacity2nd"` | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `"category"` | The type of connection this is (e.g. |
+| `"categoryCode"` | An internal category code, indicates the type of the public transport vehicle. |
+| `"name"` | The name of the connection (e.g. |
+| `"number"` | The number of the connection's line (e.g. |
+| `"operator"` | The operator of the connection's line (e.g. |
+| `"passList"` | Checkpoints the train passed on the journey. |
 | `"subcategory"` |  |
-| `"to"` |  |
+| `"to"` | The final destination of this line (e.g. |
 
 Operations: List.
 
@@ -322,10 +322,10 @@ Create an instance: `connection := client.Connection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connections` | `[]any` |  |
-| `from` | `any` |  |
-| `stations` | `[]any` |  |
-| `to` | `any` |  |
+| `connections` | `[]any` | Found connections |
+| `from` | `any` | Departure station of search |
+| `stations` | `[]any` | All stations from query |
+| `to` | `any` | Arrival station of search |
 
 #### Example: List
 
@@ -352,10 +352,10 @@ Create an instance: `location := client.Location(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coordinate` | `any` |  |
-| `distance` | `float64` |  |
-| `name` | `string` |  |
-| `score` | `int` |  |
+| `coordinate` | `any` | The location coordinates. |
+| `distance` | `float64` | If search has been with coordinates, distance to original point in meters. |
+| `name` | `string` | The name of this location. |
+| `score` | `int` | The score with regard to the search request, the higher the better. |
 
 #### Example: List
 
@@ -382,16 +382,16 @@ Create an instance: `stationboard := client.Stationboard(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `capacity1st` | `int` |  |
-| `capacity2nd` | `int` |  |
-| `category` | `string` |  |
-| `categoryCode` | `int` |  |
-| `name` | `string` |  |
-| `number` | `string` |  |
-| `operator` | `string` |  |
-| `passList` | `[]any` |  |
+| `capacity1st` | `int` | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | `int` | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | `string` | The type of connection this is (e.g. |
+| `categoryCode` | `int` | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | `string` | The name of the connection (e.g. |
+| `number` | `string` | The number of the connection's line (e.g. |
+| `operator` | `string` | The operator of the connection's line (e.g. |
+| `passList` | `[]any` | Checkpoints the train passed on the journey. |
 | `subcategory` | `string` |  |
-| `to` | `string` |  |
+| `to` | `string` | The final destination of this line (e.g. |
 
 #### Example: List
 

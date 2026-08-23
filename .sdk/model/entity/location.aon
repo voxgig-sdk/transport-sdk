@@ -8,21 +8,25 @@ main: kit: entity: location: {
     {
       name: "coordinate"
       req: false
+      short: "The location coordinates."
       type: "`$ANY`"
     }
     {
       name: "distance"
       req: false
+      short: "If search has been with coordinates, distance to original point in meters."
       type: "`$NUMBER`"
     }
     {
       name: "name"
       req: false
+      short: "The name of this location."
       type: "`$STRING`"
     }
     {
       name: "score"
       req: false
+      short: "The score with regard to the search request, the higher the better."
       type: "`$INTEGER`"
     }
   ]

@@ -95,10 +95,10 @@ connection = client.Connection()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connections` | `list` | No |  |
-| `from` | `Any` | No |  |
-| `stations` | `list` | No |  |
-| `to` | `Any` | No |  |
+| `connections` | `list` | No | Found connections |
+| `from` | `Any` | No | Departure station of search |
+| `stations` | `list` | No | All stations from query |
+| `to` | `Any` | No | Arrival station of search |
 
 ### Operations
 
@@ -151,10 +151,10 @@ location = client.Location()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | `Any` | No |  |
-| `distance` | `float` | No |  |
-| `name` | `str` | No |  |
-| `score` | `int` | No |  |
+| `coordinate` | `Any` | No | The location coordinates. |
+| `distance` | `float` | No | If search has been with coordinates, distance to original point in meters. |
+| `name` | `str` | No | The name of this location. |
+| `score` | `int` | No | The score with regard to the search request, the higher the better. |
 
 ### Operations
 
@@ -207,16 +207,16 @@ stationboard = client.Stationboard()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | `int` | No |  |
-| `capacity2nd` | `int` | No |  |
-| `category` | `str` | No |  |
-| `categoryCode` | `int` | No |  |
-| `name` | `str` | No |  |
-| `number` | `str` | No |  |
-| `operator` | `str` | No |  |
-| `passList` | `list` | No |  |
+| `capacity1st` | `int` | No | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | `int` | No | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | `str` | No | The type of connection this is (e.g. |
+| `categoryCode` | `int` | No | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | `str` | No | The name of the connection (e.g. |
+| `number` | `str` | No | The number of the connection's line (e.g. |
+| `operator` | `str` | No | The operator of the connection's line (e.g. |
+| `passList` | `list` | No | Checkpoints the train passed on the journey. |
 | `subcategory` | `str` | No |  |
-| `to` | `str` | No |  |
+| `to` | `str` | No | The final destination of this line (e.g. |
 
 ### Operations
 

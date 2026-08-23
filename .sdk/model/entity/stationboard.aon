@@ -8,41 +8,49 @@ main: kit: entity: stationboard: {
     {
       name: "capacity1st"
       req: false
+      short: "The maximum estimated occupation load of 1st class coaches (e.g."
       type: "`$INTEGER`"
     }
     {
       name: "capacity2nd"
       req: false
+      short: "The maximum estimated occupation load of 2nd class coaches (e.g."
       type: "`$INTEGER`"
     }
     {
       name: "category"
       req: false
+      short: "The type of connection this is (e.g."
       type: "`$STRING`"
     }
     {
       name: "categoryCode"
       req: false
+      short: "An internal category code, indicates the type of the public transport vehicle."
       type: "`$INTEGER`"
     }
     {
       name: "name"
       req: false
+      short: "The name of the connection (e.g."
       type: "`$STRING`"
     }
     {
       name: "number"
       req: false
+      short: "The number of the connection's line (e.g."
       type: "`$STRING`"
     }
     {
       name: "operator"
       req: false
+      short: "The operator of the connection's line (e.g."
       type: "`$STRING`"
     }
     {
       name: "passList"
       req: false
+      short: "Checkpoints the train passed on the journey."
       type: "`$ARRAY`"
     }
     {
@@ -53,6 +61,7 @@ main: kit: entity: stationboard: {
     {
       name: "to"
       req: false
+      short: "The final destination of this line (e.g."
       type: "`$STRING`"
     }
   ]

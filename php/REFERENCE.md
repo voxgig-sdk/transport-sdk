@@ -100,10 +100,10 @@ $connection = $client->Connection();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connections` | `array` | No |  |
-| `from` | `mixed` | No |  |
-| `stations` | `array` | No |  |
-| `to` | `mixed` | No |  |
+| `connections` | `array` | No | Found connections |
+| `from` | `mixed` | No | Departure station of search |
+| `stations` | `array` | No | All stations from query |
+| `to` | `mixed` | No | Arrival station of search |
 
 ### Operations
 
@@ -155,10 +155,10 @@ $location = $client->Location();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | `mixed` | No |  |
-| `distance` | `float` | No |  |
-| `name` | `string` | No |  |
-| `score` | `int` | No |  |
+| `coordinate` | `mixed` | No | The location coordinates. |
+| `distance` | `float` | No | If search has been with coordinates, distance to original point in meters. |
+| `name` | `string` | No | The name of this location. |
+| `score` | `int` | No | The score with regard to the search request, the higher the better. |
 
 ### Operations
 
@@ -210,16 +210,16 @@ $stationboard = $client->Stationboard();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | `int` | No |  |
-| `capacity2nd` | `int` | No |  |
-| `category` | `string` | No |  |
-| `categoryCode` | `int` | No |  |
-| `name` | `string` | No |  |
-| `number` | `string` | No |  |
-| `operator` | `string` | No |  |
-| `passList` | `array` | No |  |
+| `capacity1st` | `int` | No | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | `int` | No | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | `string` | No | The type of connection this is (e.g. |
+| `categoryCode` | `int` | No | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | `string` | No | The name of the connection (e.g. |
+| `number` | `string` | No | The number of the connection's line (e.g. |
+| `operator` | `string` | No | The operator of the connection's line (e.g. |
+| `passList` | `array` | No | Checkpoints the train passed on the journey. |
 | `subcategory` | `string` | No |  |
-| `to` | `string` | No |  |
+| `to` | `string` | No | The final destination of this line (e.g. |
 
 ### Operations
 

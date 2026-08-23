@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Transport',
+        slug: "transport",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -62,18 +73,22 @@ class Config {
       "fields": [
         {
           "name": "connections",
+          "short": "Found connections",
           "type": "`$ARRAY`"
         },
         {
           "name": "from",
+          "short": "Departure station of search",
           "type": "`$ANY`"
         },
         {
           "name": "stations",
+          "short": "All stations from query",
           "type": "`$ARRAY`"
         },
         {
           "name": "to",
+          "short": "Arrival station of search",
           "type": "`$ANY`"
         }
       ],
@@ -179,18 +194,22 @@ class Config {
       "fields": [
         {
           "name": "coordinate",
+          "short": "The location coordinates.",
           "type": "`$ANY`"
         },
         {
           "name": "distance",
+          "short": "If search has been with coordinates, distance to original point in meters.",
           "type": "`$NUMBER`"
         },
         {
           "name": "name",
+          "short": "The name of this location.",
           "type": "`$STRING`"
         },
         {
           "name": "score",
+          "short": "The score with regard to the search request, the higher the better.",
           "type": "`$INTEGER`"
         }
       ],
@@ -259,34 +278,42 @@ class Config {
       "fields": [
         {
           "name": "capacity1st",
+          "short": "The maximum estimated occupation load of 1st class coaches (e.g.",
           "type": "`$INTEGER`"
         },
         {
           "name": "capacity2nd",
+          "short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
           "type": "`$INTEGER`"
         },
         {
           "name": "category",
+          "short": "The type of connection this is (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "categoryCode",
+          "short": "An internal category code, indicates the type of the public transport vehicle.",
           "type": "`$INTEGER`"
         },
         {
           "name": "name",
+          "short": "The name of the connection (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "number",
+          "short": "The number of the connection's line (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "operator",
+          "short": "The operator of the connection's line (e.g.",
           "type": "`$STRING`"
         },
         {
           "name": "passList",
+          "short": "Checkpoints the train passed on the journey.",
           "type": "`$ARRAY`"
         },
         {
@@ -295,6 +322,7 @@ class Config {
         },
         {
           "name": "to",
+          "short": "The final destination of this line (e.g.",
           "type": "`$STRING`"
         }
       ],

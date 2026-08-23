@@ -101,10 +101,10 @@ connection = client.Connection
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `connections` | `Array` | No |  |
-| `from` | `Object` | No |  |
-| `stations` | `Array` | No |  |
-| `to` | `Object` | No |  |
+| `connections` | `Array` | No | Found connections |
+| `from` | `Object` | No | Departure station of search |
+| `stations` | `Array` | No | All stations from query |
+| `to` | `Object` | No | Arrival station of search |
 
 ### Operations
 
@@ -156,10 +156,10 @@ location = client.Location
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `coordinate` | `Object` | No |  |
-| `distance` | `Float` | No |  |
-| `name` | `String` | No |  |
-| `score` | `Integer` | No |  |
+| `coordinate` | `Object` | No | The location coordinates. |
+| `distance` | `Float` | No | If search has been with coordinates, distance to original point in meters. |
+| `name` | `String` | No | The name of this location. |
+| `score` | `Integer` | No | The score with regard to the search request, the higher the better. |
 
 ### Operations
 
@@ -211,16 +211,16 @@ stationboard = client.Stationboard
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `capacity1st` | `Integer` | No |  |
-| `capacity2nd` | `Integer` | No |  |
-| `category` | `String` | No |  |
-| `categoryCode` | `Integer` | No |  |
-| `name` | `String` | No |  |
-| `number` | `String` | No |  |
-| `operator` | `String` | No |  |
-| `passList` | `Array` | No |  |
+| `capacity1st` | `Integer` | No | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | `Integer` | No | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | `String` | No | The type of connection this is (e.g. |
+| `categoryCode` | `Integer` | No | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | `String` | No | The name of the connection (e.g. |
+| `number` | `String` | No | The number of the connection's line (e.g. |
+| `operator` | `String` | No | The operator of the connection's line (e.g. |
+| `passList` | `Array` | No | Checkpoints the train passed on the journey. |
 | `subcategory` | `String` | No |  |
-| `to` | `String` | No |  |
+| `to` | `String` | No | The final destination of this line (e.g. |
 
 ### Operations
 

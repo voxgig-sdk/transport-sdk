@@ -233,10 +233,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `connections` |  |
-| `from` |  |
-| `stations` |  |
-| `to` |  |
+| `connections` | Found connections |
+| `from` | Departure station of search |
+| `stations` | All stations from query |
+| `to` | Arrival station of search |
 
 Operations: List.
 
@@ -246,10 +246,10 @@ API path: `/connections`
 
 | Field | Description |
 | --- | --- |
-| `coordinate` |  |
-| `distance` |  |
-| `name` |  |
-| `score` |  |
+| `coordinate` | The location coordinates. |
+| `distance` | If search has been with coordinates, distance to original point in meters. |
+| `name` | The name of this location. |
+| `score` | The score with regard to the search request, the higher the better. |
 
 Operations: List.
 
@@ -259,16 +259,16 @@ API path: `/locations`
 
 | Field | Description |
 | --- | --- |
-| `capacity1st` |  |
-| `capacity2nd` |  |
-| `category` |  |
-| `categoryCode` |  |
-| `name` |  |
-| `number` |  |
-| `operator` |  |
-| `passList` |  |
+| `capacity1st` | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | The type of connection this is (e.g. |
+| `categoryCode` | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | The name of the connection (e.g. |
+| `number` | The number of the connection's line (e.g. |
+| `operator` | The operator of the connection's line (e.g. |
+| `passList` | Checkpoints the train passed on the journey. |
 | `subcategory` |  |
-| `to` |  |
+| `to` | The final destination of this line (e.g. |
 
 Operations: List.
 
@@ -293,10 +293,10 @@ Create an instance: `local connection = client:Connection(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `connections` | `table` |  |
-| `from` | `any` |  |
-| `stations` | `table` |  |
-| `to` | `any` |  |
+| `connections` | `table` | Found connections |
+| `from` | `any` | Departure station of search |
+| `stations` | `table` | All stations from query |
+| `to` | `any` | Arrival station of search |
 
 #### Example: List
 
@@ -319,10 +319,10 @@ Create an instance: `local location = client:Location(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `coordinate` | `any` |  |
-| `distance` | `number` |  |
-| `name` | `string` |  |
-| `score` | `number` |  |
+| `coordinate` | `any` | The location coordinates. |
+| `distance` | `number` | If search has been with coordinates, distance to original point in meters. |
+| `name` | `string` | The name of this location. |
+| `score` | `number` | The score with regard to the search request, the higher the better. |
 
 #### Example: List
 
@@ -345,16 +345,16 @@ Create an instance: `local stationboard = client:Stationboard(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `capacity1st` | `number` |  |
-| `capacity2nd` | `number` |  |
-| `category` | `string` |  |
-| `categoryCode` | `number` |  |
-| `name` | `string` |  |
-| `number` | `string` |  |
-| `operator` | `string` |  |
-| `passList` | `table` |  |
+| `capacity1st` | `number` | The maximum estimated occupation load of 1st class coaches (e.g. |
+| `capacity2nd` | `number` | The maximum estimated occupation load of 2nd class coaches (e.g. |
+| `category` | `string` | The type of connection this is (e.g. |
+| `categoryCode` | `number` | An internal category code, indicates the type of the public transport vehicle. |
+| `name` | `string` | The name of the connection (e.g. |
+| `number` | `string` | The number of the connection's line (e.g. |
+| `operator` | `string` | The operator of the connection's line (e.g. |
+| `passList` | `table` | Checkpoints the train passed on the journey. |
 | `subcategory` | `string` |  |
-| `to` | `string` |  |
+| `to` | `string` | The final destination of this line (e.g. |
 
 #### Example: List
 

@@ -36,24 +36,28 @@
               "active": true,
               "name": "connections",
               "req": false,
+              "short": "Found connections",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "from",
               "req": false,
+              "short": "Departure station of search",
               "type": "`$ANY`"
             },
             {
               "active": true,
               "name": "stations",
               "req": false,
+              "short": "All stations from query",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "to",
               "req": false,
+              "short": "Arrival station of search",
               "type": "`$ANY`"
             }
           ],
@@ -182,24 +186,28 @@
               "active": true,
               "name": "coordinate",
               "req": false,
+              "short": "The location coordinates.",
               "type": "`$ANY`"
             },
             {
               "active": true,
               "name": "distance",
               "req": false,
+              "short": "If search has been with coordinates, distance to original point in meters.",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of this location.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "score",
               "req": false,
+              "short": "The score with regard to the search request, the higher the better.",
               "type": "`$INTEGER`"
             }
           ],
@@ -283,48 +291,56 @@
               "active": true,
               "name": "capacity1st",
               "req": false,
+              "short": "The maximum estimated occupation load of 1st class coaches (e.g.",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "capacity2nd",
               "req": false,
+              "short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "category",
               "req": false,
+              "short": "The type of connection this is (e.g.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "categoryCode",
               "req": false,
+              "short": "An internal category code, indicates the type of the public transport vehicle.",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the connection (e.g.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "number",
               "req": false,
+              "short": "The number of the connection's line (e.g.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "operator",
               "req": false,
+              "short": "The operator of the connection's line (e.g.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "passList",
               "req": false,
+              "short": "Checkpoints the train passed on the journey.",
               "type": "`$ARRAY`"
             },
             {
@@ -337,6 +353,7 @@
               "active": true,
               "name": "to",
               "req": false,
+              "short": "The final destination of this line (e.g.",
               "type": "`$STRING`"
             }
           ],
