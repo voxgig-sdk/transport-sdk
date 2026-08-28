@@ -31,22 +31,42 @@ Connection = Struct.new(
 
 # Request payload for Connection#list.
 #
-# @!attribute [rw] connections
-#   @return [Array, nil]
+# @!attribute [rw] date
+#   @return [Object, nil]
 #
 # @!attribute [rw] from
-#   @return [Object, nil]
+#   @return [Object]
 #
-# @!attribute [rw] stations
-#   @return [Array, nil]
+# @!attribute [rw] is_arrival_time
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] time
+#   @return [Object, nil]
 #
 # @!attribute [rw] to
+#   @return [Object]
+#
+# @!attribute [rw] transportation
+#   @return [Object, nil]
+#
+# @!attribute [rw] via
 #   @return [Object, nil]
 ConnectionListMatch = Struct.new(
-  :connections,
+  :date,
   :from,
-  :stations,
+  :is_arrival_time,
+  :limit,
+  :page,
+  :time,
   :to,
+  :transportation,
+  :via,
   keyword_init: true
 )
 
@@ -73,22 +93,22 @@ Location = Struct.new(
 
 # Request payload for Location#list.
 #
-# @!attribute [rw] coordinate
+# @!attribute [rw] query
 #   @return [Object, nil]
 #
-# @!attribute [rw] distance
-#   @return [Float, nil]
+# @!attribute [rw] type
+#   @return [Object, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
+# @!attribute [rw] x
+#   @return [Object, nil]
 #
-# @!attribute [rw] score
-#   @return [Integer, nil]
+# @!attribute [rw] y
+#   @return [Object, nil]
 LocationListMatch = Struct.new(
-  :coordinate,
-  :distance,
-  :name,
-  :score,
+  :query,
+  :type,
+  :x,
+  :y,
   keyword_init: true
 )
 
@@ -139,46 +159,30 @@ Stationboard = Struct.new(
 
 # Request payload for Stationboard#list.
 #
-# @!attribute [rw] capacity1st
+# @!attribute [rw] datetime
+#   @return [Object, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] capacity2nd
-#   @return [Integer, nil]
+# @!attribute [rw] station
+#   @return [Object]
 #
-# @!attribute [rw] category
-#   @return [String, nil]
+# @!attribute [rw] transportation
+#   @return [Object, nil]
 #
-# @!attribute [rw] categoryCode
-#   @return [Integer, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] number
-#   @return [String, nil]
-#
-# @!attribute [rw] operator
-#   @return [String, nil]
-#
-# @!attribute [rw] passList
-#   @return [Array, nil]
-#
-# @!attribute [rw] subcategory
-#   @return [String, nil]
-#
-# @!attribute [rw] to
-#   @return [String, nil]
+# @!attribute [rw] type
+#   @return [Object, nil]
 StationboardListMatch = Struct.new(
-  :capacity1st,
-  :capacity2nd,
-  :category,
-  :categoryCode,
-  :name,
-  :number,
-  :operator,
-  :passList,
-  :subcategory,
-  :to,
+  :datetime,
+  :id,
+  :limit,
+  :station,
+  :transportation,
+  :type,
   keyword_init: true
 )
 

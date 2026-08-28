@@ -22,10 +22,15 @@ type Connection struct {
 
 // ConnectionListMatch is the typed request payload for Connection.ListTyped.
 type ConnectionListMatch struct {
-	Connections *[]any `json:"connections,omitempty"`
-	From *any `json:"from,omitempty"`
-	Stations *[]any `json:"stations,omitempty"`
-	To *any `json:"to,omitempty"`
+	Date *any `json:"date,omitempty"`
+	From any `json:"from"`
+	IsArrivalTime *bool `json:"is_arrival_time,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Time *any `json:"time,omitempty"`
+	To any `json:"to"`
+	Transportation *any `json:"transportation,omitempty"`
+	Via *any `json:"via,omitempty"`
 }
 
 // Location is the typed data model for the location entity.
@@ -38,10 +43,10 @@ type Location struct {
 
 // LocationListMatch is the typed request payload for Location.ListTyped.
 type LocationListMatch struct {
-	Coordinate *any `json:"coordinate,omitempty"`
-	Distance *float64 `json:"distance,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Score *int `json:"score,omitempty"`
+	Query *any `json:"query,omitempty"`
+	Type *any `json:"type,omitempty"`
+	X *any `json:"x,omitempty"`
+	Y *any `json:"y,omitempty"`
 }
 
 // Stationboard is the typed data model for the stationboard entity.
@@ -60,16 +65,12 @@ type Stationboard struct {
 
 // StationboardListMatch is the typed request payload for Stationboard.ListTyped.
 type StationboardListMatch struct {
-	Capacity1st *int `json:"capacity1st,omitempty"`
-	Capacity2nd *int `json:"capacity2nd,omitempty"`
-	Category *string `json:"category,omitempty"`
-	CategoryCode *int `json:"categoryCode,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Number *string `json:"number,omitempty"`
-	Operator *string `json:"operator,omitempty"`
-	PassList *[]any `json:"passList,omitempty"`
-	Subcategory *string `json:"subcategory,omitempty"`
-	To *string `json:"to,omitempty"`
+	Datetime *any `json:"datetime,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Station any `json:"station"`
+	Transportation *any `json:"transportation,omitempty"`
+	Type *any `json:"type,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

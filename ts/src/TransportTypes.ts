@@ -13,10 +13,15 @@ export interface Connection {
 }
 
 export interface ConnectionListMatch {
-  connections?: any[]
-  from?: any
-  stations?: any[]
-  to?: any
+  date?: any
+  from: any
+  is_arrival_time?: boolean
+  limit?: number
+  page?: number
+  time?: any
+  to: any
+  transportation?: any
+  via?: any
 }
 
 export interface Location {
@@ -27,10 +32,10 @@ export interface Location {
 }
 
 export interface LocationListMatch {
-  coordinate?: any
-  distance?: number
-  name?: string
-  score?: number
+  query?: any
+  type?: any
+  x?: any
+  y?: any
 }
 
 export interface Stationboard {
@@ -47,15 +52,11 @@ export interface Stationboard {
 }
 
 export interface StationboardListMatch {
-  capacity1st?: number
-  capacity2nd?: number
-  category?: string
-  categoryCode?: number
-  name?: string
-  number?: string
-  operator?: string
-  passList?: any[]
-  subcategory?: string
-  to?: string
+  datetime?: any
+  id?: string
+  limit?: number
+  station: any
+  transportation?: any
+  type?: any
 }
 

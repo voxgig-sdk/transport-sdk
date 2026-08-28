@@ -24,10 +24,15 @@ class Connection
 /** Request payload for Connection#list. */
 class ConnectionListMatch
 {
-    public ?array $connections = null;
-    public mixed $from = null;
-    public ?array $stations = null;
-    public mixed $to = null;
+    public mixed $date = null;
+    public mixed $from;
+    public ?bool $is_arrival_time = null;
+    public ?int $limit = null;
+    public ?int $page = null;
+    public mixed $time = null;
+    public mixed $to;
+    public mixed $transportation = null;
+    public mixed $via = null;
 }
 
 /** Location entity data model. */
@@ -42,10 +47,10 @@ class Location
 /** Request payload for Location#list. */
 class LocationListMatch
 {
-    public mixed $coordinate = null;
-    public ?float $distance = null;
-    public ?string $name = null;
-    public ?int $score = null;
+    public mixed $query = null;
+    public mixed $type = null;
+    public mixed $x = null;
+    public mixed $y = null;
 }
 
 /** Stationboard entity data model. */
@@ -66,15 +71,11 @@ class Stationboard
 /** Request payload for Stationboard#list. */
 class StationboardListMatch
 {
-    public ?int $capacity1st = null;
-    public ?int $capacity2nd = null;
-    public ?string $category = null;
-    public ?int $categoryCode = null;
-    public ?string $name = null;
-    public ?string $number = null;
-    public ?string $operator = null;
-    public ?array $passList = null;
-    public ?string $subcategory = null;
-    public ?string $to = null;
+    public mixed $datetime = null;
+    public ?string $id = null;
+    public ?int $limit = null;
+    public mixed $station;
+    public mixed $transportation = null;
+    public mixed $type = null;
 }
 

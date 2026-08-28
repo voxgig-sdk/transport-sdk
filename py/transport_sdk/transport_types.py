@@ -22,10 +22,18 @@ class Connection(TypedDict, total=False):
     to: Any
 
 
-class ConnectionListMatch(TypedDict, total=False):
-    connections: list
-    stations: list
+class ConnectionListMatchRequired(TypedDict):
     to: Any
+
+
+class ConnectionListMatch(ConnectionListMatchRequired, total=False):
+    date: Any
+    is_arrival_time: bool
+    limit: int
+    page: int
+    time: Any
+    transportation: Any
+    via: Any
 
 
 class Location(TypedDict, total=False):
@@ -36,10 +44,10 @@ class Location(TypedDict, total=False):
 
 
 class LocationListMatch(TypedDict, total=False):
-    coordinate: Any
-    distance: float
-    name: str
-    score: int
+    query: Any
+    type: Any
+    x: Any
+    y: Any
 
 
 class Stationboard(TypedDict, total=False):
@@ -55,14 +63,13 @@ class Stationboard(TypedDict, total=False):
     to: str
 
 
-class StationboardListMatch(TypedDict, total=False):
-    capacity1st: int
-    capacity2nd: int
-    category: str
-    categoryCode: int
-    name: str
-    number: str
-    operator: str
-    passList: list
-    subcategory: str
-    to: str
+class StationboardListMatchRequired(TypedDict):
+    station: Any
+
+
+class StationboardListMatch(StationboardListMatchRequired, total=False):
+    datetime: Any
+    id: str
+    limit: int
+    transportation: Any
+    type: Any

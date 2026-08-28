@@ -43,7 +43,7 @@ error — iterate it directly.
 
 ```python
 try:
-    connections = client.Connection().list()
+    connections = client.Connection().list({"from": "example", "to": "example"})
     for connection in connections:
         print(connection)
 except Exception as err:
@@ -313,7 +313,7 @@ Create an instance: `connection = client.Connection()`
 #### Example: List
 
 ```python
-connections = client.Connection().list()
+connections = client.Connection().list({"from": "example", "to": "example"})
 ```
 
 
@@ -371,8 +371,31 @@ Create an instance: `stationboard = client.Stationboard()`
 #### Example: List
 
 ```python
-stationboards = client.Stationboard().list()
+stationboards = client.Stationboard().list({"station": "example"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

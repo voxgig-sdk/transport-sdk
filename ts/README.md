@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const connections = await client.Connection().list()
+const connections = await client.Connection().list({ from: "example", to: "example" })
 
 for (const connection of connections) {
   console.log(connection)
@@ -357,7 +357,7 @@ Create an instance: `const connection = client.Connection()`
 #### Example: List
 
 ```ts
-const connections = await client.Connection().list()
+const connections = await client.Connection().list({ from: "example", to: "example" })
 ```
 
 
@@ -415,8 +415,31 @@ Create an instance: `const stationboard = client.Stationboard()`
 #### Example: List
 
 ```ts
-const stationboards = await client.Stationboard().list()
+const stationboards = await client.Stationboard().list({ station: "example" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
