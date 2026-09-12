@@ -120,8 +120,10 @@ main: kit: entity: stationboard: {
           }
           method: "GET"
           orig: "/stationboard"
-          parts: [
-            "stationboard"
+          segments: [
+            {
+              lit: "stationboard"
+            }
           ]
           select: {
             exist: [

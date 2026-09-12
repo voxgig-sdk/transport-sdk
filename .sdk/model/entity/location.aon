@@ -12,6 +12,7 @@ main: kit: entity: location: {
       type: "`$ANY`"
     }
     {
+      format: "float"
       name: "distance"
       req: false
       short: "If search has been with coordinates, distance to original point in meters."
@@ -71,8 +72,10 @@ main: kit: entity: location: {
           }
           method: "GET"
           orig: "/locations"
-          parts: [
-            "locations"
+          segments: [
+            {
+              lit: "locations"
+            }
           ]
           select: {
             exist: [

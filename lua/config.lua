@@ -124,8 +124,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/connections",
-                ["parts"] = {
-                  "connections",
+                ["segments"] = {
+                  {
+                    ["lit"] = "connections",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -144,6 +146,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "connections",
+                },
               },
             },
           },
@@ -160,6 +165,7 @@ local function make_config()
             ["type"] = "`$ANY`",
           },
           {
+            ["format"] = "float",
             ["name"] = "distance",
             ["short"] = "If search has been with coordinates, distance to original point in meters.",
             ["type"] = "`$NUMBER`",
@@ -213,8 +219,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/locations",
-                ["parts"] = {
-                  "locations",
+                ["segments"] = {
+                  {
+                    ["lit"] = "locations",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -227,6 +235,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.stations`",
+                },
+                ["parts"] = {
+                  "locations",
                 },
               },
             },
@@ -339,8 +350,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/stationboard",
-                ["parts"] = {
-                  "stationboard",
+                ["segments"] = {
+                  {
+                    ["lit"] = "stationboard",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -355,6 +368,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.stationboard`",
+                },
+                ["parts"] = {
+                  "stationboard",
                 },
               },
             },

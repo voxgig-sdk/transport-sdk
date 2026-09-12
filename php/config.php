@@ -150,8 +150,10 @@ class TransportConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/connections',
-                  'parts' => [
-                    'connections',
+                  'segments' => [
+                    [
+                      'lit' => 'connections',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -170,6 +172,9 @@ class TransportConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'connections',
+                  ],
                 ],
               ],
             ],
@@ -186,6 +191,7 @@ class TransportConfig
               'type' => '`$ANY`',
             ],
             [
+              'format' => 'float',
               'name' => 'distance',
               'short' => 'If search has been with coordinates, distance to original point in meters.',
               'type' => '`$NUMBER`',
@@ -239,8 +245,10 @@ class TransportConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/locations',
-                  'parts' => [
-                    'locations',
+                  'segments' => [
+                    [
+                      'lit' => 'locations',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -253,6 +261,9 @@ class TransportConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.stations`',
+                  ],
+                  'parts' => [
+                    'locations',
                   ],
                 ],
               ],
@@ -365,8 +376,10 @@ class TransportConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/stationboard',
-                  'parts' => [
-                    'stationboard',
+                  'segments' => [
+                    [
+                      'lit' => 'stationboard',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -381,6 +394,9 @@ class TransportConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.stationboard`',
+                  ],
+                  'parts' => [
+                    'stationboard',
                   ],
                 ],
               ],
