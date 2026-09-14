@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TransportSDK } from '@voxgig-sdk/transport'
+import { TransportSDK } from '@voxgig-sdk/transport-sdk'
 
 const client = new TransportSDK()
 ```
@@ -501,7 +501,7 @@ transport/
 Import the SDK from the package root:
 
 ```ts
-import { TransportSDK } from '@voxgig-sdk/transport'
+import { TransportSDK } from '@voxgig-sdk/transport-sdk'
 ```
 
 ### Entity state

@@ -103,7 +103,7 @@ local results, err = client:Connection():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
+| TypeScript | `@voxgig-sdk/transport-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
 | Python | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
 | PHP | `voxgig-sdk/transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/transport-sdk/go` | `go get github.com/voxgig-sdk/transport-sdk/go@latest` |
@@ -117,7 +117,7 @@ local results, err = client:Connection():list()
 ### TypeScript
 
 ```ts
-import { TransportSDK } from '@voxgig-sdk/transport'
+import { TransportSDK } from '@voxgig-sdk/transport-sdk'
 
 const client = new TransportSDK()
 
