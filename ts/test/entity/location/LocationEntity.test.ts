@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { TransportSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('LocationEntity', async () => {
 
     const live = 'TRUE' === process.env.TRANSPORT_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'location.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'location.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set TRANSPORT_TEST_LOCATION_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"coordinate","req":false,"short":"The location coordinates.","type":"`$ANY`","index$":0},{"active":true,"format":"float","name":"distance","req":false,"short":"If search has been with coordinates, distance to original point in meters.","type":"`$NUMBER`","index$":1},{"active":true,"name":"name","req":false,"short":"The name of this location.","type":"`$STRING`","index$":2},{"active":true,"name":"score","req":false,"short":"The score with regard to the search request, the higher the better.","type":"`$INTEGER`","index$":3}],"name":"location","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"kind":"query","name":"query","orig":"query","reqd":false,"type":"`$ANY`","index$":0},{"active":true,"kind":"query","name":"type","orig":"type","reqd":false,"type":"`$ANY`","index$":1},{"active":true,"kind":"query","name":"x","orig":"x","reqd":false,"type":"`$ANY`","index$":2},{"active":true,"kind":"query","name":"y","orig":"y","reqd":false,"type":"`$ANY`","index$":3}]},"contract":{"id":"GET /locations","json":"{\"parameters\":[{\"description\":\"Specifies the location name to search for (e.g. Basel)\",\"in\":\"query\",\"name\":\"query\",\"type\":\"string\"},{\"description\":\"Latitude (e.g. 47.476001)\",\"in\":\"query\",\"name\":\"x\",\"type\":\"number\"},{\"description\":\"Longitude (e.g. 8.306130)\",\"in\":\"query\",\"name\":\"y\",\"type\":\"number\"},{\"description\":\"Only with `query` parameter. Specifies the location type, possible types are:<ul><li>`all` (default): Looks up for all types of locations</li><li>`station`: Looks up for stations (train station, bus station)</li><li>`poi`: Looks up for points of interest (Clock tower, China garden)</li><li>`address`: Looks up for an address (Zurich Bahnhofstrasse 33)</li></ul>\",\"in\":\"query\",\"name\":\"type\",\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"List of locations\",\"schema\":{\"properties\":{\"stations\":{\"description\":\"Search locations.\\n\\nReturns the matching locations for the given parameters. Either query or ( x and y ) are required.\\n\\nThe locations in the response are scored to determine which is the most exact location.\\n\\nThis method can return a refine response, what means that the request has to be redone.\",\"items\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"type\":\"array\"}},\"type\":\"object\"}}},\"securitySource\":\"unspecified\"}","source":"swagger2","version":1},"kind":"http","method":"GET","orig":"/locations","segments":[{"lit":"locations"}],"select":{"exist":["query","type","x","y"]},"transform":{"req":"`reqdata`","res":"`body.stations`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"location","name__orig":"location","Name":"Location","name_":"location","name-":"location","NAME":"LOCATION","index$":1}, {"active":true,"entity":"location","key$":"BasicLocationFlow","kind":"basic","name":"BasicLocationFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"location_ref01"}}],"index$":0}]}, 'Location')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['TRANSPORT_TEST_LOCATION_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'TRANSPORT_TEST_LOCATION_ENTID': idmap,
     'TRANSPORT_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.TRANSPORT_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['TRANSPORT_TEST_LOCATION_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new TransportSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.TRANSPORT_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

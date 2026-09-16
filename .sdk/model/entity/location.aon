@@ -70,6 +70,12 @@ main: kit: entity: location: {
               }
             ]
           }
+          contract: {
+            id: "GET /locations"
+            json: "{\"parameters\":[{\"description\":\"Specifies the location name to search for (e.g. Basel)\",\"in\":\"query\",\"name\":\"query\",\"type\":\"string\"},{\"description\":\"Latitude (e.g. 47.476001)\",\"in\":\"query\",\"name\":\"x\",\"type\":\"number\"},{\"description\":\"Longitude (e.g. 8.306130)\",\"in\":\"query\",\"name\":\"y\",\"type\":\"number\"},{\"description\":\"Only with `query` parameter. Specifies the location type, possible types are:<ul><li>`all` (default): Looks up for all types of locations</li><li>`station`: Looks up for stations (train station, bus station)</li><li>`poi`: Looks up for points of interest (Clock tower, China garden)</li><li>`address`: Looks up for an address (Zurich Bahnhofstrasse 33)</li></ul>\",\"in\":\"query\",\"name\":\"type\",\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"List of locations\",\"schema\":{\"properties\":{\"stations\":{\"description\":\"Search locations.\\n\\nReturns the matching locations for the given parameters. Either query or ( x and y ) are required.\\n\\nThe locations in the response are scored to determine which is the most exact location.\\n\\nThis method can return a refine response, what means that the request has to be redone.\",\"items\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"type\":\"array\"}},\"type\":\"object\"}}},\"securitySource\":\"unspecified\"}"
+            source: "swagger2"
+            version: 1
+          }
           method: "GET"
           orig: "/locations"
           segments: [

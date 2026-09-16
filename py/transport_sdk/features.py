@@ -1,12 +1,18 @@
 # Transport SDK feature factory
 
 from transport_sdk.feature.base_feature import TransportBaseFeature
+from transport_sdk.feature.ratelimit_feature import TransportRatelimitFeature
+from transport_sdk.feature.retry_feature import TransportRetryFeature
 from transport_sdk.feature.test_feature import TransportTestFeature
+from transport_sdk.feature.timeout_feature import TransportTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TransportBaseFeature(),
+    "ratelimit": lambda: TransportRatelimitFeature(),
+    "retry": lambda: TransportRetryFeature(),
     "test": lambda: TransportTestFeature(),
+    "timeout": lambda: TransportTimeoutFeature(),
 }
 
 

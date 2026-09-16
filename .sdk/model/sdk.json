@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "connection": {
           "active": true,
@@ -145,6 +209,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /connections",
+                    "json": "{\"parameters\":[{\"description\":\"Specifies the departure location of the connection (e.g. Lausanne)\",\"in\":\"query\",\"name\":\"from\",\"required\":true,\"type\":\"string\"},{\"description\":\"Specifies the arrival location of the connection (e.g. Genève)\",\"in\":\"query\",\"name\":\"to\",\"required\":true,\"type\":\"string\"},{\"description\":\"Specifies up to five via locations. When specifying several vias, array notation (via[]=Bern&via[]=Fribourg) is required\",\"in\":\"query\",\"name\":\"via[]\",\"type\":\"string\"},{\"description\":\"Date of the connection, in the format YYYY-MM-DD (e.g. 2012-03-25)\",\"in\":\"query\",\"name\":\"date\",\"type\":\"string\"},{\"description\":\"Time of the connection, in the format hh:mm (e.g. 17:30)\",\"in\":\"query\",\"name\":\"time\",\"type\":\"string\"},{\"description\":\"defaults to `0`, if set to `1` the passed `date` and `time` is the arrival time\",\"in\":\"query\",\"name\":\"isArrivalTime\",\"type\":\"integer\"},{\"description\":\"Transportation means; one or more of `train`, `tram`, `ship`, `bus`, `cableway` (e.g. transportations[]=tram&transportations[]=bus)\",\"in\":\"query\",\"name\":\"transportations[]\",\"type\":\"string\"},{\"description\":\"1 - 6. Specifies the number of connections to return. If several connections depart at the same time they are counted as 1.\",\"in\":\"query\",\"name\":\"limit\",\"type\":\"integer\"},{\"description\":\"0 - 10. Allows pagination of connections. Zero-based, so first page is 0, second is 1, third is 2 and so on.\",\"in\":\"query\",\"name\":\"page\",\"type\":\"integer\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"A list of connections\",\"schema\":{\"properties\":{\"connections\":{\"description\":\"Found connections\",\"items\":{\"properties\":{\"capacity1st\":{\"description\":\"The maximum estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The maximum estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"duration\":{\"description\":\"Duration of the journey (e.g. 00d00:43:00).\",\"type\":\"string\"},\"from\":{\"description\":\"The departure checkpoint of the connection.\",\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"products\":{\"description\":\"List of transport products (e.g. IR, S9).\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"sections\":{\"description\":\"A list of sections.\",\"items\":{\"properties\":{\"arrival\":{\"description\":\"The arrival checkpoint of the connection.\",\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"departure\":{\"description\":\"The departure checkpoint of the connection.\",\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"journey\":{\"description\":\"A journey, the transportation used by this section, can be null.\",\"properties\":{\"capacity1st\":{\"description\":\"The maximum estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The maximum estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"category\":{\"description\":\"The type of connection this is (e.g. S).\",\"type\":\"string\"},\"categoryCode\":{\"description\":\"An internal category code, indicates the type of the public transport vehicle. Possible values are 0, 1, 2, 3, 5, 8: train; 4: ship; 6: bus; 7: cable car (aerial, big); 9: tram.\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the connection (e.g. 019351).\",\"type\":\"string\"},\"number\":{\"description\":\"The number of the connection's line (e.g. 13).\",\"type\":\"string\"},\"operator\":{\"description\":\"The operator of the connection's line (e.g. BBA).\",\"type\":\"string\"},\"passList\":{\"description\":\"Checkpoints the train passed on the journey.\",\"items\":{\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"type\":\"array\"},\"subcategory\":{\"type\":\"string\"},\"to\":{\"description\":\"The final destination of this line (e.g. Aarau Rohr, Unterdorf).\",\"type\":\"string\"}}},\"walk\":{\"description\":\"Information about walking distance, if available, can be null.\",\"properties\":{\"duration\":{\"type\":\"string\"}}}}},\"type\":\"array\"},\"service\":{\"description\":\"Service information about how regular the connection operates.\",\"properties\":{\"irregular\":{\"description\":\"Additional information about irregular operation dates (e.g. not 23., 24. Jun 2012).\",\"type\":\"string\"},\"regular\":{\"description\":\"Information about how regular a connection operates (e.g. daily).\",\"type\":\"string\"}}},\"to\":{\"description\":\"The arrival checkpoint of the connection.\",\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"transfers\":{\"type\":\"integer\"}}},\"type\":\"array\"},\"from\":{\"description\":\"Departure station of search\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"stations\":{\"description\":\"All stations from query\",\"items\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"type\":\"array\"},\"to\":{\"description\":\"Arrival station of search\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}},\"type\":\"object\"}}},\"securitySource\":\"unspecified\"}",
+                    "source": "swagger2",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/connections",
@@ -257,6 +327,12 @@
                         "type": "`$ANY`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /locations",
+                    "json": "{\"parameters\":[{\"description\":\"Specifies the location name to search for (e.g. Basel)\",\"in\":\"query\",\"name\":\"query\",\"type\":\"string\"},{\"description\":\"Latitude (e.g. 47.476001)\",\"in\":\"query\",\"name\":\"x\",\"type\":\"number\"},{\"description\":\"Longitude (e.g. 8.306130)\",\"in\":\"query\",\"name\":\"y\",\"type\":\"number\"},{\"description\":\"Only with `query` parameter. Specifies the location type, possible types are:<ul><li>`all` (default): Looks up for all types of locations</li><li>`station`: Looks up for stations (train station, bus station)</li><li>`poi`: Looks up for points of interest (Clock tower, China garden)</li><li>`address`: Looks up for an address (Zurich Bahnhofstrasse 33)</li></ul>\",\"in\":\"query\",\"name\":\"type\",\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"List of locations\",\"schema\":{\"properties\":{\"stations\":{\"description\":\"Search locations.\\n\\nReturns the matching locations for the given parameters. Either query or ( x and y ) are required.\\n\\nThe locations in the response are scored to determine which is the most exact location.\\n\\nThis method can return a refine response, what means that the request has to be redone.\",\"items\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"type\":\"array\"}},\"type\":\"object\"}}},\"securitySource\":\"unspecified\"}",
+                    "source": "swagger2",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -422,6 +498,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /stationboard",
+                    "json": "{\"parameters\":[{\"description\":\"Specifies the location of which a stationboard should be returned (e.g. Aarau)\",\"in\":\"query\",\"name\":\"station\",\"required\":true,\"type\":\"string\"},{\"description\":\"The id of the station whose stationboard should be returned. Alternative to the station parameter; one of these two is required. If both an id and a station are specified the id has precedence. e.g. 8503059 (for Zurich Stadelhofen)\",\"in\":\"query\",\"name\":\"id\",\"type\":\"string\"},{\"description\":\"Number of departing connections to return. This is not a hard limit - if multiple connections leave at the same time it'll return any connections that leave at the same time as the last connection within the limit. For example: `limit=4` will return connections leaving at: 19:30, 19:32, 19:32, 19:35, 19:35. Because one of the connections leaving at 19:35 is within the limit, all connections leaving at 19:35 are shown.\",\"in\":\"query\",\"name\":\"limit\",\"type\":\"integer\"},{\"description\":\"Transportation means; one or more of `train`, `tram`, `ship`, `bus`, `cableway` (e.g. transportations[]=tram&transportations[]=bus)\",\"in\":\"query\",\"name\":\"transportations[]\",\"type\":\"string\"},{\"description\":\"Date and time of departing connections, in the format `YYYY-MM-DD hh:mm` (e.g. 2012-03-25 17:30)\",\"in\":\"query\",\"name\":\"datetime\",\"type\":\"string\"},{\"description\":\"`departure` (default) or `arrival`\",\"in\":\"query\",\"name\":\"type\",\"type\":\"string\"}],\"produces\":[\"application/json\"],\"protocol\":\"http\",\"responses\":{\"200\":{\"description\":\"Stationboard\",\"schema\":{\"properties\":{\"station\":{\"description\":\"The first matched location based on the query. The stationboard will be displayed if this is a station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"stationboard\":{\"description\":\"A list of journeys with the stop of the line leaving from that station.\",\"items\":{\"properties\":{\"capacity1st\":{\"description\":\"The maximum estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The maximum estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"category\":{\"description\":\"The type of connection this is (e.g. S).\",\"type\":\"string\"},\"categoryCode\":{\"description\":\"An internal category code, indicates the type of the public transport vehicle. Possible values are 0, 1, 2, 3, 5, 8: train; 4: ship; 6: bus; 7: cable car (aerial, big); 9: tram.\",\"type\":\"integer\"},\"name\":{\"description\":\"The name of the connection (e.g. 019351).\",\"type\":\"string\"},\"number\":{\"description\":\"The number of the connection's line (e.g. 13).\",\"type\":\"string\"},\"operator\":{\"description\":\"The operator of the connection's line (e.g. BBA).\",\"type\":\"string\"},\"passList\":{\"description\":\"Checkpoints the train passed on the journey.\",\"items\":{\"properties\":{\"arrival\":{\"description\":\"The arrival time to the checkpoint (e.g. 14:58:00).\",\"type\":\"string\"},\"arrivalTimestamp\":{\"type\":\"integer\"},\"delay\":{\"type\":\"integer\"},\"departure\":{\"description\":\"The departure time from the checkpoint, can be null.\",\"type\":\"string\"},\"departureTimestamp\":{\"type\":\"integer\"},\"location\":{\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}},\"platform\":{\"description\":\"The arrival/departure platform (e.g. 8).\",\"type\":\"string\"},\"prognosis\":{\"description\":\"The checkpoint prognosis.\",\"properties\":{\"arrival\":{\"description\":\"The departure time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T08:58:00+02:00).\",\"type\":\"string\"},\"capacity1st\":{\"description\":\"The estimated occupation load of 1st class coaches (e.g. 1).\",\"type\":\"integer\"},\"capacity2nd\":{\"description\":\"The estimated occupation load of 2nd class coaches (e.g. 2).\",\"type\":\"integer\"},\"departure\":{\"description\":\"The arrival time prognosis to the checkpoint, date format: [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) (e.g. 2012-03-31T09:35:00+02:00).\",\"type\":\"string\"},\"platform\":{\"description\":\"The estimated arrival/departure platform (e.g. 8).\",\"type\":\"string\"}}},\"realtimeAvailability\":{\"type\":\"string\"},\"station\":{\"description\":\"A location object showing this line's stop at the requested station.\",\"properties\":{\"coordinate\":{\"description\":\"The location coordinates.\",\"properties\":{\"type\":{\"description\":\"The type of the given coordinate.\",\"type\":\"string\"},\"x\":{\"description\":\"Latitude.\",\"format\":\"float\",\"type\":\"number\"},\"y\":{\"description\":\"Longitude.\",\"format\":\"float\",\"type\":\"number\"}}},\"distance\":{\"description\":\"If search has been with coordinates, distance to original point in meters.\",\"format\":\"float\",\"type\":\"number\"},\"id\":{\"description\":\"The ID of the station.\",\"type\":\"string\"},\"name\":{\"description\":\"The name of this location.\",\"type\":\"string\"},\"score\":{\"description\":\"The score with regard to the search request, the higher the better.\",\"type\":\"integer\"}}}}},\"type\":\"array\"},\"subcategory\":{\"type\":\"string\"},\"to\":{\"description\":\"The final destination of this line (e.g. Aarau Rohr, Unterdorf).\",\"type\":\"string\"}}},\"type\":\"array\"}},\"type\":\"object\"}}},\"securitySource\":\"unspecified\"}",
+                    "source": "swagger2",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/stationboard",
@@ -454,13 +536,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -550,6 +842,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -647,6 +1035,48 @@
         "website": "http://transport.opendata.ch"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1201,6 +1631,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1242,7 +1673,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }
