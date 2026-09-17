@@ -103,12 +103,12 @@ local results, err = client:Connection():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/transport-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
-| Python | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
-| PHP | `voxgig-sdk/transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
+| TypeScript | `@voxgig-sdk/transport-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/tags) |
+| Python | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/tags) |
+| PHP | `voxgig-sdk/transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/transport-sdk/go` | `go get github.com/voxgig-sdk/transport-sdk/go@latest` |
-| Ruby | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
-| Lua | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/releases) |
+| Ruby | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/tags) |
+| Lua | `voxgig-sdk-transport` | publish pending — [install from git tag](https://github.com/voxgig-sdk/transport-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/transport-sdk/go-cli` | `go install github.com/voxgig-sdk/transport-sdk/go-cli/cmd/transport@latest` |
 | Go MCP server | `github.com/voxgig-sdk/transport-sdk/go-mcp` | `go get github.com/voxgig-sdk/transport-sdk/go-mcp@latest` |
 

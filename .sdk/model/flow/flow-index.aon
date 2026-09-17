@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicConnectionFlow.aon"
-@"BasicLocationFlow.aon"
-@"BasicStationboardFlow.aon"
+@"./BasicConnectionFlow.aon"
+@"./BasicLocationFlow.aon"
+@"./BasicStationboardFlow.aon"

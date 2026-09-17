@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      connection: {
-      },
-
-      location: {
-      },
-
-      stationboard: {
-      },
-
+        connection: {
+        },
+  
+        location: {
+        },
+  
+        stationboard: {
+        },
+  
     }
   }
 
