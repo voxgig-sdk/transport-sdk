@@ -43,7 +43,7 @@ local connections, err = client:Connection():list()
 if err then error(err) end
 
 for _, item in ipairs(connections) do
-  print(item["connections"])
+  print(item)
 end
 ```
 

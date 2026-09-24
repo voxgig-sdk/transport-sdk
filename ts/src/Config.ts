@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -145,23 +138,27 @@ class Config {
       "fields": [
         {
           "name": "connections",
-          "short": "Found connections",
-          "type": "`$ARRAY`"
+          "title": "Connections",
+          "type": "`$ARRAY`",
+          "short": "Found connections"
         },
         {
           "name": "from",
-          "short": "Departure station of search",
-          "type": "`$ANY`"
+          "title": "From",
+          "type": "`$ANY`",
+          "short": "Departure station of search"
         },
         {
           "name": "stations",
-          "short": "All stations from query",
-          "type": "`$ARRAY`"
+          "title": "Stations",
+          "type": "`$ARRAY`",
+          "short": "All stations from query"
         },
         {
           "name": "to",
-          "short": "Arrival station of search",
-          "type": "`$ANY`"
+          "title": "To",
+          "type": "`$ANY`",
+          "short": "Arrival station of search"
         }
       ],
       "name": "connection",
@@ -171,66 +168,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "date",
-                    "orig": "date",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "reqd": true,
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "is_arrival_time",
-                    "orig": "is_arrival_time",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "time",
-                    "orig": "time",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "to",
-                    "orig": "to",
-                    "reqd": true,
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "transportation",
-                    "orig": "transportation",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "via",
-                    "orig": "via",
-                    "type": "`$ANY`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/connections",
@@ -239,6 +176,74 @@ class Config {
                   "lit": "connections"
                 }
               ],
+              "parts": [
+                "connections"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "date",
+                    "orig": "date",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$ANY`",
+                    "kind": "query",
+                    "reqd": true
+                  },
+                  {
+                    "name": "is_arrival_time",
+                    "orig": "is_arrival_time",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "time",
+                    "orig": "time",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "to",
+                    "orig": "to",
+                    "type": "`$ANY`",
+                    "kind": "query",
+                    "reqd": true
+                  },
+                  {
+                    "name": "transportation",
+                    "orig": "transportation",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "via",
+                    "orig": "via",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "date",
@@ -251,14 +256,7 @@ class Config {
                   "transportation",
                   "via"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "connections"
-              ]
+              }
             }
           ]
         }
@@ -271,24 +269,28 @@ class Config {
       "fields": [
         {
           "name": "coordinate",
-          "short": "The location coordinates.",
-          "type": "`$ANY`"
+          "title": "Coordinate",
+          "type": "`$ANY`",
+          "short": "The location coordinates."
         },
         {
-          "format": "float",
           "name": "distance",
+          "title": "Distance",
+          "type": "`$NUMBER`",
           "short": "If search has been with coordinates, distance to original point in meters.",
-          "type": "`$NUMBER`"
+          "format": "float"
         },
         {
           "name": "name",
-          "short": "The name of this location.",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "The name of this location."
         },
         {
           "name": "score",
-          "short": "The score with regard to the search request, the higher the better.",
-          "type": "`$INTEGER`"
+          "title": "Score",
+          "type": "`$INTEGER`",
+          "short": "The score with regard to the search request, the higher the better."
         }
       ],
       "name": "location",
@@ -298,34 +300,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "type",
-                    "orig": "type",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "x",
-                    "orig": "x",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "y",
-                    "orig": "y",
-                    "type": "`$ANY`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/locations",
@@ -334,6 +308,42 @@ class Config {
                   "lit": "locations"
                 }
               ],
+              "parts": [
+                "locations"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.stations`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "type",
+                    "orig": "type",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "x",
+                    "orig": "x",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "y",
+                    "orig": "y",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "query",
@@ -341,14 +351,7 @@ class Config {
                   "x",
                   "y"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.stations`"
-              },
-              "parts": [
-                "locations"
-              ]
+              }
             }
           ]
         }
@@ -361,52 +364,62 @@ class Config {
       "fields": [
         {
           "name": "capacity1st",
-          "short": "The maximum estimated occupation load of 1st class coaches (e.g.",
-          "type": "`$INTEGER`"
+          "title": "Capacity1st",
+          "type": "`$INTEGER`",
+          "short": "The maximum estimated occupation load of 1st class coaches (e.g."
         },
         {
           "name": "capacity2nd",
-          "short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
-          "type": "`$INTEGER`"
+          "title": "Capacity2nd",
+          "type": "`$INTEGER`",
+          "short": "The maximum estimated occupation load of 2nd class coaches (e.g."
         },
         {
           "name": "category",
-          "short": "The type of connection this is (e.g.",
-          "type": "`$STRING`"
+          "title": "Category",
+          "type": "`$STRING`",
+          "short": "The type of connection this is (e.g."
         },
         {
           "name": "categoryCode",
-          "short": "An internal category code, indicates the type of the public transport vehicle.",
-          "type": "`$INTEGER`"
+          "title": "Category Code",
+          "type": "`$INTEGER`",
+          "short": "An internal category code, indicates the type of the public transport vehicle."
         },
         {
           "name": "name",
-          "short": "The name of the connection (e.g.",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "The name of the connection (e.g."
         },
         {
           "name": "number",
-          "short": "The number of the connection's line (e.g.",
-          "type": "`$STRING`"
+          "title": "Number",
+          "type": "`$STRING`",
+          "short": "The number of the connection's line (e.g."
         },
         {
           "name": "operator",
-          "short": "The operator of the connection's line (e.g.",
-          "type": "`$STRING`"
+          "title": "Operator",
+          "type": "`$STRING`",
+          "short": "The operator of the connection's line (e.g."
         },
         {
           "name": "passList",
-          "short": "Checkpoints the train passed on the journey.",
-          "type": "`$ARRAY`"
+          "title": "Pass List",
+          "type": "`$ARRAY`",
+          "short": "Checkpoints the train passed on the journey."
         },
         {
           "name": "subcategory",
+          "title": "Subcategory",
           "type": "`$STRING`"
         },
         {
           "name": "to",
-          "short": "The final destination of this line (e.g.",
-          "type": "`$STRING`"
+          "title": "To",
+          "type": "`$STRING`",
+          "short": "The final destination of this line (e.g."
         }
       ],
       "name": "stationboard",
@@ -416,47 +429,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "datetime",
-                    "orig": "datetime",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "id",
-                    "orig": "id",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "station",
-                    "orig": "station",
-                    "reqd": true,
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "transportation",
-                    "orig": "transportation",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "type",
-                    "orig": "type",
-                    "type": "`$ANY`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/stationboard",
@@ -465,6 +437,55 @@ class Config {
                   "lit": "stationboard"
                 }
               ],
+              "parts": [
+                "stationboard"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.stationboard`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "datetime",
+                    "orig": "datetime",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "station",
+                    "orig": "station",
+                    "type": "`$ANY`",
+                    "kind": "query",
+                    "reqd": true
+                  },
+                  {
+                    "name": "transportation",
+                    "orig": "transportation",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "type",
+                    "orig": "type",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "datetime",
@@ -474,14 +495,7 @@ class Config {
                   "transportation",
                   "type"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.stationboard`"
-              },
-              "parts": [
-                "stationboard"
-              ]
+              }
             }
           ]
         }

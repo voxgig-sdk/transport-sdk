@@ -1,7 +1,7 @@
 // Typed models for the Transport SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,10 +14,6 @@ import (
 
 // Connection is the typed data model for the connection entity.
 type Connection struct {
-	Connections *[]any `json:"connections,omitempty"`
-	From *any `json:"from,omitempty"`
-	Stations *[]any `json:"stations,omitempty"`
-	To *any `json:"to,omitempty"`
 }
 
 // ConnectionListMatch is the typed request payload for Connection.ListTyped.
@@ -35,10 +31,6 @@ type ConnectionListMatch struct {
 
 // Location is the typed data model for the location entity.
 type Location struct {
-	Coordinate *any `json:"coordinate,omitempty"`
-	Distance *float64 `json:"distance,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Score *int `json:"score,omitempty"`
 }
 
 // LocationListMatch is the typed request payload for Location.ListTyped.
@@ -51,16 +43,6 @@ type LocationListMatch struct {
 
 // Stationboard is the typed data model for the stationboard entity.
 type Stationboard struct {
-	Capacity1st *int `json:"capacity1st,omitempty"`
-	Capacity2nd *int `json:"capacity2nd,omitempty"`
-	Category *string `json:"category,omitempty"`
-	CategoryCode *int `json:"categoryCode,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Number *string `json:"number,omitempty"`
-	Operator *string `json:"operator,omitempty"`
-	PassList *[]any `json:"passList,omitempty"`
-	Subcategory *string `json:"subcategory,omitempty"`
-	To *string `json:"to,omitempty"`
 }
 
 // StationboardListMatch is the typed request payload for Stationboard.ListTyped.

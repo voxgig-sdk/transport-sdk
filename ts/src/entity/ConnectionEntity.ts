@@ -19,7 +19,6 @@ import type {
   ConnectionListMatch,
 } from '../TransportTypes'
 
-// TODO: needs Entity superclass
 class ConnectionEntity extends TransportEntityBase<Connection> {
 
   constructor(client: TransportSDK, entopts: any) {

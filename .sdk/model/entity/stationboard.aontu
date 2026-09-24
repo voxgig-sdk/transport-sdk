@@ -1,0 +1,164 @@
+# Entity: stationboard
+
+main: kit: entity: stationboard: {
+
+  alias: field: {}
+
+  fields: {
+    capacity1st: {
+      h: "Capacity1st"
+      n: "capacity1st"
+      r: false
+      sh: "The maximum estimated occupation load of 1st class coaches (e.g."
+      t: "`$INTEGER`"
+    }
+    capacity2nd: {
+      h: "Capacity2nd"
+      n: "capacity2nd"
+      r: false
+      sh: "The maximum estimated occupation load of 2nd class coaches (e.g."
+      t: "`$INTEGER`"
+    }
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "The type of connection this is (e.g."
+      t: "`$STRING`"
+    }
+    categoryCode: {
+      h: "Category Code"
+      n: "categoryCode"
+      r: false
+      sh: "An internal category code, indicates the type of the public transport vehicle."
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the connection (e.g."
+      t: "`$STRING`"
+    }
+    number: {
+      h: "Number"
+      n: "number"
+      r: false
+      sh: "The number of the connection's line (e.g."
+      t: "`$STRING`"
+    }
+    operator: {
+      h: "Operator"
+      n: "operator"
+      r: false
+      sh: "The operator of the connection's line (e.g."
+      t: "`$STRING`"
+    }
+    passList: {
+      h: "Pass List"
+      n: "passList"
+      r: false
+      sh: "Checkpoints the train passed on the journey."
+      t: "`$ARRAY`"
+    }
+    subcategory: {
+      h: "Subcategory"
+      n: "subcategory"
+      r: false
+      t: "`$STRING`"
+    }
+    to: {
+      h: "To"
+      n: "to"
+      r: false
+      sh: "The final destination of this line (e.g."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "stationboard"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /stationboard"
+            source: "swagger2"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "datetime"
+                or: "datetime"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "station"
+                or: "station"
+                r: true
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "transportation"
+                or: "transportation"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/stationboard"
+          q: {
+            exist: [
+              "datetime"
+              "id"
+              "limit"
+              "station"
+              "transportation"
+              "type"
+            ]
+          }
+          s: [
+            {
+              lit: "stationboard"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.stationboard`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

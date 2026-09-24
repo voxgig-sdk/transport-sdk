@@ -19,7 +19,6 @@ import type {
   StationboardListMatch,
 } from '../TransportTypes'
 
-// TODO: needs Entity superclass
 class StationboardEntity extends TransportEntityBase<Stationboard> {
 
   constructor(client: TransportSDK, entopts: any) {

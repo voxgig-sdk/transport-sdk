@@ -19,7 +19,6 @@ import type {
   LocationListMatch,
 } from '../TransportTypes'
 
-// TODO: needs Entity superclass
 class LocationEntity extends TransportEntityBase<Location> {
 
   constructor(client: TransportSDK, entopts: any) {

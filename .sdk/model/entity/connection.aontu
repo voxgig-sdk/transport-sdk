@@ -1,0 +1,147 @@
+# Entity: connection
+
+main: kit: entity: connection: {
+
+  alias: field: {}
+
+  fields: {
+    connections: {
+      h: "Connections"
+      n: "connections"
+      r: false
+      sh: "Found connections"
+      t: "`$ARRAY`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: false
+      sh: "Departure station of search"
+      t: "`$ANY`"
+    }
+    stations: {
+      h: "Stations"
+      n: "stations"
+      r: false
+      sh: "All stations from query"
+      t: "`$ARRAY`"
+    }
+    to: {
+      h: "To"
+      n: "to"
+      r: false
+      sh: "Arrival station of search"
+      t: "`$ANY`"
+    }
+  }
+
+  name: "connection"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /connections"
+            source: "swagger2"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "from"
+                or: "from"
+                r: true
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "is_arrival_time"
+                or: "is_arrival_time"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "time"
+                or: "time"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "to"
+                or: "to"
+                r: true
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "transportation"
+                or: "transportation"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "via"
+                or: "via"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/connections"
+          q: {
+            exist: [
+              "date"
+              "from"
+              "is_arrival_time"
+              "limit"
+              "page"
+              "time"
+              "to"
+              "transportation"
+              "via"
+            ]
+          }
+          s: [
+            {
+              lit: "connections"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

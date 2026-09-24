@@ -1,0 +1,108 @@
+# Entity: location
+
+main: kit: entity: location: {
+
+  alias: field: {}
+
+  fields: {
+    coordinate: {
+      h: "Coordinate"
+      n: "coordinate"
+      r: false
+      sh: "The location coordinates."
+      t: "`$ANY`"
+    }
+    distance: {
+      fo: "float"
+      h: "Distance"
+      n: "distance"
+      r: false
+      sh: "If search has been with coordinates, distance to original point in meters."
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of this location."
+      t: "`$STRING`"
+    }
+    score: {
+      h: "Score"
+      n: "score"
+      r: false
+      sh: "The score with regard to the search request, the higher the better."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "location"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /locations"
+            source: "swagger2"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "x"
+                or: "x"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "y"
+                or: "y"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/locations"
+          q: {
+            exist: [
+              "query"
+              "type"
+              "x"
+              "y"
+            ]
+          }
+          s: [
+            {
+              lit: "locations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.stations`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

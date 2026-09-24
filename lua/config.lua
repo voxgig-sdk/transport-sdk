@@ -89,23 +89,27 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "connections",
-            ["short"] = "Found connections",
+            ["title"] = "Connections",
             ["type"] = "`$ARRAY`",
+            ["short"] = "Found connections",
           },
           {
             ["name"] = "from",
-            ["short"] = "Departure station of search",
+            ["title"] = "From",
             ["type"] = "`$ANY`",
+            ["short"] = "Departure station of search",
           },
           {
             ["name"] = "stations",
-            ["short"] = "All stations from query",
+            ["title"] = "Stations",
             ["type"] = "`$ARRAY`",
+            ["short"] = "All stations from query",
           },
           {
             ["name"] = "to",
-            ["short"] = "Arrival station of search",
+            ["title"] = "To",
             ["type"] = "`$ANY`",
+            ["short"] = "Arrival station of search",
           },
         },
         ["name"] = "connection",
@@ -115,72 +119,80 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "date",
-                      ["orig"] = "date",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "from",
-                      ["orig"] = "from",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "is_arrival_time",
-                      ["orig"] = "is_arrival_time",
-                      ["type"] = "`$BOOLEAN`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "page",
-                      ["orig"] = "page",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "time",
-                      ["orig"] = "time",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "to",
-                      ["orig"] = "to",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "transportation",
-                      ["orig"] = "transportation",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "via",
-                      ["orig"] = "via",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/connections",
                 ["segments"] = {
                   {
                     ["lit"] = "connections",
+                  },
+                },
+                ["parts"] = {
+                  "connections",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "date",
+                      ["orig"] = "date",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "from",
+                      ["orig"] = "from",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "is_arrival_time",
+                      ["orig"] = "is_arrival_time",
+                      ["type"] = "`$BOOLEAN`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "page",
+                      ["orig"] = "page",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "time",
+                      ["orig"] = "time",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "to",
+                      ["orig"] = "to",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "transportation",
+                      ["orig"] = "transportation",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "via",
+                      ["orig"] = "via",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -196,13 +208,6 @@ local function make_config()
                     "via",
                   },
                 },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "connections",
-                },
               },
             },
           },
@@ -215,24 +220,28 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "coordinate",
-            ["short"] = "The location coordinates.",
+            ["title"] = "Coordinate",
             ["type"] = "`$ANY`",
+            ["short"] = "The location coordinates.",
           },
           {
-            ["format"] = "float",
             ["name"] = "distance",
-            ["short"] = "If search has been with coordinates, distance to original point in meters.",
+            ["title"] = "Distance",
             ["type"] = "`$NUMBER`",
+            ["short"] = "If search has been with coordinates, distance to original point in meters.",
+            ["format"] = "float",
           },
           {
             ["name"] = "name",
-            ["short"] = "The name of this location.",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of this location.",
           },
           {
             ["name"] = "score",
-            ["short"] = "The score with regard to the search request, the higher the better.",
+            ["title"] = "Score",
             ["type"] = "`$INTEGER`",
+            ["short"] = "The score with regard to the search request, the higher the better.",
           },
         },
         ["name"] = "location",
@@ -242,40 +251,48 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "query",
-                      ["orig"] = "query",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "x",
-                      ["orig"] = "x",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "y",
-                      ["orig"] = "y",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/locations",
                 ["segments"] = {
                   {
                     ["lit"] = "locations",
+                  },
+                },
+                ["parts"] = {
+                  "locations",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.stations`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "query",
+                      ["orig"] = "query",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "x",
+                      ["orig"] = "x",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "y",
+                      ["orig"] = "y",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -285,13 +302,6 @@ local function make_config()
                     "x",
                     "y",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.stations`",
-                },
-                ["parts"] = {
-                  "locations",
                 },
               },
             },
@@ -305,52 +315,62 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "capacity1st",
-            ["short"] = "The maximum estimated occupation load of 1st class coaches (e.g.",
+            ["title"] = "Capacity1st",
             ["type"] = "`$INTEGER`",
+            ["short"] = "The maximum estimated occupation load of 1st class coaches (e.g.",
           },
           {
             ["name"] = "capacity2nd",
-            ["short"] = "The maximum estimated occupation load of 2nd class coaches (e.g.",
+            ["title"] = "Capacity2nd",
             ["type"] = "`$INTEGER`",
+            ["short"] = "The maximum estimated occupation load of 2nd class coaches (e.g.",
           },
           {
             ["name"] = "category",
-            ["short"] = "The type of connection this is (e.g.",
+            ["title"] = "Category",
             ["type"] = "`$STRING`",
+            ["short"] = "The type of connection this is (e.g.",
           },
           {
             ["name"] = "categoryCode",
-            ["short"] = "An internal category code, indicates the type of the public transport vehicle.",
+            ["title"] = "Category Code",
             ["type"] = "`$INTEGER`",
+            ["short"] = "An internal category code, indicates the type of the public transport vehicle.",
           },
           {
             ["name"] = "name",
-            ["short"] = "The name of the connection (e.g.",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "The name of the connection (e.g.",
           },
           {
             ["name"] = "number",
-            ["short"] = "The number of the connection's line (e.g.",
+            ["title"] = "Number",
             ["type"] = "`$STRING`",
+            ["short"] = "The number of the connection's line (e.g.",
           },
           {
             ["name"] = "operator",
-            ["short"] = "The operator of the connection's line (e.g.",
+            ["title"] = "Operator",
             ["type"] = "`$STRING`",
+            ["short"] = "The operator of the connection's line (e.g.",
           },
           {
             ["name"] = "passList",
-            ["short"] = "Checkpoints the train passed on the journey.",
+            ["title"] = "Pass List",
             ["type"] = "`$ARRAY`",
+            ["short"] = "Checkpoints the train passed on the journey.",
           },
           {
             ["name"] = "subcategory",
+            ["title"] = "Subcategory",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "to",
-            ["short"] = "The final destination of this line (e.g.",
+            ["title"] = "To",
             ["type"] = "`$STRING`",
+            ["short"] = "The final destination of this line (e.g.",
           },
         },
         ["name"] = "stationboard",
@@ -360,53 +380,61 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "datetime",
-                      ["orig"] = "datetime",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "id",
-                      ["orig"] = "id",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "limit",
-                      ["orig"] = "limit",
-                      ["type"] = "`$INTEGER`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "station",
-                      ["orig"] = "station",
-                      ["reqd"] = true,
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "transportation",
-                      ["orig"] = "transportation",
-                      ["type"] = "`$ANY`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "type",
-                      ["orig"] = "type",
-                      ["type"] = "`$ANY`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/stationboard",
                 ["segments"] = {
                   {
                     ["lit"] = "stationboard",
+                  },
+                },
+                ["parts"] = {
+                  "stationboard",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.stationboard`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "datetime",
+                      ["orig"] = "datetime",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "id",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "limit",
+                      ["orig"] = "limit",
+                      ["type"] = "`$INTEGER`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "station",
+                      ["orig"] = "station",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                    {
+                      ["name"] = "transportation",
+                      ["orig"] = "transportation",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "type",
+                      ["orig"] = "type",
+                      ["type"] = "`$ANY`",
+                      ["kind"] = "query",
+                    },
                   },
                 },
                 ["select"] = {
@@ -418,13 +446,6 @@ local function make_config()
                     "transportation",
                     "type",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.stationboard`",
-                },
-                ["parts"] = {
-                  "stationboard",
                 },
               },
             },

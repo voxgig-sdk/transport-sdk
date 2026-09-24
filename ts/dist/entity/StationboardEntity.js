@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StationboardEntity = void 0;
 const TransportEntityBase_1 = require("../TransportEntityBase");
-// TODO: needs Entity superclass
 class StationboardEntity extends TransportEntityBase_1.TransportEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

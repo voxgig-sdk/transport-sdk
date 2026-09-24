@@ -93,23 +93,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "connections",
-						"short": "Found connections",
+						"title": "Connections",
 						"type": "`$ARRAY`",
+						"short": "Found connections",
 					},
 					map[string]any{
 						"name": "from",
-						"short": "Departure station of search",
+						"title": "From",
 						"type": "`$ANY`",
+						"short": "Departure station of search",
 					},
 					map[string]any{
 						"name": "stations",
-						"short": "All stations from query",
+						"title": "Stations",
 						"type": "`$ARRAY`",
+						"short": "All stations from query",
 					},
 					map[string]any{
 						"name": "to",
-						"short": "Arrival station of search",
+						"title": "To",
 						"type": "`$ANY`",
+						"short": "Arrival station of search",
 					},
 				},
 				"name": "connection",
@@ -119,72 +123,80 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "from",
-											"orig": "from",
-											"reqd": true,
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "is_arrival_time",
-											"orig": "is_arrival_time",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "time",
-											"orig": "time",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "to",
-											"orig": "to",
-											"reqd": true,
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "transportation",
-											"orig": "transportation",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "via",
-											"orig": "via",
-											"type": "`$ANY`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/connections",
 								"segments": []any{
 									map[string]any{
 										"lit": "connections",
+									},
+								},
+								"parts": []any{
+									"connections",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "from",
+											"orig": "from",
+											"type": "`$ANY`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "is_arrival_time",
+											"orig": "is_arrival_time",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "time",
+											"orig": "time",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "to",
+											"orig": "to",
+											"type": "`$ANY`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "transportation",
+											"orig": "transportation",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "via",
+											"orig": "via",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -200,13 +212,6 @@ func MakeConfig() map[string]any {
 										"via",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"connections",
-								},
 							},
 						},
 					},
@@ -219,24 +224,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "coordinate",
-						"short": "The location coordinates.",
+						"title": "Coordinate",
 						"type": "`$ANY`",
+						"short": "The location coordinates.",
 					},
 					map[string]any{
-						"format": "float",
 						"name": "distance",
-						"short": "If search has been with coordinates, distance to original point in meters.",
+						"title": "Distance",
 						"type": "`$NUMBER`",
+						"short": "If search has been with coordinates, distance to original point in meters.",
+						"format": "float",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "The name of this location.",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "The name of this location.",
 					},
 					map[string]any{
 						"name": "score",
-						"short": "The score with regard to the search request, the higher the better.",
+						"title": "Score",
 						"type": "`$INTEGER`",
+						"short": "The score with regard to the search request, the higher the better.",
 					},
 				},
 				"name": "location",
@@ -246,40 +255,48 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "x",
-											"orig": "x",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "y",
-											"orig": "y",
-											"type": "`$ANY`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/locations",
 								"segments": []any{
 									map[string]any{
 										"lit": "locations",
+									},
+								},
+								"parts": []any{
+									"locations",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.stations`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "x",
+											"orig": "x",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "y",
+											"orig": "y",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -289,13 +306,6 @@ func MakeConfig() map[string]any {
 										"x",
 										"y",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.stations`",
-								},
-								"parts": []any{
-									"locations",
 								},
 							},
 						},
@@ -309,52 +319,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "capacity1st",
-						"short": "The maximum estimated occupation load of 1st class coaches (e.g.",
+						"title": "Capacity1st",
 						"type": "`$INTEGER`",
+						"short": "The maximum estimated occupation load of 1st class coaches (e.g.",
 					},
 					map[string]any{
 						"name": "capacity2nd",
-						"short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
+						"title": "Capacity2nd",
 						"type": "`$INTEGER`",
+						"short": "The maximum estimated occupation load of 2nd class coaches (e.g.",
 					},
 					map[string]any{
 						"name": "category",
-						"short": "The type of connection this is (e.g.",
+						"title": "Category",
 						"type": "`$STRING`",
+						"short": "The type of connection this is (e.g.",
 					},
 					map[string]any{
 						"name": "categoryCode",
-						"short": "An internal category code, indicates the type of the public transport vehicle.",
+						"title": "Category Code",
 						"type": "`$INTEGER`",
+						"short": "An internal category code, indicates the type of the public transport vehicle.",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "The name of the connection (e.g.",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "The name of the connection (e.g.",
 					},
 					map[string]any{
 						"name": "number",
-						"short": "The number of the connection's line (e.g.",
+						"title": "Number",
 						"type": "`$STRING`",
+						"short": "The number of the connection's line (e.g.",
 					},
 					map[string]any{
 						"name": "operator",
-						"short": "The operator of the connection's line (e.g.",
+						"title": "Operator",
 						"type": "`$STRING`",
+						"short": "The operator of the connection's line (e.g.",
 					},
 					map[string]any{
 						"name": "passList",
-						"short": "Checkpoints the train passed on the journey.",
+						"title": "Pass List",
 						"type": "`$ARRAY`",
+						"short": "Checkpoints the train passed on the journey.",
 					},
 					map[string]any{
 						"name": "subcategory",
+						"title": "Subcategory",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "to",
-						"short": "The final destination of this line (e.g.",
+						"title": "To",
 						"type": "`$STRING`",
+						"short": "The final destination of this line (e.g.",
 					},
 				},
 				"name": "stationboard",
@@ -364,53 +384,61 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "datetime",
-											"orig": "datetime",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "id",
-											"orig": "id",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "station",
-											"orig": "station",
-											"reqd": true,
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "transportation",
-											"orig": "transportation",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$ANY`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/stationboard",
 								"segments": []any{
 									map[string]any{
 										"lit": "stationboard",
+									},
+								},
+								"parts": []any{
+									"stationboard",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.stationboard`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "datetime",
+											"orig": "datetime",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "id",
+											"orig": "id",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "station",
+											"orig": "station",
+											"type": "`$ANY`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "transportation",
+											"orig": "transportation",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -422,13 +450,6 @@ func MakeConfig() map[string]any {
 										"transportation",
 										"type",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.stationboard`",
-								},
-								"parts": []any{
-									"stationboard",
 								},
 							},
 						},
