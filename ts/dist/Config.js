@@ -172,7 +172,7 @@ class Config {
                                     },
                                     {
                                         "name": "is_arrival_time",
-                                        "orig": "is_arrival_time",
+                                        "orig": "isArrivalTime",
                                         "type": "`$BOOLEAN`",
                                         "kind": "query"
                                     },
@@ -203,13 +203,13 @@ class Config {
                                     },
                                     {
                                         "name": "transportation",
-                                        "orig": "transportation",
+                                        "orig": "transportations[]",
                                         "type": "`$ANY`",
                                         "kind": "query"
                                     },
                                     {
                                         "name": "via",
-                                        "orig": "via",
+                                        "orig": "via[]",
                                         "type": "`$ANY`",
                                         "kind": "query"
                                     }
@@ -445,7 +445,7 @@ class Config {
                                     },
                                     {
                                         "name": "transportation",
-                                        "orig": "transportation",
+                                        "orig": "transportations[]",
                                         "type": "`$ANY`",
                                         "kind": "query"
                                     },

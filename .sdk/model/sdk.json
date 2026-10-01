@@ -165,7 +165,7 @@
                         "a": true,
                         "k": "query",
                         "n": "is_arrival_time",
-                        "or": "is_arrival_time",
+                        "or": "isArrivalTime",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -205,7 +205,7 @@
                         "a": true,
                         "k": "query",
                         "n": "transportation",
-                        "or": "transportation",
+                        "or": "transportations[]",
                         "r": false,
                         "t": "`$ANY`"
                       },
@@ -213,7 +213,7 @@
                         "a": true,
                         "k": "query",
                         "n": "via",
-                        "or": "via",
+                        "or": "via[]",
                         "r": false,
                         "t": "`$ANY`"
                       }
@@ -508,7 +508,7 @@
                         "a": true,
                         "k": "query",
                         "n": "transportation",
-                        "or": "transportation",
+                        "or": "transportations[]",
                         "r": false,
                         "t": "`$ANY`"
                       },
@@ -1072,7 +1072,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

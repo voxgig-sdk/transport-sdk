@@ -152,7 +152,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "is_arrival_time",
-                      ["orig"] = "is_arrival_time",
+                      ["orig"] = "isArrivalTime",
                       ["type"] = "`$BOOLEAN`",
                       ["kind"] = "query",
                     },
@@ -183,13 +183,13 @@ local function make_config()
                     },
                     {
                       ["name"] = "transportation",
-                      ["orig"] = "transportation",
+                      ["orig"] = "transportations[]",
                       ["type"] = "`$ANY`",
                       ["kind"] = "query",
                     },
                     {
                       ["name"] = "via",
-                      ["orig"] = "via",
+                      ["orig"] = "via[]",
                       ["type"] = "`$ANY`",
                       ["kind"] = "query",
                     },
@@ -425,7 +425,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "transportation",
-                      ["orig"] = "transportation",
+                      ["orig"] = "transportations[]",
                       ["type"] = "`$ANY`",
                       ["kind"] = "query",
                     },

@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TransportUtility::setRegistrar(function (TransportUtility $u): void {
     $u->clean = [TransportClean::class, 'call'];
+    $u->clean_add = [TransportClean::class, 'add'];
+    $u->clean_explain = [TransportDone::class, 'clean_explain'];
     $u->done = [TransportDone::class, 'call'];
     $u->make_error = [TransportMakeError::class, 'call'];
     $u->feature_add = [TransportFeatureAdd::class, 'call'];

@@ -120,7 +120,7 @@ main: kit: entity: stationboard: {
               {
                 k: "query"
                 n: "transportation"
-                or: "transportation"
+                or: "transportations[]"
                 r: false
                 t: "`$ANY`"
               }

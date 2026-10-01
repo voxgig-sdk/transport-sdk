@@ -65,7 +65,7 @@ main: kit: entity: connection: {
               {
                 k: "query"
                 n: "is_arrival_time"
-                or: "is_arrival_time"
+                or: "isArrivalTime"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -100,14 +100,14 @@ main: kit: entity: connection: {
               {
                 k: "query"
                 n: "transportation"
-                or: "transportation"
+                or: "transportations[]"
                 r: false
                 t: "`$ANY`"
               }
               {
                 k: "query"
                 n: "via"
-                or: "via"
+                or: "via[]"
                 r: false
                 t: "`$ANY`"
               }

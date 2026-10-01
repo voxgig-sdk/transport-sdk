@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 TransportUtility.registrar = ->(u) {
   u.clean = TransportUtilities::Clean
+  u.clean_add = TransportUtilities::CleanAdd
+  u.clean_explain = TransportUtilities::CleanExplain
   u.done = TransportUtilities::Done
   u.make_error = TransportUtilities::MakeError
   u.feature_add = TransportUtilities::FeatureAdd
