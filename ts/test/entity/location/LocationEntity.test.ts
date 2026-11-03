@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { TransportSDK, BaseFeature, stdutil } from '../../..'
+import { TransportSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('LocationEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('location hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of TransportSDK.test(offline).Location().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of TransportSDK.test(offline).Location()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = TransportSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Location().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of TransportSDK.test().Location().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new TransportSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Location().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Location().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TransportSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Location().list({"query":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TRANSPORT_TEST_LIVE
@@ -51,7 +109,7 @@ describe('LocationEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"coordinate":{"a":true,"h":"Coordinate","n":"coordinate","r":false,"sh":"The location coordinates.","t":"`$ANY`","key$":"coordinate","index$":0},"distance":{"a":true,"fo":"float","h":"Distance","n":"distance","r":false,"sh":"If search has been with coordinates, distance to original point in meters.","t":"`$NUMBER`","key$":"distance","index$":1},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"The name of this location.","t":"`$STRING`","key$":"name","index$":2},"score":{"a":true,"h":"Score","n":"score","r":false,"sh":"The score with regard to the search request, the higher the better.","t":"`$INTEGER`","key$":"score","index$":3}},"name":"location","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /locations","source":"swagger2","version":2},"g":{"query":[{"a":true,"k":"query","n":"query","or":"query","r":false,"t":"`$ANY`","index$":0},{"a":true,"k":"query","n":"type","or":"type","r":false,"t":"`$ANY`","index$":1},{"a":true,"k":"query","n":"x","or":"x","r":false,"t":"`$ANY`","index$":2},{"a":true,"k":"query","n":"y","or":"y","r":false,"t":"`$ANY`","index$":3}]},"k":"http","m":"GET","o":"/locations","q":{"exist":["query","type","x","y"]},"r":{},"s":[{"lit":"locations"}],"t":{"req":"`reqdata`","res":"`body.stations`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"location","name__orig":"location","Name":"Location","name_":"location","name-":"location","NAME":"LOCATION","index$":1}, {"active":true,"entity":"location","key$":"BasicLocationFlow","kind":"basic","name":"BasicLocationFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"location_ref01"}}],"index$":0}]}, 'Location', {"GET /locations":{"protocol":"http","parameters":[{"name":"query","in":"query","description":"Specifies the location name to search for (e.g. Basel)","type":"string","index$":0},{"name":"x","in":"query","description":"Latitude (e.g. 47.476001)","type":"number","index$":1},{"name":"y","in":"query","description":"Longitude (e.g. 8.306130)","type":"number","index$":2},{"name":"type","in":"query","description":"Only with `query` parameter. Specifies the location type, possible types are:<ul><li>`all` (default): Looks up for all types of locations</li><li>`station`: Looks up for stations (train station, bus station)</li><li>`poi`: Looks up for points of interest (Clock tower, China garden)</li><li>`address`: Looks up for an address (Zurich Bahnhofstrasse 33)</li></ul>","type":"string","index$":3}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"coordinate":{"a":true,"h":"Coordinate","n":"coordinate","r":false,"sh":"The location coordinates.","t":"`$ANY`","key$":"coordinate","index$":0},"distance":{"a":true,"fo":"float","h":"Distance","n":"distance","r":false,"sh":"If search has been with coordinates, distance to original point in meters.","t":"`$NUMBER`","key$":"distance","index$":1},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"The name of this location.","t":"`$STRING`","key$":"name","index$":2},"score":{"a":true,"h":"Score","n":"score","r":false,"sh":"The score with regard to the search request, the higher the better.","t":"`$INTEGER`","key$":"score","index$":3}},"name":"location","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /locations","source":"swagger2","version":2},"g":{"query":[{"a":true,"k":"query","n":"query","or":"query","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"type","or":"type","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"x","or":"x","r":false,"t":"`$NUMBER`","index$":2},{"a":true,"k":"query","n":"y","or":"y","r":false,"t":"`$NUMBER`","index$":3}]},"k":"http","m":"GET","o":"/locations","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"locations"}],"t":{"req":"`reqdata`","res":"`body.stations`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"location","name__orig":"location","Name":"Location","name_":"location","name-":"location","NAME":"LOCATION","index$":1}, {"active":true,"entity":"location","key$":"BasicLocationFlow","kind":"basic","name":"BasicLocationFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"location_ref01"}}],"index$":0}]}, 'Location', {"GET /locations":{"protocol":"http","parameters":[{"name":"query","in":"query","description":"Specifies the location name to search for (e.g. Basel)","type":"string","index$":0},{"name":"x","in":"query","description":"Latitude (e.g. 47.476001)","type":"number","index$":1},{"name":"y","in":"query","description":"Longitude (e.g. 8.306130)","type":"number","index$":2},{"name":"type","in":"query","description":"Only with `query` parameter. Specifies the location type, possible types are:<ul><li>`all` (default): Looks up for all types of locations</li><li>`station`: Looks up for stations (train station, bus station)</li><li>`poi`: Looks up for points of interest (Clock tower, China garden)</li><li>`address`: Looks up for an address (Zurich Bahnhofstrasse 33)</li></ul>","type":"string","index$":3}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('LocationEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

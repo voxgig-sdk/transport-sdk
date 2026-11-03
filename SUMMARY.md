@@ -1,6 +1,6 @@
 # Transport API
 
-The Transport API.
+2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred.
 
 ## Start here
 
@@ -64,7 +64,7 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 ## Connect to the API
 
-- API server: `http://transport.opendata.ch/v1`
+- API server: `https://transport.opendata.ch/v1`
 
 Check authentication for the route you plan to call. A route that declares no authentication can be used without credentials; this does not change the requirements of other routes. Keep credentials in environment variables or a configured secret provider, and keep them out of source control and logs.
 

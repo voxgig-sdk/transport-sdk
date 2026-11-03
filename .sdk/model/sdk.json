@@ -151,15 +151,16 @@
                         "n": "date",
                         "or": "date",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
+                        "ex": "Lausanne",
                         "k": "query",
                         "n": "from",
                         "or": "from",
                         "r": true,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -167,7 +168,7 @@
                         "n": "is_arrival_time",
                         "or": "isArrivalTime",
                         "r": false,
-                        "t": "`$BOOLEAN`"
+                        "t": "`$INTEGER`"
                       },
                       {
                         "a": true,
@@ -191,15 +192,16 @@
                         "n": "time",
                         "or": "time",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
+                        "ex": "Genève",
                         "k": "query",
                         "n": "to",
                         "or": "to",
                         "r": true,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -207,7 +209,7 @@
                         "n": "transportation",
                         "or": "transportations[]",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -215,7 +217,7 @@
                         "n": "via",
                         "or": "via[]",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       }
                     ]
                   },
@@ -224,18 +226,15 @@
                   "o": "/connections",
                   "q": {
                     "exist": [
-                      "date",
                       "from",
-                      "is_arrival_time",
-                      "limit",
-                      "page",
-                      "time",
-                      "to",
-                      "transportation",
-                      "via"
+                      "to"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "connections"
@@ -314,7 +313,7 @@
                         "n": "query",
                         "or": "query",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -322,7 +321,7 @@
                         "n": "type",
                         "or": "type",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -330,7 +329,7 @@
                         "n": "x",
                         "or": "x",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$NUMBER`"
                       },
                       {
                         "a": true,
@@ -338,22 +337,19 @@
                         "n": "y",
                         "or": "y",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$NUMBER`"
                       }
                     ]
                   },
                   "k": "http",
                   "m": "GET",
                   "o": "/locations",
-                  "q": {
-                    "exist": [
-                      "query",
-                      "type",
-                      "x",
-                      "y"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "locations"
@@ -478,7 +474,7 @@
                         "n": "datetime",
                         "or": "datetime",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -498,11 +494,12 @@
                       },
                       {
                         "a": true,
+                        "ex": "Aarau",
                         "k": "query",
                         "n": "station",
                         "or": "station",
                         "r": true,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -510,7 +507,7 @@
                         "n": "transportation",
                         "or": "transportations[]",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       },
                       {
                         "a": true,
@@ -518,7 +515,7 @@
                         "n": "type",
                         "or": "type",
                         "r": false,
-                        "t": "`$ANY`"
+                        "t": "`$STRING`"
                       }
                     ]
                   },
@@ -527,15 +524,14 @@
                   "o": "/stationboard",
                   "q": {
                     "exist": [
-                      "datetime",
-                      "id",
-                      "limit",
-                      "station",
-                      "transportation",
-                      "type"
+                      "station"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "stationboard"
@@ -876,6 +872,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1046,22 +1043,23 @@
       },
       "info": {
         "auth": false,
-        "description": "The Transport API.",
+        "description": " 2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred.",
         "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
-            "url": "http://transport.opendata.ch/v1"
+            "url": "https://transport.opendata.ch/v1"
           }
         ],
+        "summary": "2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred.",
         "title": "Transport API",
         "version": "1.0",
-        "website": "http://transport.opendata.ch"
+        "website": "https://transport.opendata.ch"
       },
       "option": {},
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1114,6 +1112,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1344,7 +1347,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1721,6 +1727,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

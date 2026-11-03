@@ -53,21 +53,22 @@ main: kit: entity: connection: {
                 n: "date"
                 or: "date"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
+                ex: "Lausanne"
                 k: "query"
                 n: "from"
                 or: "from"
                 r: true
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "is_arrival_time"
                 or: "isArrivalTime"
                 r: false
-                t: "`$BOOLEAN`"
+                t: "`$INTEGER`"
               }
               {
                 k: "query"
@@ -88,28 +89,29 @@ main: kit: entity: connection: {
                 n: "time"
                 or: "time"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
+                ex: "Genève"
                 k: "query"
                 n: "to"
                 or: "to"
                 r: true
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "transportation"
                 or: "transportations[]"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "via"
                 or: "via[]"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
             ]
           }
@@ -117,16 +119,13 @@ main: kit: entity: connection: {
           o: "/connections"
           q: {
             exist: [
-              "date"
               "from"
-              "is_arrival_time"
-              "limit"
-              "page"
-              "time"
               "to"
-              "transportation"
-              "via"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

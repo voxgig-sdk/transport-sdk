@@ -2,13 +2,14 @@
     "swagger": "2.0",
     "info": {
         "title": "Transport API",
-        "version": "1.0"
+        "version": "1.0",
+        "description": " 2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred."
     },
     "host": "transport.opendata.ch",
     "basePath": "/v1",
     "schemes": [
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "produces": [
         "application/json"
@@ -79,14 +80,16 @@
                         "in": "query",
                         "description": "Specifies the departure location of the connection (e.g. Lausanne)",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "example": "Lausanne"
                     },
                     {
                         "name": "to",
                         "in": "query",
-                        "description": "Specifies the arrival location of the connection (e.g. Gen\u00e8ve)",
+                        "description": "Specifies the arrival location of the connection (e.g. Genève)",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "example": "Genève"
                     },
                     {
                         "name": "via[]",
@@ -178,7 +181,8 @@
                         "in": "query",
                         "description": "Specifies the location of which a stationboard should be returned (e.g. Aarau)",
                         "required": true,
-                        "type": "string"
+                        "type": "string",
+                        "example": "Aarau"
                     },
                     {
                         "name": "id",

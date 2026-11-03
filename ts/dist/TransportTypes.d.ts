@@ -5,15 +5,15 @@ export interface Connection {
     to?: any;
 }
 export interface ConnectionListMatch {
-    date?: any;
-    from: any;
-    is_arrival_time?: boolean;
+    date?: string;
+    from: string;
+    is_arrival_time?: number;
     limit?: number;
     page?: number;
-    time?: any;
-    to: any;
-    transportation?: any;
-    via?: any;
+    time?: string;
+    to: string;
+    transportation?: string;
+    via?: string;
 }
 export interface Location {
     coordinate?: any;
@@ -22,10 +22,10 @@ export interface Location {
     score?: number;
 }
 export interface LocationListMatch {
-    query?: any;
-    type?: any;
-    x?: any;
-    y?: any;
+    query?: string;
+    type?: string;
+    x?: number;
+    y?: number;
 }
 export interface Stationboard {
     capacity1st?: number;
@@ -40,10 +40,10 @@ export interface Stationboard {
     to?: string;
 }
 export interface StationboardListMatch {
-    datetime?: any;
+    datetime?: string;
     id?: string;
     limit?: number;
-    station: any;
-    transportation?: any;
-    type?: any;
+    station: string;
+    transportation?: string;
+    type?: string;
 }

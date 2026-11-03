@@ -12,9 +12,9 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewConnectionEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntity
+var NewConnectionEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntityBase
 
-var NewLocationEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntity
+var NewLocationEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntityBase
 
-var NewStationboardEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntity
+var NewStationboardEntityFunc func(client *TransportSDK, entopts map[string]any) TransportEntityBase
 

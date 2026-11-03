@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/transport-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/transport-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new TransportSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $connections = $client->Connection()->list();
+    $connections = $client->Connection()->list(["from" => "example", "to" => "example"]);
     foreach ($connections as $record) {
         $item = $record->data_get();
         echo $item["connections"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $connections = $client->Connection()->list();
+    $connections = $client->Connection()->list(["from" => "example", "to" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,7 +133,7 @@ $client = TransportSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$connection = $client->Connection()->list();
+$connection = $client->Connection()->list(["from" => "example", "to" => "example"]);
 print_r(array_map(fn($item) => $item->data_get(), $connection));
 ```
 
@@ -223,7 +223,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -233,9 +233,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -323,8 +323,8 @@ Create an instance: `$connection = $client->Connection();`
 #### Example: List
 
 ```php
-// list() returns an array of Connection records (throws on error).
-$connections = $client->Connection()->list();
+// list() returns an array of Connection entities, one per record (throws on error).
+$connections = $client->Connection()->list(["from" => "example", "to" => "example"]);
 ```
 
 
@@ -350,7 +350,7 @@ Create an instance: `$location = $client->Location();`
 #### Example: List
 
 ```php
-// list() returns an array of Location records (throws on error).
+// list() returns an array of Location entities, one per record (throws on error).
 $locations = $client->Location()->list();
 ```
 
@@ -383,8 +383,8 @@ Create an instance: `$stationboard = $client->Stationboard();`
 #### Example: List
 
 ```php
-// list() returns an array of Stationboard records (throws on error).
-$stationboards = $client->Stationboard()->list();
+// list() returns an array of Stationboard entities, one per record (throws on error).
+$stationboards = $client->Stationboard()->list(["station" => "example"]);
 ```
 
 ## Features
@@ -550,7 +550,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $connection = $client->Connection();
-$connection->list();
+$connection->list(["from" => "example", "to" => "example"]);
 
 // $connection->data_get() now returns the connection data from the last list
 // $connection->match_get() returns the last match criteria

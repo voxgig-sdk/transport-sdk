@@ -16,17 +16,21 @@ const PLAN = [
         "path": "/connections",
         "args": [],
         "select": {
+            "from": "Lausanne",
+            "to": "Genève",
             "date": "v1",
-            "from": "v1",
             "is_arrival_time": "v1",
             "limit": "v1",
             "page": "v1",
             "time": "v1",
-            "to": "v1",
             "transportation": "v1",
             "via": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "from",
             "to",
@@ -38,174 +42,212 @@ const PLAN = [
             "limit",
             "page"
         ],
+        "queryArgs": [
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "from",
+                "wire": "from"
+            },
+            {
+                "name": "is_arrival_time",
+                "wire": "isArrivalTime"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "time",
+                "wire": "time"
+            },
+            {
+                "name": "to",
+                "wire": "to"
+            },
+            {
+                "name": "transportation",
+                "wire": "transportations[]"
+            },
+            {
+                "name": "via",
+                "wire": "via[]"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
             "connections": [
                 {
-                    "capacity1st": 1,
-                    "capacity2nd": 1,
-                    "duration": "x",
                     "from": {
-                        "arrival": "x",
-                        "arrivalTimestamp": 1,
-                        "delay": 1,
-                        "departure": "x",
-                        "departureTimestamp": 1,
-                        "location": {
-                            "coordinate": {
-                                "type": "x",
-                                "x": 1,
-                                "y": 1
-                            },
-                            "distance": 1,
-                            "name": "x",
-                            "score": 1
-                        },
-                        "platform": "x",
-                        "prognosis": {
-                            "arrival": "x",
-                            "capacity1st": 1,
-                            "capacity2nd": 1,
-                            "departure": "x",
-                            "platform": "x"
-                        },
-                        "realtimeAvailability": "x",
                         "station": {
-                            "coordinate": {
-                                "type": "x",
-                                "x": 1,
-                                "y": 1
-                            },
-                            "distance": 1,
                             "id": "x",
                             "name": "x",
-                            "score": 1
+                            "score": 1,
+                            "coordinate": {
+                                "type": "x",
+                                "x": 1,
+                                "y": 1
+                            },
+                            "distance": 1
+                        },
+                        "arrival": "x",
+                        "arrivalTimestamp": 1,
+                        "departure": "x",
+                        "departureTimestamp": 1,
+                        "delay": 1,
+                        "platform": "x",
+                        "prognosis": {
+                            "platform": "x",
+                            "arrival": "x",
+                            "departure": "x",
+                            "capacity1st": 1,
+                            "capacity2nd": 1
+                        },
+                        "realtimeAvailability": "x",
+                        "location": {
+                            "name": "x",
+                            "score": 1,
+                            "coordinate": {
+                                "type": "x",
+                                "x": 1,
+                                "y": 1
+                            },
+                            "distance": 1
                         }
+                    },
+                    "to": {
+                        "station": {
+                            "id": "x",
+                            "name": "x",
+                            "score": 1,
+                            "coordinate": {
+                                "type": "x",
+                                "x": 1,
+                                "y": 1
+                            },
+                            "distance": 1
+                        },
+                        "arrival": "x",
+                        "arrivalTimestamp": 1,
+                        "departure": "x",
+                        "departureTimestamp": 1,
+                        "delay": 1,
+                        "platform": "x",
+                        "prognosis": {
+                            "platform": "x",
+                            "arrival": "x",
+                            "departure": "x",
+                            "capacity1st": 1,
+                            "capacity2nd": 1
+                        },
+                        "realtimeAvailability": "x",
+                        "location": {
+                            "name": "x",
+                            "score": 1,
+                            "coordinate": {
+                                "type": "x",
+                                "x": 1,
+                                "y": 1
+                            },
+                            "distance": 1
+                        }
+                    },
+                    "duration": "x",
+                    "transfers": 1,
+                    "service": {
+                        "regular": "x",
+                        "irregular": "x"
                     },
                     "products": [
                         "x"
                     ],
+                    "capacity1st": 1,
+                    "capacity2nd": 1,
                     "sections": [
                         {
-                            "arrival": {
-                                "arrival": "x",
-                                "arrivalTimestamp": 1,
-                                "delay": 1,
-                                "departure": "x",
-                                "departureTimestamp": 1,
-                                "location": {},
-                                "platform": "x",
-                                "prognosis": {},
-                                "realtimeAvailability": "x",
-                                "station": {}
-                            },
-                            "departure": {
-                                "arrival": "x",
-                                "arrivalTimestamp": 1,
-                                "delay": 1,
-                                "departure": "x",
-                                "departureTimestamp": 1,
-                                "location": {},
-                                "platform": "x",
-                                "prognosis": {},
-                                "realtimeAvailability": "x",
-                                "station": {}
-                            },
                             "journey": {
-                                "capacity1st": 1,
-                                "capacity2nd": 1,
-                                "category": "x",
-                                "categoryCode": 1,
                                 "name": "x",
+                                "category": "x",
+                                "subcategory": "x",
+                                "categoryCode": 1,
                                 "number": "x",
                                 "operator": "x",
+                                "to": "x",
                                 "passList": [],
-                                "subcategory": "x",
-                                "to": "x"
+                                "capacity1st": 1,
+                                "capacity2nd": 1
                             },
                             "walk": {
                                 "duration": "x"
+                            },
+                            "departure": {
+                                "station": {},
+                                "arrival": "x",
+                                "arrivalTimestamp": 1,
+                                "departure": "x",
+                                "departureTimestamp": 1,
+                                "delay": 1,
+                                "platform": "x",
+                                "prognosis": {},
+                                "realtimeAvailability": "x",
+                                "location": {}
+                            },
+                            "arrival": {
+                                "station": {},
+                                "arrival": "x",
+                                "arrivalTimestamp": 1,
+                                "departure": "x",
+                                "departureTimestamp": 1,
+                                "delay": 1,
+                                "platform": "x",
+                                "prognosis": {},
+                                "realtimeAvailability": "x",
+                                "location": {}
                             }
                         }
-                    ],
-                    "service": {
-                        "irregular": "x",
-                        "regular": "x"
-                    },
-                    "to": {
-                        "arrival": "x",
-                        "arrivalTimestamp": 1,
-                        "delay": 1,
-                        "departure": "x",
-                        "departureTimestamp": 1,
-                        "location": {
-                            "coordinate": {
-                                "type": "x",
-                                "x": 1,
-                                "y": 1
-                            },
-                            "distance": 1,
-                            "name": "x",
-                            "score": 1
-                        },
-                        "platform": "x",
-                        "prognosis": {
-                            "arrival": "x",
-                            "capacity1st": 1,
-                            "capacity2nd": 1,
-                            "departure": "x",
-                            "platform": "x"
-                        },
-                        "realtimeAvailability": "x",
-                        "station": {
-                            "coordinate": {
-                                "type": "x",
-                                "x": 1,
-                                "y": 1
-                            },
-                            "distance": 1,
-                            "id": "x",
-                            "name": "x",
-                            "score": 1
-                        }
-                    },
-                    "transfers": 1
+                    ]
                 }
             ],
             "from": {
+                "id": "x",
+                "name": "x",
+                "score": 1,
                 "coordinate": {
                     "type": "x",
                     "x": 1,
                     "y": 1
                 },
-                "distance": 1,
-                "id": "x",
-                "name": "x",
-                "score": 1
+                "distance": 1
             },
             "to": {
+                "id": "x",
+                "name": "x",
+                "score": 1,
                 "coordinate": {
                     "type": "x",
                     "x": 1,
                     "y": 1
                 },
-                "distance": 1,
-                "id": "x",
-                "name": "x",
-                "score": 1
+                "distance": 1
             },
             "stations": [
                 {
+                    "id": "x",
+                    "name": "x",
+                    "score": 1,
                     "coordinate": {
                         "type": "x",
                         "x": 1,
                         "y": 1
                     },
-                    "distance": 1,
-                    "id": "x",
-                    "name": "x",
-                    "score": 1
+                    "distance": 1
                 }
             ]
         },
@@ -225,25 +267,47 @@ const PLAN = [
             "y": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "query",
             "x",
             "y",
             "type"
         ],
+        "queryArgs": [
+            {
+                "name": "query",
+                "wire": "query"
+            },
+            {
+                "name": "type",
+                "wire": "type"
+            },
+            {
+                "name": "x",
+                "wire": "x"
+            },
+            {
+                "name": "y",
+                "wire": "y"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
             "stations": [
                 {
+                    "name": "x",
+                    "score": 1,
                     "coordinate": {
                         "type": "x",
                         "x": 1,
                         "y": 1
                     },
-                    "distance": 1,
-                    "name": "x",
-                    "score": 1
+                    "distance": 1
                 }
             ]
         },
@@ -257,14 +321,18 @@ const PLAN = [
         "path": "/stationboard",
         "args": [],
         "select": {
+            "station": "Aarau",
             "datetime": "v1",
             "id": "v1",
             "limit": "v1",
-            "station": "v1",
             "transportation": "v1",
             "type": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "station",
             "id",
@@ -273,62 +341,88 @@ const PLAN = [
             "datetime",
             "type"
         ],
+        "queryArgs": [
+            {
+                "name": "datetime",
+                "wire": "datetime"
+            },
+            {
+                "name": "id",
+                "wire": "id"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "station",
+                "wire": "station"
+            },
+            {
+                "name": "transportation",
+                "wire": "transportations[]"
+            },
+            {
+                "name": "type",
+                "wire": "type"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
             "station": {
+                "id": "x",
+                "name": "x",
+                "score": 1,
                 "coordinate": {
                     "type": "x",
                     "x": 1,
                     "y": 1
                 },
-                "distance": 1,
-                "id": "x",
-                "name": "x",
-                "score": 1
+                "distance": 1
             },
             "stationboard": [
                 {
-                    "capacity1st": 1,
-                    "capacity2nd": 1,
-                    "category": "x",
-                    "categoryCode": 1,
                     "name": "x",
+                    "category": "x",
+                    "subcategory": "x",
+                    "categoryCode": 1,
                     "number": "x",
                     "operator": "x",
+                    "to": "x",
                     "passList": [
                         {
-                            "arrival": "x",
-                            "arrivalTimestamp": 1,
-                            "delay": 1,
-                            "departure": "x",
-                            "departureTimestamp": 1,
-                            "location": {
-                                "coordinate": {},
-                                "distance": 1,
-                                "name": "x",
-                                "score": 1
-                            },
-                            "platform": "x",
-                            "prognosis": {
-                                "arrival": "x",
-                                "capacity1st": 1,
-                                "capacity2nd": 1,
-                                "departure": "x",
-                                "platform": "x"
-                            },
-                            "realtimeAvailability": "x",
                             "station": {
-                                "coordinate": {},
-                                "distance": 1,
                                 "id": "x",
                                 "name": "x",
-                                "score": 1
+                                "score": 1,
+                                "coordinate": {},
+                                "distance": 1
+                            },
+                            "arrival": "x",
+                            "arrivalTimestamp": 1,
+                            "departure": "x",
+                            "departureTimestamp": 1,
+                            "delay": 1,
+                            "platform": "x",
+                            "prognosis": {
+                                "platform": "x",
+                                "arrival": "x",
+                                "departure": "x",
+                                "capacity1st": 1,
+                                "capacity2nd": 1
+                            },
+                            "realtimeAvailability": "x",
+                            "location": {
+                                "name": "x",
+                                "score": 1,
+                                "coordinate": {},
+                                "distance": 1
                             }
                         }
                     ],
-                    "subcategory": "x",
-                    "to": "x"
+                    "capacity1st": 1,
+                    "capacity2nd": 1
                 }
             ]
         },

@@ -54,40 +54,36 @@ main: kit: entity: location: {
                 n: "query"
                 or: "query"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "type"
                 or: "type"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "x"
                 or: "x"
                 r: false
-                t: "`$ANY`"
+                t: "`$NUMBER`"
               }
               {
                 k: "query"
                 n: "y"
                 or: "y"
                 r: false
-                t: "`$ANY`"
+                t: "`$NUMBER`"
               }
             ]
           }
           m: "GET"
           o: "/locations"
-          q: {
-            exist: [
-              "query"
-              "type"
-              "x"
-              "y"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

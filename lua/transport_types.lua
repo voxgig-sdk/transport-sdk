@@ -13,15 +13,15 @@
 ---@field to? any
 
 ---@class ConnectionListMatch
----@field date? any
----@field from any
----@field is_arrival_time? boolean
+---@field date? string
+---@field from string
+---@field is_arrival_time? number
 ---@field limit? number
 ---@field page? number
----@field time? any
----@field to any
----@field transportation? any
----@field via? any
+---@field time? string
+---@field to string
+---@field transportation? string
+---@field via? string
 
 ---@class Location
 ---@field coordinate? any
@@ -30,10 +30,10 @@
 ---@field score? number
 
 ---@class LocationListMatch
----@field query? any
----@field type? any
----@field x? any
----@field y? any
+---@field query? string
+---@field type? string
+---@field x? number
+---@field y? number
 
 ---@class Stationboard
 ---@field capacity1st? number
@@ -48,12 +48,12 @@
 ---@field to? string
 
 ---@class StationboardListMatch
----@field datetime? any
+---@field datetime? string
 ---@field id? string
 ---@field limit? number
----@field station any
----@field transportation? any
----@field type? any
+---@field station string
+---@field transportation? string
+---@field type? string
 
 local M = {}
 

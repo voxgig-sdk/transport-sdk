@@ -18,15 +18,15 @@ type Connection struct {
 
 // ConnectionListMatch is the typed request payload for Connection.ListTyped.
 type ConnectionListMatch struct {
-	Date *any `json:"date,omitempty"`
-	From any `json:"from"`
-	IsArrivalTime *bool `json:"is_arrival_time,omitempty"`
+	Date *string `json:"date,omitempty"`
+	From string `json:"from"`
+	IsArrivalTime *int `json:"is_arrival_time,omitempty"`
 	Limit *int `json:"limit,omitempty"`
 	Page *int `json:"page,omitempty"`
-	Time *any `json:"time,omitempty"`
-	To any `json:"to"`
-	Transportation *any `json:"transportation,omitempty"`
-	Via *any `json:"via,omitempty"`
+	Time *string `json:"time,omitempty"`
+	To string `json:"to"`
+	Transportation *string `json:"transportation,omitempty"`
+	Via *string `json:"via,omitempty"`
 }
 
 // Location is the typed data model for the location entity.
@@ -35,10 +35,10 @@ type Location struct {
 
 // LocationListMatch is the typed request payload for Location.ListTyped.
 type LocationListMatch struct {
-	Query *any `json:"query,omitempty"`
-	Type *any `json:"type,omitempty"`
-	X *any `json:"x,omitempty"`
-	Y *any `json:"y,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Type *string `json:"type,omitempty"`
+	X *float64 `json:"x,omitempty"`
+	Y *float64 `json:"y,omitempty"`
 }
 
 // Stationboard is the typed data model for the stationboard entity.
@@ -47,12 +47,12 @@ type Stationboard struct {
 
 // StationboardListMatch is the typed request payload for Stationboard.ListTyped.
 type StationboardListMatch struct {
-	Datetime *any `json:"datetime,omitempty"`
+	Datetime *string `json:"datetime,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Limit *int `json:"limit,omitempty"`
-	Station any `json:"station"`
-	Transportation *any `json:"transportation,omitempty"`
-	Type *any `json:"type,omitempty"`
+	Station string `json:"station"`
+	Transportation *string `json:"transportation,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

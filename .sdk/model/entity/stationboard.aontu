@@ -94,7 +94,7 @@ main: kit: entity: stationboard: {
                 n: "datetime"
                 or: "datetime"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
@@ -111,25 +111,26 @@ main: kit: entity: stationboard: {
                 t: "`$INTEGER`"
               }
               {
+                ex: "Aarau"
                 k: "query"
                 n: "station"
                 or: "station"
                 r: true
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "transportation"
                 or: "transportations[]"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "type"
                 or: "type"
                 r: false
-                t: "`$ANY`"
+                t: "`$STRING`"
               }
             ]
           }
@@ -137,13 +138,12 @@ main: kit: entity: stationboard: {
           o: "/stationboard"
           q: {
             exist: [
-              "datetime"
-              "id"
-              "limit"
               "station"
-              "transportation"
-              "type"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

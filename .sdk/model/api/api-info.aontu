@@ -5,15 +5,16 @@ main: {
   kit: {
     info: {
       auth: false
-      description: "The Transport API."
+      description: " 2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred."
       servers: [
         {
-          url: "http://transport.opendata.ch/v1"
+          url: "https://transport.opendata.ch/v1"
         }
       ]
+      summary: "2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred."
       title: "Transport API"
       version: "1.0"
-      website: "http://transport.opendata.ch"
+      website: "https://transport.opendata.ch"
     }
   }
 }

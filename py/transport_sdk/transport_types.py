@@ -16,24 +16,32 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class Connection(TypedDict, total=False):
-    connections: list
-    stations: list
-    to: Any
+Connection = TypedDict('Connection', {
+    "connections": list,
+    "from": Any,
+    "stations": list,
+    "to": Any,
+}, total=False)
 
 
-class ConnectionListMatchRequired(TypedDict):
-    to: Any
+ConnectionListMatchRequired = TypedDict('ConnectionListMatchRequired', {
+    "from": str,
+    "to": str,
+})
+
+ConnectionListMatchOptional = TypedDict('ConnectionListMatchOptional', {
+    "date": str,
+    "is_arrival_time": int,
+    "limit": int,
+    "page": int,
+    "time": str,
+    "transportation": str,
+    "via": str,
+}, total=False)
 
 
-class ConnectionListMatch(ConnectionListMatchRequired, total=False):
-    date: Any
-    is_arrival_time: bool
-    limit: int
-    page: int
-    time: Any
-    transportation: Any
-    via: Any
+class ConnectionListMatch(ConnectionListMatchRequired, ConnectionListMatchOptional):
+    pass
 
 
 class Location(TypedDict, total=False):
@@ -44,10 +52,10 @@ class Location(TypedDict, total=False):
 
 
 class LocationListMatch(TypedDict, total=False):
-    query: Any
-    type: Any
-    x: Any
-    y: Any
+    query: str
+    type: str
+    x: float
+    y: float
 
 
 class Stationboard(TypedDict, total=False):
@@ -64,12 +72,12 @@ class Stationboard(TypedDict, total=False):
 
 
 class StationboardListMatchRequired(TypedDict):
-    station: Any
+    station: str
 
 
 class StationboardListMatch(StationboardListMatchRequired, total=False):
-    datetime: Any
+    datetime: str
     id: str
     limit: int
-    transportation: Any
-    type: Any
+    transportation: str
+    type: str

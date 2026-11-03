@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Stationboard();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('stationboard hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.TransportSDK.test(offline).Stationboard().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.TransportSDK.test(offline).Stationboard()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.TransportSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Stationboard().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.TransportSDK.test().Stationboard().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.TransportSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Stationboard().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Stationboard().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.TransportSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Stationboard().list({ "datetime": 1, "station": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.TRANSPORT_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "capacity1st": { "a": true, "h": "Capacity1st", "n": "capacity1st", "r": false, "sh": "The maximum estimated occupation load of 1st class coaches (e.g.", "t": "`$INTEGER`", "key$": "capacity1st", "index$": 0 }, "capacity2nd": { "a": true, "h": "Capacity2nd", "n": "capacity2nd", "r": false, "sh": "The maximum estimated occupation load of 2nd class coaches (e.g.", "t": "`$INTEGER`", "key$": "capacity2nd", "index$": 1 }, "category": { "a": true, "h": "Category", "n": "category", "r": false, "sh": "The type of connection this is (e.g.", "t": "`$STRING`", "key$": "category", "index$": 2 }, "categoryCode": { "a": true, "h": "Category Code", "n": "categoryCode", "r": false, "sh": "An internal category code, indicates the type of the public transport vehicle.", "t": "`$INTEGER`", "key$": "categoryCode", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "The name of the connection (e.g.", "t": "`$STRING`", "key$": "name", "index$": 4 }, "number": { "a": true, "h": "Number", "n": "number", "r": false, "sh": "The number of the connection's line (e.g.", "t": "`$STRING`", "key$": "number", "index$": 5 }, "operator": { "a": true, "h": "Operator", "n": "operator", "r": false, "sh": "The operator of the connection's line (e.g.", "t": "`$STRING`", "key$": "operator", "index$": 6 }, "passList": { "a": true, "h": "Pass List", "n": "passList", "r": false, "sh": "Checkpoints the train passed on the journey.", "t": "`$ARRAY`", "key$": "passList", "index$": 7 }, "subcategory": { "a": true, "h": "Subcategory", "n": "subcategory", "r": false, "t": "`$STRING`", "key$": "subcategory", "index$": 8 }, "to": { "a": true, "h": "To", "n": "to", "r": false, "sh": "The final destination of this line (e.g.", "t": "`$STRING`", "key$": "to", "index$": 9 } }, "name": "stationboard", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /stationboard", "source": "swagger2", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "datetime", "or": "datetime", "r": false, "t": "`$ANY`", "index$": 0 }, { "a": true, "k": "query", "n": "id", "or": "id", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "k": "query", "n": "station", "or": "station", "r": true, "t": "`$ANY`", "index$": 3 }, { "a": true, "k": "query", "n": "transportation", "or": "transportations[]", "r": false, "t": "`$ANY`", "index$": 4 }, { "a": true, "k": "query", "n": "type", "or": "type", "r": false, "t": "`$ANY`", "index$": 5 }] }, "k": "http", "m": "GET", "o": "/stationboard", "q": { "exist": ["datetime", "id", "limit", "station", "transportation", "type"] }, "r": {}, "s": [{ "lit": "stationboard" }], "t": { "req": "`reqdata`", "res": "`body.stationboard`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "stationboard", "name__orig": "stationboard", "Name": "Stationboard", "name_": "stationboard", "name-": "stationboard", "NAME": "STATIONBOARD", "index$": 2 }, { "active": true, "entity": "stationboard", "key$": "BasicStationboardFlow", "kind": "basic", "name": "BasicStationboardFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "stationboard_ref01" } }], "index$": 0 }] }, 'Stationboard', { "GET /stationboard": { "protocol": "http", "parameters": [{ "name": "station", "in": "query", "description": "Specifies the location of which a stationboard should be returned (e.g. Aarau)", "required": true, "type": "string", "index$": 0 }, { "name": "id", "in": "query", "description": "The id of the station whose stationboard should be returned. Alternative to the station parameter; one of these two is required. If both an id and a station are specified the id has precedence. e.g. 8503059 (for Zurich Stadelhofen)", "type": "string", "index$": 1 }, { "name": "limit", "in": "query", "description": "Number of departing connections to return. This is not a hard limit - if multiple connections leave at the same time it'll return any connections that leave at the same time as the last connection within the limit. For example: `limit=4` will return connections leaving at: 19:30, 19:32, 19:32, 19:35, 19:35. Because one of the connections leaving at 19:35 is within the limit, all connections leaving at 19:35 are shown.", "type": "integer", "index$": 2 }, { "name": "transportations[]", "in": "query", "description": "Transportation means; one or more of `train`, `tram`, `ship`, `bus`, `cableway` (e.g. transportations[]=tram&transportations[]=bus)", "type": "string", "index$": 3 }, { "name": "datetime", "in": "query", "description": "Date and time of departing connections, in the format `YYYY-MM-DD hh:mm` (e.g. 2012-03-25 17:30)", "type": "string", "index$": 4 }, { "name": "type", "in": "query", "description": "`departure` (default) or `arrival`", "type": "string", "index$": 5 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "capacity1st": { "a": true, "h": "Capacity1st", "n": "capacity1st", "r": false, "sh": "The maximum estimated occupation load of 1st class coaches (e.g.", "t": "`$INTEGER`", "key$": "capacity1st", "index$": 0 }, "capacity2nd": { "a": true, "h": "Capacity2nd", "n": "capacity2nd", "r": false, "sh": "The maximum estimated occupation load of 2nd class coaches (e.g.", "t": "`$INTEGER`", "key$": "capacity2nd", "index$": 1 }, "category": { "a": true, "h": "Category", "n": "category", "r": false, "sh": "The type of connection this is (e.g.", "t": "`$STRING`", "key$": "category", "index$": 2 }, "categoryCode": { "a": true, "h": "Category Code", "n": "categoryCode", "r": false, "sh": "An internal category code, indicates the type of the public transport vehicle.", "t": "`$INTEGER`", "key$": "categoryCode", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "The name of the connection (e.g.", "t": "`$STRING`", "key$": "name", "index$": 4 }, "number": { "a": true, "h": "Number", "n": "number", "r": false, "sh": "The number of the connection's line (e.g.", "t": "`$STRING`", "key$": "number", "index$": 5 }, "operator": { "a": true, "h": "Operator", "n": "operator", "r": false, "sh": "The operator of the connection's line (e.g.", "t": "`$STRING`", "key$": "operator", "index$": 6 }, "passList": { "a": true, "h": "Pass List", "n": "passList", "r": false, "sh": "Checkpoints the train passed on the journey.", "t": "`$ARRAY`", "key$": "passList", "index$": 7 }, "subcategory": { "a": true, "h": "Subcategory", "n": "subcategory", "r": false, "t": "`$STRING`", "key$": "subcategory", "index$": 8 }, "to": { "a": true, "h": "To", "n": "to", "r": false, "sh": "The final destination of this line (e.g.", "t": "`$STRING`", "key$": "to", "index$": 9 } }, "name": "stationboard", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /stationboard", "source": "swagger2", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "datetime", "or": "datetime", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "id", "or": "id", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "limit", "or": "limit", "r": false, "t": "`$INTEGER`", "index$": 2 }, { "a": true, "ex": "Aarau", "k": "query", "n": "station", "or": "station", "r": true, "t": "`$STRING`", "index$": 3 }, { "a": true, "k": "query", "n": "transportation", "or": "transportations[]", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "k": "query", "n": "type", "or": "type", "r": false, "t": "`$STRING`", "index$": 5 }] }, "k": "http", "m": "GET", "o": "/stationboard", "q": { "exist": ["station"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "stationboard" }], "t": { "req": "`reqdata`", "res": "`body.stationboard`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "stationboard", "name__orig": "stationboard", "Name": "Stationboard", "name_": "stationboard", "name-": "stationboard", "NAME": "STATIONBOARD", "index$": 2 }, { "active": true, "entity": "stationboard", "key$": "BasicStationboardFlow", "kind": "basic", "name": "BasicStationboardFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "stationboard_ref01" } }], "index$": 0 }] }, 'Stationboard', { "GET /stationboard": { "protocol": "http", "parameters": [{ "name": "station", "in": "query", "description": "Specifies the location of which a stationboard should be returned (e.g. Aarau)", "required": true, "type": "string", "example": "Aarau", "index$": 0 }, { "name": "id", "in": "query", "description": "The id of the station whose stationboard should be returned. Alternative to the station parameter; one of these two is required. If both an id and a station are specified the id has precedence. e.g. 8503059 (for Zurich Stadelhofen)", "type": "string", "index$": 1 }, { "name": "limit", "in": "query", "description": "Number of departing connections to return. This is not a hard limit - if multiple connections leave at the same time it'll return any connections that leave at the same time as the last connection within the limit. For example: `limit=4` will return connections leaving at: 19:30, 19:32, 19:32, 19:35, 19:35. Because one of the connections leaving at 19:35 is within the limit, all connections leaving at 19:35 are shown.", "type": "integer", "index$": 2 }, { "name": "transportations[]", "in": "query", "description": "Transportation means; one or more of `train`, `tram`, `ship`, `bus`, `cableway` (e.g. transportations[]=tram&transportations[]=bus)", "type": "string", "index$": 3 }, { "name": "datetime", "in": "query", "description": "Date and time of departing connections, in the format `YYYY-MM-DD hh:mm` (e.g. 2012-03-25 17:30)", "type": "string", "index$": 4 }, { "name": "type", "in": "query", "description": "`departure` (default) or `arrival`", "type": "string", "index$": 5 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const stationboard_ref01_list = (await stationboard_ref01_ent.list(stationboard_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

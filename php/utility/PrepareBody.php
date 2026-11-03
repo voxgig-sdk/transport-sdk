@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // Transport SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class TransportPrepareBody
 {
     public static function call(TransportContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (TransportMedia::isRawRequest($ctx->point)) {
+                return TransportMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -112,7 +113,7 @@ class Config {
 
 
   options = {
-    base: "http://transport.opendata.ch/v1",
+    base: "https://transport.opendata.ch/v1",
 
     headers: {
       "content-type": "application/json"
@@ -189,20 +190,22 @@ class Config {
                   {
                     "name": "date",
                     "orig": "date",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "from",
                     "orig": "from",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query",
-                    "reqd": true
+                    "reqd": true,
+                    "example": "Lausanne",
+                    "field": true
                   },
                   {
                     "name": "is_arrival_time",
                     "orig": "isArrivalTime",
-                    "type": "`$BOOLEAN`",
+                    "type": "`$INTEGER`",
                     "kind": "query"
                   },
                   {
@@ -220,42 +223,41 @@ class Config {
                   {
                     "name": "time",
                     "orig": "time",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "to",
                     "orig": "to",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query",
-                    "reqd": true
+                    "reqd": true,
+                    "example": "Genève",
+                    "field": true
                   },
                   {
                     "name": "transportation",
                     "orig": "transportations[]",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "via",
                     "orig": "via[]",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   }
                 ]
               },
               "select": {
                 "exist": [
-                  "date",
                   "from",
-                  "is_arrival_time",
-                  "limit",
-                  "page",
-                  "time",
-                  "to",
-                  "transportation",
-                  "via"
+                  "to"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -321,36 +323,33 @@ class Config {
                   {
                     "name": "query",
                     "orig": "query",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "type",
                     "orig": "type",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "x",
                     "orig": "x",
-                    "type": "`$ANY`",
+                    "type": "`$NUMBER`",
                     "kind": "query"
                   },
                   {
                     "name": "y",
                     "orig": "y",
-                    "type": "`$ANY`",
+                    "type": "`$NUMBER`",
                     "kind": "query"
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "query",
-                  "type",
-                  "x",
-                  "y"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -450,7 +449,7 @@ class Config {
                   {
                     "name": "datetime",
                     "orig": "datetime",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
@@ -468,33 +467,33 @@ class Config {
                   {
                     "name": "station",
                     "orig": "station",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query",
-                    "reqd": true
+                    "reqd": true,
+                    "example": "Aarau"
                   },
                   {
                     "name": "transportation",
                     "orig": "transportations[]",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "type",
                     "orig": "type",
-                    "type": "`$ANY`",
+                    "type": "`$STRING`",
                     "kind": "query"
                   }
                 ]
               },
               "select": {
                 "exist": [
-                  "datetime",
-                  "id",
-                  "limit",
-                  "station",
-                  "transportation",
-                  "type"
+                  "station"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]

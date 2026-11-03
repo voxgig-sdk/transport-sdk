@@ -3,5 +3,25 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "2026-11-03: examples for the required from/to (Lausanne, Genève) and station (Aarau), probed 200; https preferred.",
+      "A list of connections",
+      "All stations from query",
+      "An internal category code, indicates the type of the public transport vehicle. Possible values are 0, 1, 2, 3, 5, 8: train; 4: ship; 6: bus; 7: cable car (aerial, big); 9: tram.",
+      "Arrival station of search",
+      "Departure station of search",
+      "Found connections",
+      "If search has been with coordinates, distance to original point in meters.",
+      "List of locations",
+      "Stationboard",
+      "The location coordinates.",
+      "The maximum estimated occupation load of 1st class coaches (for example 1).",
+      "The maximum estimated occupation load of 2nd class coaches (for example 2).",
+      "The name of this location.",
+      "The score with regard to the search request, the higher the better.",
+      "The type of connection this is (for example S)."
+    ]
+  }
 }

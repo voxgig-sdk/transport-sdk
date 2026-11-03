@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type TransportEntity = core.TransportEntity
+type TransportEntityBase = core.TransportEntityBase
+
+// Deprecated: use TransportEntityBase.
+type TransportEntity = core.TransportEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,13 +46,13 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewConnectionEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntity {
+	core.NewConnectionEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntityBase {
 		return entity.NewConnectionEntity(client, entopts)
 	}
-	core.NewLocationEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntity {
+	core.NewLocationEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntityBase {
 		return entity.NewLocationEntity(client, entopts)
 	}
-	core.NewStationboardEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntity {
+	core.NewStationboardEntityFunc = func(client *core.TransportSDK, entopts map[string]any) core.TransportEntityBase {
 		return entity.NewStationboardEntity(client, entopts)
 	}
 }

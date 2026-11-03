@@ -32,13 +32,13 @@ Connection = Struct.new(
 # Request payload for Connection#list.
 #
 # @!attribute [rw] date
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] from
-#   @return [Object]
+#   @return [String]
 #
 # @!attribute [rw] is_arrival_time
-#   @return [Boolean, nil]
+#   @return [Integer, nil]
 #
 # @!attribute [rw] limit
 #   @return [Integer, nil]
@@ -47,16 +47,16 @@ Connection = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] time
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] to
-#   @return [Object]
+#   @return [String]
 #
 # @!attribute [rw] transportation
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] via
-#   @return [Object, nil]
+#   @return [String, nil]
 ConnectionListMatch = Struct.new(
   :date,
   :from,
@@ -94,16 +94,16 @@ Location = Struct.new(
 # Request payload for Location#list.
 #
 # @!attribute [rw] query
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] type
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] x
-#   @return [Object, nil]
+#   @return [Float, nil]
 #
 # @!attribute [rw] y
-#   @return [Object, nil]
+#   @return [Float, nil]
 LocationListMatch = Struct.new(
   :query,
   :type,
@@ -160,7 +160,7 @@ Stationboard = Struct.new(
 # Request payload for Stationboard#list.
 #
 # @!attribute [rw] datetime
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
@@ -169,13 +169,13 @@ Stationboard = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] station
-#   @return [Object]
+#   @return [String]
 #
 # @!attribute [rw] transportation
-#   @return [Object, nil]
+#   @return [String, nil]
 #
 # @!attribute [rw] type
-#   @return [Object, nil]
+#   @return [String, nil]
 StationboardListMatch = Struct.new(
   :datetime,
   :id,
